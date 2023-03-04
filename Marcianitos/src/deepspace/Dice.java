@@ -52,4 +52,44 @@ class Dice {
         return (retorno);
     }    
     
+    int initWithNShields (){
+        int retorno = 1;
+        
+        float num = this.generator.nextFloat();
+        
+        if (num < NSHIELDSPROB){
+            retorno = 0;
+            
+        }
+        
+        return (retorno);
+    }
+    
+    int whoStarts (int nPlayers) {
+        return  (int)(this.generator.nextDouble() * nPlayers);
+    }
+    
+    GameCharacter firstShot () {
+        GameCharacter retorno = GameCharacter.ENEMYSTARSHIP;
+        
+        float num = this.generator.nextFloat();
+
+        if (num < FIRSTSHOTPROB){
+            retorno = GameCharacter.SPACESTATION;
+        }
+        
+        return (retorno);
+    }
+    
+    boolean spaceStationMoves (float speed) {
+        boolean retorno = false;
+        
+        float num = this.generator.nextFloat();
+
+        if (num < speed){
+            retorno = true;
+        }
+        
+        return (retorno);
+    }
 }
