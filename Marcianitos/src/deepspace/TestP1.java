@@ -10,34 +10,61 @@ package deepspace;
  */
 public class TestP1 {
     
-    public static void main (){     // ns si el tipo de funcion esta bien
-                                    // asi es como esta en los ejemplos de las diapositivas
-    
-        Loot l = new Loot(2,5,1,6,3);
-        System.out.println(l.getNHangars());
-        System.out.println(l.getNMedals());
-        System.out.println(l.getNShields());
-        System.out.println(l.getNSupplies());
-        System.out.println(l.getNWeapons());
+    public static void main(String[] args) {												
+        // LOOT
+		Loot l = new Loot(2,5,1,6,3);
+        System.out.println("LOOT:");
+		System.out.println("Num Hangares:\t" + l.getNHangars());
+        System.out.println("Num Medals:\t" + l.getNMedals());
+        System.out.println("Num Shields:\t" + l.getNShields());
+        System.out.println("Num Supplies:\t" + l.getNSupplies());
+        System.out.println("Num Weapons:\t" + l.getNWeapons());
         
+		// SUPPLIES
         SuppliesPackage sp = new SuppliesPackage(4.5f, 2, 3.1f);
-        System.out.println(sp.getAmmoPower());
-        System.out.println(sp.getfuelUnits());
-        System.out.println(sp.getshieldPower());
-
+		System.out.println("\nSUPPLIES:");
+        System.out.println("AmmoPower:\t" + sp.getAmmoPower());
+        System.out.println("Fuel Units:\t" + sp.getfuelUnits());
+        System.out.println("Shield Power:\t" + sp.getshieldPower());
+		
+		// SHIELD BOOSTER
         ShieldBooster sb = new ShieldBooster("shield", 3.4f, 6);
-        System.out.println(sb.getBoost());
-        System.out.println(sb.getUses());
-        System.out.println(sb.useIt());
-
+		System.out.println("\nSHIELD BOOSTER");
+        System.out.println("Boost:\t" + sb.getBoost());
+        System.out.println("Uses:\t" + sb.getUses());
+        System.out.println("UseIt:\t" + sb.useIt());
+		
+		// WEAPON
         Weapon w = new Weapon("weapon", WeaponType.MISSILE, 4);
-        System.out.println(w.getType());
-        System.out.println(w.getUses());
-        System.out.println(w.power());
-        System.out.println(w.useIt());
+		System.out.println("\nWEAPON");
+        System.out.println("Type:\t" + w.getType());
+        System.out.println("Uses:\t" + w.getUses());
+        System.out.println("Power:\t" + w.power());
+        System.out.println("UseIt:\t" + w.useIt());
         
+		
+		
+		// PARTE 2
         Dice d = new Dice();
-        
+		
+		// initWithNHangars
+		final int TOPE = 100;
+		
+		int prob_hangars = 0;
+		for (int i = 0; i < TOPE; ++i){
+			prob_hangars += d.initWithNHangars();
+		}
+		
+		System.out.println(prob_hangars + "/" + TOPE);
+		
+		// initWithNWeapons
+		
+		int prob_weapons = 0;
+		for (int i = 0; i < TOPE; ++i){
+			prob_weapons += d.initWithNWeapons();
+		}
+		
+		System.out.println(prob_weapons + "/" + TOPE);
         
     }
 }
