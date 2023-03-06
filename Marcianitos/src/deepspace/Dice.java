@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  *
- * @author mario
+ * @author mario & Laura
  */
 class Dice {
     private final float NHANGARSPROB;
