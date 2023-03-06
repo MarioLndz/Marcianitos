@@ -6,7 +6,7 @@ package deepspace;
 
 /**
  *
- * @author mario
+ * @author mario & Laura
  */
 class ShieldBooster {
     private String name;
