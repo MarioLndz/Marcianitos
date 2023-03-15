@@ -82,8 +82,27 @@ public class TestP1 {
         System.out.println("\ninitWithNShields: " + prob_shields + "/" + TOPE);
 
         // firstShot
+        int prob_firstShot = 0;
+        GameCharacter character;
+        for (int i = 0; i < TOPE; ++i){
+            character = d.firstShot();
+            if (character == GameCharacter.SPACESTATION)
+                prob_firstShot++;
+        }
+        
+        System.out.println("\nfirstShot SPACESTATION: " + prob_firstShot + "/" + TOPE);
         
         
         // spaceStationMoves
+        int prob_spaceStationMoves = 0;
+        float speed=0.6f;
+        for (int i = 0; i < TOPE; ++i){
+            if (d.spaceStationMoves(speed))
+                prob_spaceStationMoves++;
+        }
+        
+        System.out.println("\nspaceStationMoves (speed = " + speed + "): " + prob_spaceStationMoves + "/" + TOPE);
+        
+        
     }
 }
