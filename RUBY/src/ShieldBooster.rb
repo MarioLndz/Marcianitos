@@ -30,6 +30,10 @@ module Deepspace
 			end
 			
 			return retorno
-		end      
+		end 
+		
+		def to_s
+			return "Name: "+ @name +"Boost: #{@boost}, Uses: #{@uses}"
+		end     
 	end
 end

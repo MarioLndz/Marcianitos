@@ -51,6 +51,16 @@ class CardDealer
         return @enemies.next();
     end
     
+    def to_s()
+		salida = "suppliesPackages=\n" + @suppliesPackages.to_s()
+                + ", shieldBoosters=\n" + @shieldBoosters.to_s()
+                + ", weapons=\n" + @weapons.to_s() 
+                + ", Hangars=\n" + @hangars.to_s()
+                + ", enemies=\n" + @enemies.to_s();
+
+		return salida
+    end
+    
     private
     
     def initCards() 

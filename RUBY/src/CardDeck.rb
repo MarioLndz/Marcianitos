@@ -42,6 +42,14 @@ class CardDeck
   def justShuffled()
     return (@count==0)
   end
+  
+  public 
+  def to_s()
+	salida = "Ready=" + @ready.to_s() + ", Count=" + @count.to_s 
+	salida += ", Cards= [#{@cards.join(', ')}]";
+        
+	return salida;
+  end
 
   private
   
@@ -54,6 +62,13 @@ class CardDeck
   end
   
 end # class
+
+#me dice q el metodo to_s es privado ns pq
+c=CardDeck.new()
+c.add(3)
+c.add(5)
+puts c.to_s
+
 
 end # module
 

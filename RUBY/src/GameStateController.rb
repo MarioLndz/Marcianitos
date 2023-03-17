@@ -33,6 +33,10 @@ class GameStateController
         end
         return @state;
     end
+    
+    def to_s
+		return "state: " + @state.to_s
+    end
 end # class
 
 end # module

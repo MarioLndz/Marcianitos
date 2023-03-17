@@ -22,5 +22,12 @@ module Deepspace
 		attr_reader:fuelUnits
 		attr_reader:shieldPower
 		
+		def to_s
+		  return "ammoPower: #{@ammoPower}, fuelUnits: #{@fuelUnits}, shieldPower: #{@shieldPower}"
+		end
+		
 	end
+
 end
+
+

@@ -72,5 +72,13 @@ module Deepspace
 			
 			return (retorno)
 		end
+		
+		def to_s()
+                
+			salida = "NHANGARSPROB=" + @NHANGARSPROB.to_s + ", NSHIELDSPROB=" + @NSHIELDSPROB.to_s 
+					+ ", NWEAPONSPROB=" + @NWEAPONSPROB.to_s + ", FIRSTSHOTPROB=" + @FIRSTSHOTPROB.to_s
+
+			return salida
+		end 
 	end
 end

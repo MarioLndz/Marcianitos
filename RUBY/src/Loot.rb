@@ -19,7 +19,10 @@ module Deepspace
 		attr_reader :nHangars
 
 		attr_reader :nMedals
-
+		
+		def to_s
+			return "Supplies: #{@nSupplies}, Weapons: #{@nWeapons}, Shields: #{@nShields}, Hangars: #{@nHangars}, Medals: #{@nMedals}"
+		end
 	end
 
 end
