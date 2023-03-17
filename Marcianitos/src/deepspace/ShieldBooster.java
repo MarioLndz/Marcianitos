@@ -43,4 +43,13 @@ class ShieldBooster {
         
         return (retorno);
     }
+    
+    String ToString(){
+        
+        String salida;
+        
+        salida = "Name=" + name + ", Boost=" + boost + ", Uses=" + uses;
+        
+        return salida;
+    }
 }
