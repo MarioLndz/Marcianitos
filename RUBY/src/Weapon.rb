@@ -1,5 +1,7 @@
 #encoding: UTF-8
 
+require_relative 'WeaponType'
+
 module Deepspace
 
 	class Weapon
@@ -10,12 +12,22 @@ module Deepspace
 			@uses = u
 		end
 
-	
 		attr_reader :name
-		
-		attr_reader :type
-
 		attr_reader :uses
+		
+		def type
+			if @type == WeaponType::MISSILE
+				return "missile"
+			else
+				if @type == WeaponType::LASSER
+					return "lasser"
+				else
+					if @type == WeaponType::PLASMA
+						return "plasma"
+					end
+				end
+			end
+		end
 
 
 		def self.newCopy(other)
@@ -27,7 +39,7 @@ module Deepspace
 
 		def power
 
-			type.power
+			@type.power
 
 		end
 
@@ -46,4 +58,5 @@ module Deepspace
 		
 		end
 	end
+	
 end

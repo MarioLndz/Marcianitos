@@ -55,9 +55,9 @@ module Deepspace
 		
 		def firstShot
 			if (@generator.rand() < @FIRSTSHOTPROB)
-				retorno = GameCharacter.SPACESTATION
+				retorno = GameCharacter::SPACESTATION
 			else
-				retorno = GameCharacter.ENEMYSTARSHIP
+				retorno = GameCharacter::ENEMYSTARSHIP
 			end
 			
 			return (retorno)

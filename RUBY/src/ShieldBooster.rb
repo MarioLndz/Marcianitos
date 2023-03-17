@@ -1,4 +1,4 @@
-#encoding: UTF−8
+#encoding: UTF-8
 
 module Deepspace
 
@@ -18,8 +18,8 @@ module Deepspace
 		end		
 		
 		# consultor publico 
-		attr_reader: name
-		attr_reader: boost
+		attr_reader:uses
+		attr_reader:boost
 		
 		# metodo de instancia publico
 		def useIt

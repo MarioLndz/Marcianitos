@@ -11,7 +11,7 @@ module Deepspace
 			
 		end
 		
-		LASER = Type.new(2.0)
+		LASSER = Type.new(2.0)
 		MISSILE = Type.new(3.0)
 		PLASMA = Type.new(4.0)
 		

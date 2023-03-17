@@ -1,4 +1,4 @@
-#encoding: UTF−8
+#encoding: UTF-8
 
 module Deepspace
 
@@ -18,9 +18,9 @@ module Deepspace
 		end		
 		
 		# consultor publico para cada atributo
-		attr_reader: ammoPower
-		attr_reader: fuelUnits
-		attr_reader: shieldPower
+		attr_reader:ammoPower
+		attr_reader:fuelUnits
+		attr_reader:shieldPower
 		
 	end
 end
