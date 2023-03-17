@@ -24,9 +24,53 @@ module Deepspace
 			return (retorno)
 			
 		end
+		
+		def initWithNWeapons
+			retorno = 3
+			
+			num = @generator.rand()
+			
+			if (num < @NWEAPONSPROB)
+				retorno = 1
+			elsif (num < 2*@NWEAPONSPROB)
+				retorno = 2
+			end
+			
+			return (retorno)
+		end
+		
+		def initWithNShields
+			retorno = 1
+			
+			if (@generator.rand() < @NSHIELDSPROB)
+				retorno = 0
+			end
+			
+			return (retorno)
+		end
+		
+		def whoStarts (nPlayers)
+			return (@generator.rand(nPlayers))
+		end
+		
+		def firstShot
+			if (@generator.rand() < @FIRSTSHOTPROB)
+				retorno = GameCharacter.SPACESTATION
+			else
+				retorno = GameCharacter.ENEMYSTARSHIP
+			end
+			
+			return (retorno)
+		end
+		
+		def spaceStationMoves (speed)
+			if (@generator.rand() < speed)
+				retorno = true
+			else
+				retorno = false
+			end
+			
+			return (retorno)
+		end
 	end
-	
-	dice=Dice.new
-	
-	print dice.initWithNHangars
 end

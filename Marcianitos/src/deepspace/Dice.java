@@ -66,7 +66,7 @@ class Dice {
     }
     
     int whoStarts (int nPlayers) {
-        return  (int)(this.generator.nextDouble() * nPlayers);
+        return  (this.generator.nextInt(nPlayers));
     }
     
     GameCharacter firstShot () {
