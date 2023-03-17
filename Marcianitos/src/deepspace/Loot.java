@@ -52,7 +52,7 @@ class Loot {
         return nMedals;
     }
     
-    public String ToString(){
+    public String toString(){
         
         String salida;
         

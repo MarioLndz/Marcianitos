@@ -40,4 +40,13 @@ class GameStateController {
         }
         return state;
     }
+    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "state=" + state.name();   // ns si está bien
+
+        return salida;
+    }
 }

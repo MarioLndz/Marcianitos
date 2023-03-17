@@ -26,5 +26,14 @@ public class GameUniverseToUI {
         return currentEnemy;
     }
     
+    public String toString(){
+        
+        String salida;
+        
+        salida = "currentStation=" + getCurrentStation().toString() 
+                + ", currentEnemy=" + getCurrentEnemy().toString();
+
+        return salida;
+    }
     
 }

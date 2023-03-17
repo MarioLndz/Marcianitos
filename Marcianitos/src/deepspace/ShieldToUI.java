@@ -26,5 +26,13 @@ public class ShieldToUI {
         return uses;
     }
     
+    public String toString(){
+        
+        String salida;
+        
+        salida = "Boost=" + boost + ", Uses=" + uses;
+        
+        return salida;
+    }
     
 }

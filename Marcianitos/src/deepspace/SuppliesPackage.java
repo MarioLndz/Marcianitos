@@ -37,7 +37,7 @@ class SuppliesPackage {
         return (this.shieldPower);
     }
     
-    String ToString(){
+    public String toString(){
         
         String salida;
         

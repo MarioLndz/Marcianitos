@@ -46,5 +46,13 @@ public class EnemyToUI {
         return damage;
     }
     
-    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "name=" + getName() + ", ammoPower=" + getAmmoPower() + ", shieldPower=" + getShieldPower() 
+                + ", loot=" + getLoot().toString() + ", damage=" + getDamage().toString();
+
+        return salida;
+    }
 }

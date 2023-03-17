@@ -44,7 +44,7 @@ class ShieldBooster {
         return (retorno);
     }
     
-    String ToString(){
+    public String toString(){
         
         String salida;
         

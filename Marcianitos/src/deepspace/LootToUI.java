@@ -44,5 +44,13 @@ public class LootToUI {
         return nMedals;
     }
     
-    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "Supplies=" + nSupplies + ", Weapons=" + nWeapons + ", Shields=" + nShields 
+                + ", Hangars=" + nHangars + ", Medals=" + nMedals;
+
+        return salida;
+    }
 }

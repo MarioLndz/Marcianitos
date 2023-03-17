@@ -52,4 +52,15 @@ public class DamageToUI {
       return out;
     }
     
+    public String toString(){
+        
+        String salida;
+        
+        salida = "nWeapons=" + nWeapons + ", nShields=" + nShields + ", weapons=" + getWeaponInfo();
+        //for(int i=0;i<weapons.size();++i)
+          //  salida += weapons.get(i) + ", ";
+
+        return salida;
+    }
+    
 }

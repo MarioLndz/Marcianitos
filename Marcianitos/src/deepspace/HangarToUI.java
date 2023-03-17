@@ -43,5 +43,13 @@ public class HangarToUI {
         return shieldBoosters;
     }
     
-    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "maxElements=" + this.getMaxElements() + ", Weapons=" + this.getWeapons() 
+                + ", shieldBoosters=" + this.getShieldBoosters();
+
+        return salida;
+    }  
 }

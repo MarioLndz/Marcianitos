@@ -67,6 +67,18 @@ class CardDeck<T> {
     boolean justShuffled() {
         return (count==0);
     }
+    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "Ready=" + ready + ", Count=" + count + ", Cards=\n";
+        
+        for(int i=0;i<cards.size();++i)
+            salida += cards.get(i) + ", ";
+
+        return salida;
+    }
 }
 
 /*

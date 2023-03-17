@@ -95,5 +95,18 @@ public class SpaceStationToUI {
         return pendingDamage;
     }
     
-    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "name=" + this.getName() + ", nMedals=" + this.getnMedals() 
+                + ", ammoPower=" + this.getAmmoPower() + ", fuelUnits=" + this.getFuelUnits()
+                + ", shieldPower=" + this.getShieldPower() + ", weapons=" + this.getWeapons().toString()
+                + ", shieldBoosters=" + this.getShieldBoosters().toString() + ", hangar=" + this.getHangar().toString()
+                + ", pendingDamage=" + this.getPendingDamage().toString();
+
+
+        return salida;
+    }
+
 }

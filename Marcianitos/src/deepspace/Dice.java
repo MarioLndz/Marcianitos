@@ -92,4 +92,15 @@ class Dice {
         
         return (retorno);
     }
+    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "NHANGARSPROB=" + NHANGARSPROB + ", NSHIELDSPROB=" + NSHIELDSPROB 
+                + ", NWEAPONSPROB=" + NWEAPONSPROB + ", FIRSTSHOTPROB=" + FIRSTSHOTPROB;
+
+        return salida;
+    }
+
 }

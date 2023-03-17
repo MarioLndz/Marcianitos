@@ -48,7 +48,7 @@ class Weapon {
         return (retorno);
     }
     
-    public String ToString(){
+    public String toString(){
         
         String salida;
         

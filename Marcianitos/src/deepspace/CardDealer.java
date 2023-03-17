@@ -59,7 +59,19 @@ class CardDealer {
         return enemies.next();
     }
     
-    
+    public String toString(){
+        
+        String salida;
+        
+        salida = "suppliesPackages=\n" + suppliesPackages.toString()
+                + ", shieldBoosters=\n" + shieldBoosters.toString()
+                + ", weapons=\n" + weapons.toString() 
+                + ", Hangars=\n" + hangars.toString()
+                + ", enemies=\n" + enemies.toString();
+
+        return salida;
+    }
+
     
     
     private void initCards() {    
