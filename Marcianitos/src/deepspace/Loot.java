@@ -1,46 +1,64 @@
+package deepspace;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package deepspace;
 
 /**
  *
  * @author mario
  */
 class Loot {
+    
     private int nSupplies;
     private int nWeapons;
     private int nShields;
     private int nHangars;
     private int nMedals;
     
-    Loot (int supplies, int weapons, int shields, int hangars, int medals){
-        this.nSupplies = supplies;
-        this.nWeapons = weapons;
-        this.nShields = shields;
-        this.nHangars = hangars;
-        this.nMedals = medals;
+    Loot(int supplies, int weapons, int shields, int hangars, int medals){
         
+        nSupplies=supplies;
+        nWeapons=weapons;
+        nShields=shields;
+        nHangars= hangars;
+        nMedals=medals;       
+       
     }
     
     public int getNSupplies(){
-        return (this.nSupplies);
+        
+        return nSupplies;
     }
     
     public int getNWeapons(){
-        return (this.nWeapons);
+        
+        return nWeapons;
     }
     
     public int getNShields(){
-        return (this.nShields);
+        
+        return nShields;
     }
     
     public int getNHangars(){
-        return (this.nHangars);
+        
+        return nHangars;
+    }
+     
+    public int getNMedals(){
+        
+        return nMedals;
     }
     
-    public int getNMedals(){
-        return (this.nMedals);
+    public String ToString(){
+        
+        String salida;
+        
+        salida = "Supplies=" + nSupplies + ", Weapons=" + nWeapons + ", Shields=" + nShields + ", Hangars=" + nHangars;
+
+        return salida;
     }
+    
 }

@@ -47,4 +47,13 @@ class Weapon {
         
         return (retorno);
     }
+    
+    public String ToString(){
+        
+        String salida;
+        
+        salida = "Name=" + name + ", Type=" + type + ", Uses=" + uses;
+        
+        return salida;
+    }
 }

@@ -37,4 +37,13 @@ class SuppliesPackage {
         return (this.shieldPower);
     }
     
+    String ToString(){
+        
+        String salida;
+        
+        salida="AmmoPower= " + ammoPower + ", fuelUnits=" + fuelUnits + ", shieldPower" + shieldPower;
+        
+        return salida;
+    }
+    
 }
