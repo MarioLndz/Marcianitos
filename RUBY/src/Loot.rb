@@ -1,6 +1,6 @@
 #encoding: UTF-8
 
-module DeepSpace
+module Deepspace
 	class Loot
 		def initialize (supplies,weapons,shields,hangars,medals)
 			@nSupplies = supplies
