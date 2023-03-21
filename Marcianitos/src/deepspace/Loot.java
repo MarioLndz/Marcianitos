@@ -27,6 +27,10 @@ class Loot {
        
     }
     
+    LootToUI getUIVersion() {
+        return new LootToUI(this);
+    }
+    
     public int getNSupplies(){
         
         return nSupplies;

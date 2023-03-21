@@ -25,6 +25,10 @@ class Weapon {
         this.uses = w.uses;
     }
     
+    WeaponToUI getUIVersion() {
+        return new WeaponToUI(this);
+    }
+    
     public WeaponType getType (){
         return (this.type);
     }
