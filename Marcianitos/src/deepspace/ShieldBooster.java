@@ -25,7 +25,7 @@ class ShieldBooster {
         this.uses = s.uses;
     }
     
-    ShieldToUI getUIVersion() {
+    ShieldToUI getUIversion() {
         return new ShieldToUI(this);
     }
     

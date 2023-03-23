@@ -13,47 +13,73 @@ import java.util.ArrayList;
 public class Damage {
     private int nShields;
     private int nWeapons;
-    private ArrayList<WeaponType> weapons; // ns
+    private ArrayList<WeaponType> weapons; 
     
     Damage(int w, int s){
         this.nWeapons = w;
         this.nShields = s;
+        weapons = null;
     }
     
     Damage(ArrayList<WeaponType> wl, int s) {
         this.weapons = wl;
         this.nShields = s;
-        this.nWeapons = wl.size(); // ns
+        this.nWeapons = wl.size(); 
     }
     
     Damage (Damage d) {
-        this.nShields = d.nShields;
-        this.nWeapons = d.nWeapons;
-        this.weapons = d.weapons;
+        this.nShields = d.getNShields();
+        this.nWeapons = d.getNWeapons();
+        this.weapons = d.getWeapons();
     }
     
     DamageToUI getUIVersion() {
         return new DamageToUI(this);
     }
     
-    private int arrayContainsType(Weapon w[], WeaponType t) {
-        throw new UnsupportedOperationException();
+    private int arrayContainsType(ArrayList<Weapon> w, WeaponType t) {        
+        int pos = -1;
+        boolean encontrado = false;
+        int i = 0;
+        
+        while(i<w.size() && !encontrado) {
+            if (w.get(i).getType() == t) {
+                encontrado = true;
+                pos = i;
+            }
+            else
+                i++;
+        }
+        
+        return pos;
     }
     
-    public Damage adjust(Weapon w[], ShieldBooster s[]) {
-        throw new UnsupportedOperationException();
+    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {
+        Damage ajustado = new Damage(w.size(), s.size());
+        
+        // NO SE HACERLO BIEN
+        
+        return ajustado;
     }
     
     public void discardWeapon(Weapon w) {
-        throw new UnsupportedOperationException();
+        if (getNWeapons() > 0) {
+            if (getWeapons() != null) {
+                getWeapons().remove(w.getType());
+            }
+            this.nWeapons--;
+        }
     }
     
     public void discarShieldBooster() {
-        throw new UnsupportedOperationException();
+        if (getNShields() > 0)
+            this.nShields --;
     }
     
     public boolean hasNoEffect(){
-        throw new UnsupportedOperationException();
+        
+        // NI IDEA DE Q HACE ESTO  
+
     }
     
     public int getNShields() {
@@ -64,7 +90,7 @@ public class Damage {
         return this.nWeapons;
     }
     
-    public WeaponType[] getWeapons(){
+    public ArrayList<WeaponType> getWeapons(){
         return this.weapons;
     }
 }

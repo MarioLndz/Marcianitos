@@ -25,11 +25,6 @@ public class SpaceStation {
     private Hangar hangar;   
     private Damage pendingDamage;
     
-    //private Loot ...
-    //private ShotResult ...
-    //private SuppliesPackage ....??
-    //private CardDealer ...
-    
     private void assignFuelValue(float f){
         throw new UnsupportedOperationException();
     }
@@ -106,7 +101,7 @@ public class SpaceStation {
         throw new UnsupportedOperationException();
     }
     
-    public SpaceStationToUI getUIVersion(){
+    public SpaceStationToUI getUIversion(){
         return new SpaceStationToUI(this);
     }
     

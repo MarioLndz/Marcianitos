@@ -4,14 +4,16 @@
  */
 package deepspace;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author laura
  */
 public class Hangar {
     private int maxElements;
-    private ShieldBooster shieldBoosters[]; // ns si esta bien
-    private Weapon weapons[];               // ns si esta bien
+    private ArrayList<ShieldBooster> shieldBoosters; // ns si esta bien
+    private ArrayList<Weapon> weapons;               // ns si esta bien
     
     Hangar(int capacity){
         this.maxElements = capacity;
@@ -23,40 +25,59 @@ public class Hangar {
         this.weapons = h.getWeapons();
     }
     
-    HangarToUI getUIVersion() {
+    HangarToUI getUIversion() {
         return new HangarToUI(this);
     }
     
     private boolean spaceAvailable(){
-        throw new UnsupportedOperationException();
+        return (getMaxElements() > (getShieldBoosters().size() + getWeapons().size()));
     }
     
     public boolean addWeapon(Weapon w) {
-        throw new UnsupportedOperationException();
+        boolean added = false;
+        if (spaceAvailable()) {
+            getWeapons().add(w);
+            added=true;
+        }
+        return added;
     }
     
     public boolean addShieldBooster(ShieldBooster s) {
-        throw new UnsupportedOperationException();
+        boolean added = false;
+        if (spaceAvailable()) {
+            getShieldBoosters().add(s);
+            added=true;
+        }
+        return added;
     }
     
     public int getMaxElements() {
         return this.maxElements;
     }
     
-    public ShieldBooster[] getShieldBoosters(){
+    public ArrayList<ShieldBooster> getShieldBoosters(){
         return this.shieldBoosters;
     }
     
-    public Weapon[] getWeapons() {
+    public ArrayList<Weapon> getWeapons() {
         return this.weapons;
     }
     
     public ShieldBooster removeShieldBooster(int s){
-        throw new UnsupportedOperationException();
+        ShieldBooster shield = null;
+        if (s < getShieldBoosters().size()) {
+            shield = getShieldBoosters().get(s);
+            getShieldBoosters().remove(s);
+        }
+        return shield;
     }
     
     public Weapon removeWeapon(int w){
-        throw new UnsupportedOperationException();
-    }
+        Weapon weapon = null;
+        if (w < getWeapons().size()) {
+            weapon = getWeapons().get(w);
+            getWeapons().remove(w);
+        }
+        return weapon;    }
     
 }
