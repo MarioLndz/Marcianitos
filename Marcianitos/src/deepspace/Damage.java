@@ -58,6 +58,7 @@ public class Damage {
         Damage ajustado = new Damage(w.size(), s.size());
         
         // NO SE HACERLO BIEN
+		// YO TAMPOCO: ATENTAMENTE, EL LINDEZ
         
         return ajustado;
     }
@@ -77,8 +78,10 @@ public class Damage {
     }
     
     public boolean hasNoEffect(){
-        
-        // NI IDEA DE Q HACE ESTO  
+        // NO SE SI ESTO ESTA BIEN
+		boolean no_weapon_damage = nWeapons == -1 ? (this.weapons.isEmpty()) : (this.nWeapons == 0);
+		
+		return (no_weapon_damage && (this.nShields == 0));
 
     }
     

@@ -38,7 +38,22 @@ public class SpaceStation {
     }
     
     public void cleanUpMountedItems() {
-        
+        // Compruebo las armas sin usos y elimino la que no le queden
+		int num_weapons = this.weapons.size();
+		for (int i = 0; i < num_weapons; ++i){
+			if (weapons.get(i).getUses() == 0){
+				weapons.remove(i);
+			}
+		}
+		
+		//Compruebo los escudos sin usos y elimino los que no tengan usos
+		int num_shields = this.shieldBoosters.size();
+		for (int i = 0; i < num_shields; ++i){
+			if (this.shieldBoosters.get(i).getUses() == 0){
+				this.shieldBoosters.remove(i);
+			}
+			
+		}
     }
     
     public void discardHangar() {
@@ -46,7 +61,7 @@ public class SpaceStation {
     }
     
     public void discardShieldBooster(int i){
-        
+        throw new UnsupportedOperationException();
     }
     
     public void discardShieldBoosterInHangar(int i){
@@ -54,7 +69,7 @@ public class SpaceStation {
     }
     
     public void discardWeapon(int i){
-        
+        throw new UnsupportedOperationException();
     }
     
     public void discardWeaponInHangar(int i){
@@ -98,7 +113,7 @@ public class SpaceStation {
     }
     
     public float getSpeed(){
-        throw new UnsupportedOperationException();
+        return (this.fuelUnits/SpaceStation.MAXFUEL);
     }
     
     public SpaceStationToUI getUIversion(){
@@ -118,11 +133,11 @@ public class SpaceStation {
     }
     
     public void move(){
-        
+        this.fuelUnits -= this.fuelUnits*this.getSpeed();
     }
     
     public float protection(){
-        
+        throw new UnsupportedOperationException();
     }
     
     public void receiveHangar(Hangar h){
@@ -134,7 +149,7 @@ public class SpaceStation {
     }
     
     public ShotResult receiveShot(float shot){
-        
+        throw new UnsupportedOperationException();
     }
     
     public void receiveSupplies(SuppliesPackage s){
@@ -146,7 +161,7 @@ public class SpaceStation {
     }
     
     public void setLoot(Loot loot) {
-        
+        throw new UnsupportedOperationException();
     }
     
     public void setPendingDamage(Damage d){
@@ -154,6 +169,6 @@ public class SpaceStation {
     }
     
     public boolean validState(){
-        
+		return (this.pendingDamage == null || this.pendingDamage.hasNoEffect());
     }
 }
