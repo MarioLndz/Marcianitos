@@ -36,7 +36,7 @@ public class EnemyStarShip {
     }
     
     public float fire(){
-        throw new UnsupportedOperationException();
+        return this.ammoPower;
     }
     
     public float getAmmoPower(){
@@ -60,10 +60,17 @@ public class EnemyStarShip {
     }
     
     public float protection(){
-        throw new UnsupportedOperationException();
+        return this.shieldPower;
     }
     
     public ShotResult receiveShot(float shot){
-        throw new UnsupportedOperationException();
+        ShotResult resultado;
+        
+        if (protection() < shot)
+            resultado = ShotResult.DONOTRESIST;
+        else
+            resultado = ShotResult.RESIST;
+       
+        return resultado;           
     }
 }

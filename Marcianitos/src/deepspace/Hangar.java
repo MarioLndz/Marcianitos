@@ -78,6 +78,7 @@ public class Hangar {
             weapon = getWeapons().get(w);
             getWeapons().remove(w);
         }
-        return weapon;    }
+        return weapon;    
+    }
     
 }

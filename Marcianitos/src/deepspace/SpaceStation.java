@@ -26,15 +26,27 @@ public class SpaceStation {
     private Damage pendingDamage;
     
     private void assignFuelValue(float f){
-        throw new UnsupportedOperationException();
+        if (f < MAXFUEL)
+            fuelUnits = f;
+        else
+            fuelUnits = MAXFUEL;
     }
     
     private void cleanPendingDamage(){
-        throw new UnsupportedOperationException();
+        if (getPendingDamage().hasNoEffect())
+            pendingDamage = null;        
     }
     
     SpaceStation(String n, SuppliesPackage supplies){
-        throw new UnsupportedOperationException();
+        this.name = n;
+        this.receiveSupplies(supplies);
+        
+        // estos de abajo creo q se inicializarian así
+        this.nMedals = 0; 
+        this.weapons = null;
+        this.shieldBoosters = null;
+        this.hangar = null;
+        this.pendingDamage = null;       
     }
     
     public void cleanUpMountedItems() {
@@ -42,7 +54,7 @@ public class SpaceStation {
     }
     
     public void discardHangar() {
-        
+        this.hangar=null;        
     }
     
     public void discardShieldBooster(int i){
@@ -50,7 +62,8 @@ public class SpaceStation {
     }
     
     public void discardShieldBoosterInHangar(int i){
-        
+        if (getHangar() != null)
+            getHangar().removeShieldBooster(i);
     }
     
     public void discardWeapon(int i){
@@ -58,7 +71,8 @@ public class SpaceStation {
     }
     
     public void discardWeaponInHangar(int i){
-        
+        if (getHangar() != null)
+            getHangar().removeWeapon(i);
     }
     
     public float fire(){
@@ -110,11 +124,21 @@ public class SpaceStation {
     }
     
     public void mountShieldBooster(int i){
-        
+        ShieldBooster s;
+        if (getHangar() != null) {
+            s = getHangar().removeShieldBooster(i);
+            if (s != null)
+                getShieldBoosters().add(s);
+        }        
     }
     
     public void mountWeapon(int i){
-        
+        Weapon w;
+        if (getHangar() != null) {
+            w = getHangar().removeWeapon(i);
+            if (w != null)
+                getWeapons().add(w);
+        }
     }
     
     public void move(){
@@ -126,11 +150,17 @@ public class SpaceStation {
     }
     
     public void receiveHangar(Hangar h){
-        
+        if (getHangar() == null)    
+            this.hangar = h;
     }
     
     public boolean receiveShieldBooster(ShieldBooster s){
+        boolean resultado = false;
         
+        if (getHangar() != null)  
+            resultado = getHangar().addShieldBooster(s);
+        
+        return resultado; 
     }
     
     public ShotResult receiveShot(float shot){
@@ -138,11 +168,18 @@ public class SpaceStation {
     }
     
     public void receiveSupplies(SuppliesPackage s){
-        
+        this.ammoPower += s.getAmmoPower();
+        this.shieldPower += s.getshieldPower();
+        this.fuelUnits += s.getfuelUnits();
     }
     
     public boolean receiveWeapon(Weapon w){
+        boolean resultado = false;
         
+        if (getHangar() != null)  
+            resultado = getHangar().addWeapon(w);
+        
+        return resultado;
     }
     
     public void setLoot(Loot loot) {
@@ -150,6 +187,9 @@ public class SpaceStation {
     }
     
     public void setPendingDamage(Damage d){
+        d.adjust(weapons, shieldBoosters);
+        // se almacena el resultado en el atributo correspondiente ???
+        // creo q es esto:
         this.pendingDamage = d;
     }
     

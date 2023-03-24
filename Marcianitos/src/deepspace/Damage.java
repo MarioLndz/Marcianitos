@@ -24,7 +24,7 @@ public class Damage {
     Damage(ArrayList<WeaponType> wl, int s) {
         this.weapons = wl;
         this.nShields = s;
-        this.nWeapons = wl.size(); 
+        this.nWeapons = -1; 
     }
     
     Damage (Damage d) {
@@ -63,12 +63,11 @@ public class Damage {
     }
     
     public void discardWeapon(Weapon w) {
-        if (getNWeapons() > 0) {
-            if (getWeapons() != null) {
-                getWeapons().remove(w.getType());
-            }
-            this.nWeapons--;
-        }
+        if (getWeapons() != null) 
+            getWeapons().remove(w.getType());
+        else
+            if (getNWeapons() > 0)
+                this.nWeapons--;
     }
     
     public void discarShieldBooster() {
