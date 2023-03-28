@@ -23,7 +23,14 @@ public class GameUniverse {
     private ArrayList<SpaceStation> spaceStations;
     
     public GameUniverse(){
+        // crear contador de estados de juego
+        this.gameState = new GameStateController();
         
+        // contador de turno a 0
+        this.turns = 0;
+        
+        // crear dado
+        this.dice = new Dice();
     }
     
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
@@ -35,27 +42,32 @@ public class GameUniverse {
     }
     
     public void discardHangar() {
-        
+        if (this.getState() == GameState.INIT || this.getState() == GameState.AFTERCOMBAT)
+            this.currentStation.discardHangar();
     }
     
     public void discardShieldBooster(int i){
-        
+        if (this.getState() == GameState.INIT || this.getState() == GameState.AFTERCOMBAT)
+            this.currentStation.discardShieldBooster(i);
     }
     
     public void discardShieldBoosterInHangar(int i){
-        
+        if (this.getState() == GameState.INIT || this.getState() == GameState.AFTERCOMBAT)
+            this.currentStation.discardShieldBoosterInHangar(i);
     }
     
     public void discardWeapon(int i){
-        
+        if (this.getState() == GameState.INIT || this.getState() == GameState.AFTERCOMBAT)
+            this.currentStation.discardWeapon(i);
     }
     
     public void discardWeaponInHangar(int i){
-        
+        if (this.getState() == GameState.INIT || this.getState() == GameState.AFTERCOMBAT)
+            this.currentStation.discardWeaponInHangar(i);
     }
     
     public GameState getState() {
-        
+        return this.gameState.getState();
     }
     
     public GameUniverseToUI getUIversion() {
@@ -63,7 +75,7 @@ public class GameUniverse {
     }
     
     public boolean haveAWinner(){
-        
+        return (this.currentStation.getNMedals() >= WIN);
     }
     
     public void init(ArrayList<String> names) {
@@ -71,11 +83,13 @@ public class GameUniverse {
     }
     
     public void mountShieldBooster(int i){
-        
+        if (this.getState() == GameState.INIT || this.getState() == GameState.AFTERCOMBAT)
+            this.currentStation.mountShieldBooster(i);
     }
     
     public void mountWeapon(int i) {
-        
+        if (this.getState() == GameState.INIT || this.getState() == GameState.AFTERCOMBAT)
+            this.currentStation.mountWeapon(i);
     }
     
     public boolean nextTurn() {

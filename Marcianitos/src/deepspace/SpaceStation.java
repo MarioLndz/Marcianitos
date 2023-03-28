@@ -209,6 +209,6 @@ public class SpaceStation {
     }
     
     public boolean validState(){
-		return (this.pendingDamage == null || this.pendingDamage.hasNoEffect());
+        return (this.pendingDamage == null || this.pendingDamage.hasNoEffect());
     }
 }
