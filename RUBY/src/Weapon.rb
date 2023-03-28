@@ -11,11 +11,19 @@ module Deepspace
 			@type = t
 			@uses = u
 		end
+		
+		def self.newCopy(other)
+			new(other.name, other.type, other.uses)
+		end
+		
+		def getUIversion
+			WeaponToUI.new(self)	# esto no fufa
+		end
 
 		attr_reader :name
 		attr_reader :uses
 		
-		def type
+		def type								# puede q el error del getUIversion esté aqui
 			if @type == WeaponType::MISSILE
 				return "missile"
 			else
@@ -28,12 +36,6 @@ module Deepspace
 				end
 			end
 		end
-
-
-		def self.newCopy(other)
-			new(other.name, other.type, other.uses)
-		end
-
 
 		def power
 			@type.power
@@ -52,5 +54,11 @@ module Deepspace
 		  return "Name: " + @name + ", Type: #{@type}, Power: #{@power}, Uses: #{@uses}"
 		end
 	end
+	
+	w=Weapon.new("hola", WeaponType::LASSER, 3)
+	puts w.inspect
+	
+	w2=w.getUIversion
+	puts w2.inspect
 	
 end
