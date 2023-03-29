@@ -1,6 +1,7 @@
 #encoding: UTF-8
 
 require_relative 'WeaponType'
+require_relative 'WeaponToUI'
 
 module Deepspace
 
@@ -17,28 +18,18 @@ module Deepspace
 		end
 		
 		def getUIversion
-			WeaponToUI.new(self)	# esto no fufa
+			WeaponToUI.new(self)
 		end
 
 		attr_reader :name
 		attr_reader :uses
 		
-		def type								# puede q el error del getUIversion esté aqui
-			if @type == WeaponType::MISSILE
-				return "missile"
-			else
-				if @type == WeaponType::LASSER
-					return "lasser"
-				else
-					if @type == WeaponType::PLASMA
-						return "plasma"
-					end
-				end
-			end
+		def type
+			@type
 		end
 
 		def power
-			@type.power
+			@type.power()
 		end
 
 		def useIt
@@ -51,14 +42,8 @@ module Deepspace
 		end
 		
 		def to_s
-		  return "Name: " + @name + ", Type: #{@type}, Power: #{@power}, Uses: #{@uses}"
+		  return "Name: " + @name + ", Type: #{@type}, Power: #{@type.power}, Uses: #{@uses}"
 		end
-	end
-	
-	w=Weapon.new("hola", WeaponType::LASSER, 3)
-	puts w.inspect
-	
-	w2=w.getUIversion
-	puts w2.inspect
-	
+		
+	end	
 end
