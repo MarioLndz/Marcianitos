@@ -63,8 +63,6 @@ public class EnemyStarShip {
         return this.getShieldPower();
     }
     
-	
-	
     public ShotResult receiveShot(float shot){
         ShotResult resultado;
         

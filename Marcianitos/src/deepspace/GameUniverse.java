@@ -34,11 +34,11 @@ public class GameUniverse {
     }
     
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
-        
+        throw new UnsupportedOperationException();
     }
 
     public CombatResult combat() {
-        
+        throw new UnsupportedOperationException();
     }
     
     public void discardHangar() {
@@ -93,6 +93,6 @@ public class GameUniverse {
     }
     
     public boolean nextTurn() {
-        
+        throw new UnsupportedOperationException();
     }
 }
