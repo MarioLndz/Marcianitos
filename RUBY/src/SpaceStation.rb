@@ -74,6 +74,10 @@ module Deepspace
 		
 		end
 		
+		def getNMedals()
+			return @nMedals
+		end
+		
 		def getSpeed() 
 			return (fuelUnits/MAXFUEL)
 		end
