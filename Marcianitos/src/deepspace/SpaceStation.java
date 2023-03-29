@@ -39,6 +39,12 @@ public class SpaceStation {
     
     SpaceStation(String n, SuppliesPackage supplies){
         this.name = n;
+        
+        // creo q estos se inicializarian a 0 pq si no estamos sumando cosas a algo q no tiene valor
+        this.ammoPower = 0;
+        this.shieldPower = 0;
+        this.fuelUnits = 0;
+        
         this.receiveSupplies(supplies);
         
         // estos de abajo creo q se inicializarian así
@@ -50,22 +56,22 @@ public class SpaceStation {
     }
     
     public void cleanUpMountedItems() {
-        // Compruebo las armas sin usos y elimino la que no le queden
-		int num_weapons = this.weapons.size();
-		for (int i = 0; i < num_weapons; ++i){
-			if (weapons.get(i).getUses() == 0){
-				weapons.remove(i);
-			}
-		}
-		
-		//Compruebo los escudos sin usos y elimino los que no tengan usos
-		int num_shields = this.shieldBoosters.size();
-		for (int i = 0; i < num_shields; ++i){
-			if (this.shieldBoosters.get(i).getUses() == 0){
-				this.shieldBoosters.remove(i);
-			}
-			
-		}
+        // Compruebo las armas sin usos y elimino las que no le queden usos
+        int num_weapons = this.weapons.size();
+        for (int i = 0; i < num_weapons; ++i){
+            if (weapons.get(i).getUses() == 0){
+                weapons.remove(i);
+            }
+        }
+
+        //Compruebo los escudos sin usos y elimino los que no tengan usos
+        int num_shields = this.shieldBoosters.size();
+        for (int i = 0; i < num_shields; ++i){
+            if (this.shieldBoosters.get(i).getUses() == 0){
+                this.shieldBoosters.remove(i);
+            }
+
+        }
     }
     
     public void discardHangar() {
@@ -185,7 +191,7 @@ public class SpaceStation {
     public void receiveSupplies(SuppliesPackage s){
         this.ammoPower += s.getAmmoPower();
         this.shieldPower += s.getshieldPower();
-        this.fuelUnits += s.getfuelUnits();
+        this.assignFuelValue(this.fuelUnits + s.getfuelUnits());
     }
     
     public boolean receiveWeapon(Weapon w){
