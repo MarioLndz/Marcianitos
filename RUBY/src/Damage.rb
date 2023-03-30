@@ -11,18 +11,18 @@ module Deepspace
 		end
 		
 		def self.newNumericWeapons(w, s)
-			return new(w, s, nil)
+			return new(s, w, nil)
 		end
 		
-		def self.newSpecificWeapons(w, wp)
-			return new(w, -1, wp)
+		def self.newSpecificWeapons(wl, s)
+			return new(s, -1, wl)
 		end
 		
 		def self.newCopy(d)
 			if d.nWeapons == -1
-				return newSpecificWeapons(d.nShields, d.weapons)
+				return newSpecificWeapons(d.weapons, d.nShields)
 			else
-				return newNumericWeapons(d.nShields, d.nWeapons)
+				return newNumericWeapons(d.nWeapons, d.nShields)
 			end
 		end
 		
@@ -30,23 +30,35 @@ module Deepspace
 			return damegeToUI.new(self)
 		end
 		
-		def arrayContainsType(w,t)
+		attr_reader :nShields, :nWeapons, :weapons
+		
+		def adjust(w,s)   ## no estoy muy seguro
+		
+			l_nshields = [s.length, nShields].min
+
+			if weapons==nil
 			
-			contador=0
-			
-			w.each do |weapon_aux|
-			
-				if weapon_aux.type == t
-					return contador
-				else
-					contador+=1
-				end
-			end
-			
-			return -1
+				l_nweapons = [w.length, nWeapons].min
 				
-					
+				return Damage.newNumericWeapons(l_nweapons,l_nshields)
+
+			else
+				result = []
+				w_aux = w.clone
+				
+				weapons.each do |element|
+					indice = arrayContainsType(w_aux, element)
+              
+					if indice != -1
+						result.push(element)
+						w_aux.delete_at(indice)
+					end
+				end
+
+				Damage.newSpecificWeapons(result, l_nshields)
+			end
 		end
+		
 		
 		def discardWeapon(w)
 		
@@ -65,7 +77,8 @@ module Deepspace
 			elsif
 				
 				if @nWeapons > 0
-				@nWeapons -= 1
+					@nWeapons -= 1
+				end
 			end
 			
 		end
@@ -85,39 +98,16 @@ module Deepspace
 		
 			if @nWeapons == -1
 			
-				return @weapons.length + @nShields == 0
+				retorno = @weapons.length + @nShields == 0
 				
 			else
 			
-				return @nShields + @nWeapons == 0
+				retorno = @nShields + @nWeapons == 0
 				
 			end
+			
+			return retorno
 		end
-		
-		def adjust(w,s)   ## no estoy muy seguro
-		
-			l_nshields = [s.length, nShields].min
-
-			if weapons==nil
-			
-				l_nweapons = [w.length, nWeapons].min
-				
-				return Damage.newNumericWeapons(l_nshields,l_nweapons)
-
-			else
-				result = []
-				w_aux = w.clone
-				weapons.each do |element|
-					indice = arrayContainsType(w_aux, element)
-              
-					if indice != -1
-						result.push(element)
-						w_aux.delete_at(indice)
-					end
-				end
-
-				Damage.newSpecificWeapons(limit_nshields, result)
-			end
 		
 		def to_s
 			out="Damage - nShields: #{@nShields}"
@@ -131,5 +121,23 @@ module Deepspace
 			return out
 		end
 		
-      end
- end			
+		private 
+		def arrayContainsType(w,t)
+			
+			contador=0
+			retorno = -1
+			
+			w.each do |weapon_aux|
+			
+				if weapon_aux.type == t
+					retorno = contador
+				else
+					contador+=1
+				end
+			end
+			
+			return retorno					
+		end
+		
+	end
+end			

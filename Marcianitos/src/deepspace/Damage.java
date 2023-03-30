@@ -54,16 +54,30 @@ public class Damage {
         return pos;
     }
     
-    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {
-        Damage ajustado = new Damage(w.size(), s.size());
+    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {  
         
-        // distinguir casos segun como se construye el objeto y devolver nuevo objeto o no
-        // segun los parametros 
-        
-        //lindez feo y tonto guarro pesao y tonto otra vez
-        // NO SE HACERLO BIEN
-		// YO TAMPOCO: ATENTAMENTE, EL LINDEZ
-        
+        Damage ajustado;
+        int l_nshields = Math.min(s.size(), this.getNShields());
+
+        if (this.getWeapons() == null) { // estamos usando solo numero de weapon
+            int l_nweapons = Math.min(w.size(), this.getNWeapons());
+            ajustado = new Damage(l_nweapons, l_nshields);
+        }
+        else {  // estamos usando array de weapontype
+            ArrayList<WeaponType> result = new ArrayList();
+            ArrayList<Weapon> aux = w;
+                    
+            for (int i = 0; i<this.getWeapons().size(); i++) {
+                WeaponType element = this.getWeapons().get(i);
+                int indice = this.arrayContainsType(aux, element);
+                if (indice != -1) {
+                    result.add(element);
+                    aux.remove(indice);
+                }
+            }            
+            ajustado = new Damage(result, l_nshields);
+        }
+
         return ajustado;
     }
     
@@ -82,9 +96,9 @@ public class Damage {
     
     public boolean hasNoEffect(){
         // NO SE SI ESTO ESTA BIEN
-		boolean no_weapon_damage = nWeapons == -1 ? (this.weapons.isEmpty()) : (this.nWeapons == 0);
-		
-		return (no_weapon_damage && (this.nShields == 0));
+        boolean no_weapon_damage = nWeapons == -1 ? (this.weapons.isEmpty()) : (this.nWeapons == 0);
+
+        return (no_weapon_damage && (this.nShields == 0));
 
     }
     
