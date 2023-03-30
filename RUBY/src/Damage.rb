@@ -16,7 +16,6 @@ module Deepspace
 		
 		def self.newSpecificWeapons(w, wp)
 			return new(w, -1, wp)
-      
 		end
 		
 		def self.newCopy(d)
@@ -120,9 +119,17 @@ module Deepspace
 				Damage.newSpecificWeapons(limit_nshields, result)
 			end
 		
-
-      end
- end
+		def to_s
+			out="Damage - nShields: #{@nShields}"
+						
+			if (nWeapons != -1)
+				out+=", nWeapons: #{@nWeapons}\n"
+			else
+				out+="\tWeapons: [#{@weapons.join(', ')}]\n"
+			end
+			out+="------- end of Damage -------"
+			return out
+		end
 		
-		## to_s?
-			
+      end
+ end			

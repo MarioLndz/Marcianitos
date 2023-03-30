@@ -1,5 +1,7 @@
 #encoding: UTF-8
 
+require_relative 'ShieldToUI'
+
 module Deepspace
 
 	class ShieldBooster		# ponerle visibilidad de paquete -> visibilidad publica
@@ -16,6 +18,10 @@ module Deepspace
 		def self.newCopy(other)
 			new(other.name, other.boost, other.uses)		
 		end		
+		
+		def getUIversion()
+			ShieldToUI.new(self)
+		end
 		
 		# consultor publico 
 		attr_reader:uses

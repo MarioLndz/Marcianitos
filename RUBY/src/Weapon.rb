@@ -23,10 +23,7 @@ module Deepspace
 
 		attr_reader :name
 		attr_reader :uses
-		
-		def type
-			@type
-		end
+		attr_reader :type
 
 		def power
 			@type.power()
@@ -47,3 +44,5 @@ module Deepspace
 		
 	end	
 end
+
+

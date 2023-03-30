@@ -57,6 +57,10 @@ public class Damage {
     public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {
         Damage ajustado = new Damage(w.size(), s.size());
         
+        // distinguir casos segun como se construye el objeto y devolver nuevo objeto o no
+        // segun los parametros 
+        
+        //lindez feo y tonto guarro pesao y tonto otra vez
         // NO SE HACERLO BIEN
 		// YO TAMPOCO: ATENTAMENTE, EL LINDEZ
         

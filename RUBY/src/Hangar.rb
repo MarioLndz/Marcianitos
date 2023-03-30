@@ -4,12 +4,14 @@ require_relative 'ShieldBooster'
 require_relative 'WeaponType'
 
 module Deepspace
-	class Hangars
-		def initialize(@capacity)
+	class Hangar
+		def initialize(capacity)
 			@maxElements = capacity
-			@shieldBoosters = []
-			@weapons = []
+			@shieldBoosters = nil
+			@weapons = nil
 		end
+		
+		attr_reader :maxElements, :weapons, :shieldBoosters
 		
 		def self.newCopy(h)
 			
@@ -29,7 +31,7 @@ module Deepspace
 		def spaceAvailable()
 			retorno=1
 			
-			if @maxElementos < @shieldBoosters.length + @weapons.length
+			if @maxElementos < (@shieldBoosters.length + @weapons.length)
 				retorno=0
 			end
 			
@@ -53,50 +55,45 @@ module Deepspace
 			
 			if spaceAvailable()
 				retorno=1
-				@shieldBopsters << s 
+				@shieldBoosters << s 
 			end
 			
 			return retorno
 		end
 		
 		def removeWeapon(w)	
-			
-			if w < @weapons.length && w >= 0
-				
-				return @weapons.delete_at(w)
-			elsif
-				return nil
-				
+					
+			if (w < @weapons.length && w >= 0)
+				retorno = @weapons.delete_at(w)
+			else
+				retorno = nil
 			end
-		
+			
+			return retorno
 		end
 		
 		def  removeShieldBooster(s)
 			
-			if s < @shieldBooster.length && s >= 0
-				return @shieldBoosters.delete_at(s)
-			elsif
-				return nil
+			if (s < @shieldBooster.length && s >= 0)
+				retorno = @shieldBoosters.delete_at(s)
+			else
+				retorno = nil
 			end
+			
+			return retorno
 		end
-		
-		def getMaxElements()
-			return @maxElements
-		end
-		
-		def getWeapons()
-			return @weapons
-		end
-		
-		def getShieldBoosters()
-			return @shieldBoosters
-		end
-		
+				
 		def getUIversion()
 			return HangarToUI.new(self)
 		end
 		
-		#to_s?
+		def to_s
+			out="Hangar - capacity: #{@maxElements}\n"
+			out+="\tWeapons: [#{@weapons.join(', ')}]\n"
+			out+="\tShieldBoosters: [#{@shieldBoosters.join(', ')}]\n"
+			out+="------- end of Hangar -------"
+			return out
+		end
 	end
 end
 		

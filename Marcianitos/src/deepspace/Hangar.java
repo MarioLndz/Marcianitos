@@ -12,11 +12,13 @@ import java.util.ArrayList;
  */
 public class Hangar {
     private int maxElements;
-    private ArrayList<ShieldBooster> shieldBoosters; // ns si esta bien
-    private ArrayList<Weapon> weapons;               // ns si esta bien
+    private ArrayList<ShieldBooster> shieldBoosters; 
+    private ArrayList<Weapon> weapons;               
     
     Hangar(int capacity){
         this.maxElements = capacity;
+        this.shieldBoosters = null;
+        this.weapons = null;
     }
     
     Hangar(Hangar h) {
@@ -65,7 +67,7 @@ public class Hangar {
     
     public ShieldBooster removeShieldBooster(int s){
         ShieldBooster shield = null;
-        if (s < getShieldBoosters().size()) {
+        if (s < getShieldBoosters().size() && s >= 0) {
             shield = getShieldBoosters().get(s);
             getShieldBoosters().remove(s);
         }
@@ -74,7 +76,7 @@ public class Hangar {
     
     public Weapon removeWeapon(int w){
         Weapon weapon = null;
-        if (w < getWeapons().size()) {
+        if (w < getWeapons().size() && w >= 0) {
             weapon = getWeapons().get(w);
             getWeapons().remove(w);
         }
