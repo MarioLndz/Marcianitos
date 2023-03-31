@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Hangar {
     private int maxElements;
     private ArrayList<ShieldBooster> shieldBoosters; 
-    private ArrayList<Weapon> weapons;               
+    private ArrayList<Weapon> weapons;
     
     Hangar(int capacity){
         this.maxElements = capacity;
