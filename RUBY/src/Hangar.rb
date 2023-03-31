@@ -7,8 +7,8 @@ module Deepspace
 	class Hangar
 		def initialize(capacity)
 			@maxElements = capacity
-			@shieldBoosters = nil
-			@weapons = nil
+			@shieldBoosters = Array.new()
+			@weapons = Array.new()
 		end
 		
 		attr_reader :maxElements, :weapons, :shieldBoosters
@@ -30,8 +30,8 @@ module Deepspace
 		
 		def spaceAvailable()
 			retorno=1
-			
-			if @maxElementos < (@shieldBoosters.length + @weapons.length)
+						
+			if (@maxElements < (@weapons.length + @shieldBoosters.length))
 				retorno=0
 			end
 			
@@ -40,7 +40,7 @@ module Deepspace
 		
 		def addWeapon(w)
 			retorno=0
-			
+						
 			if spaceAvailable()
 				retorno=1
 				@weapons << w
@@ -52,7 +52,7 @@ module Deepspace
 		def addShieldBooster(s)
 		
 			retorno=0
-			
+						
 			if spaceAvailable()
 				retorno=1
 				@shieldBoosters << s 
@@ -94,7 +94,7 @@ module Deepspace
 			out+="------- end of Hangar -------"
 			return out
 		end
-	end
+	end	
 end
 		
 		
