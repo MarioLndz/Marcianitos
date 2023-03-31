@@ -1,6 +1,8 @@
 require_relative 'DamageToUI'
 require_relative 'WeaponType'
 require_relative 'Weapon'
+require_relative 'ShieldBooster'
+
 
 module Deepspace
 	class Damage
@@ -143,4 +145,5 @@ module Deepspace
 		end
 		
 	end
+	
 end			
