@@ -80,7 +80,7 @@ module DeepSpace
 			end
 		end
 		
-		def getState()
+		def state()
 		
 			return @gameState.state       ## se hace así cuando está el attreader en lugar del get() ??
 		end

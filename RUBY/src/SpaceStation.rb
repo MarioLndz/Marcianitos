@@ -21,7 +21,9 @@ module Deepspace
 	  
 		def initialize (n, supplies)		
 			@name=n
-			receiveSupplies(supplies)	#puede q falle
+			@ammoPower = 0
+			@shieldPower = 0
+			receiveSupplies(supplies)
 			
 			@nMedals=0
 			@weapons=nil
@@ -119,9 +121,13 @@ module Deepspace
 		end
 		
 		def receiveShieldBooster(s) 
+			retorno = false
+			
 			if (hangar != nil)
-				hangar.addShieldBooster(s)	#creo q asi devuelve true o false ya
+				retorno = hangar.addShieldBooster(s)	#creo q asi devuelve true o false ya
 			end
+			
+			return (retorno)
 		end
 		
 		def receiveShot(shot) 
@@ -135,8 +141,9 @@ module Deepspace
 		end
 		
 		def receiveWeapon(w)
+			retorno = false
 			if (hangar != nil)
-				hangar.addWeapon(2)	#creo q asi devuelve true o false ya
+				retorno = hangar.addWeapon(w)	#creo q asi devuelve true o false ya
 			end
 		end
 		
