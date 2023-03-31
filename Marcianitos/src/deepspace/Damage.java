@@ -15,6 +15,8 @@ public class Damage {
     private int nWeapons;
     private ArrayList<WeaponType> weapons; 
     
+    static final int NO_USO = -1;
+    
     Damage(int w, int s){
         this.nWeapons = w;
         this.nShields = s;
@@ -24,7 +26,7 @@ public class Damage {
     Damage(ArrayList<WeaponType> wl, int s) {
         this.weapons = wl;
         this.nShields = s;
-        this.nWeapons = -1; 
+        this.nWeapons = NO_USO; 
     }
     
     Damage (Damage d) {
@@ -96,7 +98,7 @@ public class Damage {
     
     public boolean hasNoEffect(){
         // NO SE SI ESTO ESTA BIEN
-        boolean no_weapon_damage = nWeapons == -1 ? (this.weapons.isEmpty()) : (this.nWeapons == 0);
+        boolean no_weapon_damage = nWeapons == NO_USO ? (this.weapons.isEmpty()) : (this.nWeapons == 0);
 
         return (no_weapon_damage && (this.nShields == 0));
 

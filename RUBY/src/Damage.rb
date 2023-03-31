@@ -4,6 +4,9 @@ require_relative 'Weapon'
 
 module Deepspace
 	class Damage
+		
+		@@NOUSO=-1
+		
 		def initialize(s,w,wp)
 			@nShields=s
 			@nWeapons=w
@@ -15,11 +18,11 @@ module Deepspace
 		end
 		
 		def self.newSpecificWeapons(wl, s)
-			return new(s, -1, wl)
+			return new(s, @@NOUSO, wl)
 		end
 		
 		def self.newCopy(d)
-			if d.nWeapons == -1
+			if d.nWeapons == @@NOUSO
 				return newSpecificWeapons(d.weapons, d.nShields)
 			else
 				return newNumericWeapons(d.nWeapons, d.nShields)
@@ -62,7 +65,7 @@ module Deepspace
 		
 		def discardWeapon(w)
 		
-			if @nWeapons == -1
+			if @nWeapons == @@NOUSO
 			
 				if @weapons.length != 0
 					
@@ -96,7 +99,7 @@ module Deepspace
 		
 		def hasNoEffect()
 		
-			if @nWeapons == -1
+			if @nWeapons == @@NOUSO
 			
 				retorno = @weapons.length + @nShields == 0
 				
@@ -112,7 +115,7 @@ module Deepspace
 		def to_s
 			out="Damage - nShields: #{@nShields}"
 						
-			if (nWeapons != -1)
+			if (nWeapons != @@NOUSO)
 				out+=", nWeapons: #{@nWeapons}\n"
 			else
 				out+="\tWeapons: [#{@weapons.join(', ')}]\n"
