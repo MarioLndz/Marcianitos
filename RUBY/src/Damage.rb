@@ -9,6 +9,8 @@ module Deepspace
 		
 		@@NOUSO=-1
 		
+		private_class_method :new
+		
 		def initialize(s,w,wp)
 			@nShields=s
 			@nWeapons=w

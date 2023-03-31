@@ -12,7 +12,7 @@ module DeepSpace
 		@@WIN = 10
 		
 		def initialize
-			@currentStation = SpaceStation.new
+			@currentStation = nil
 			
 			@gameState = GameStateController.new
 			
