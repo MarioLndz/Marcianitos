@@ -34,11 +34,71 @@ public class GameUniverse {
     }
     
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
-        throw new UnsupportedOperationException();
+        boolean enemyWins;
+		GameCharacter ch = dice.firstShot();
+		CombatResult resultado;
+		
+		if (ch == GameCharacter.ENEMYSTARSHIP){	// Ataca enemigo primero
+			float fire = enemy.fire();
+			
+			ShotResult result = station.receiveShot(fire);
+			
+			if (result == ShotResult.RESIST){
+				fire = station.fire();
+				result = enemy.receiveShot(fire);
+				
+				enemyWins = (result == ShotResult.RESIST);
+			} else {
+				enemyWins = true;
+			}
+			
+		} else {	// Ataca jugador primero
+			float fire = station.fire();
+			ShotResult result = enemy.receiveShot(fire);
+			
+			enemyWins = (result == ShotResult.RESIST);
+		}
+		
+		
+		if (enemyWins){
+			float s = station.getSpeed();
+			
+			boolean moves = dice.spaceStationMoves(s);
+			
+			if (!moves){
+				Damage damage = enemy.getDamage();
+				station.setPendingDamage(damage);
+				
+				resultado = CombatResult.ENEMYWINS;
+				
+			} else {
+				station.move();
+				resultado = CombatResult.STATIONESCAPES;
+			}
+			
+		} else {
+			Loot aLoot = enemy.getLoot();
+			station.setLoot(aLoot);
+			
+			resultado = CombatResult.STATIONWINS;
+			
+		}
+		
+		gameState.next(turns, spaceStations.size());
+		
+		return (resultado);
     }
 
     public CombatResult combat() {
-        throw new UnsupportedOperationException();
+        CombatResult resultado = CombatResult.NOCOMBAT;
+		
+		GameState state = gameState.getState();
+		
+		if ((state == GameState.BEFORECOMBAT) || state == GameState.INIT) {		// Combate permitido
+			resultado = combat(currentStation, currentEnemy);
+		}
+		
+		return (resultado);
     }
     
     public void discardHangar() {

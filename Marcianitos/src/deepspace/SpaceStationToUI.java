@@ -53,7 +53,7 @@ public class SpaceStationToUI {
             
         Damage d = station.getPendingDamage();
         if (d != null) {
-          pendingDamage = d.getUIversion();
+          pendingDamage = d.getUIVersion();
         } else {
           pendingDamage = null;
         }

@@ -97,7 +97,16 @@ public class SpaceStation {
     }
     
     public float fire(){
-        throw new UnsupportedOperationException();
+        int size = this.weapons.size();
+		
+		float factor = 1f;
+
+		for (int i = 0; i < size; ++i){
+			Weapon w = weapons.get(i);
+			factor *= w.useIt();
+		}
+		
+		return (ammoPower*factor);
     }
     
     public float getAmmoPower(){
@@ -203,8 +212,42 @@ public class SpaceStation {
         return resultado;
     }
     
-    public void setLoot(Loot loot) {
-        throw new UnsupportedOperationException();
+	public void setLoot(Loot loot) {
+        CardDealer dealer = CardDealer.getInstance();
+		
+		// Aniadimos Hangars
+		int h = loot.getNHangars();
+		if (h > 0){
+			hangar = dealer.nextHangar();
+			
+			this.receiveHangar(hangar);
+		}
+		
+		// Aniadimos supplies
+		int elements = loot.getNSupplies();
+		for (int i = 1; i < elements; ++i){
+			SuppliesPackage sup = dealer.nextSuppliesPackage();
+			receiveSupplies(sup);
+		}
+		
+		// Aniadimos Weapons
+		elements = loot.getNWeapons();
+		for (int i = 1; i < elements; ++i){
+			Weapon weap = dealer.nextWeapon();
+			receiveWeapon(weap);
+		}
+		
+		// Aniadimos Shields
+		elements = loot.getNShields();
+		for (int i = 1; i < elements; ++i){
+			ShieldBooster sh = dealer.nextShieldBooster();
+			
+			receiveShieldBooster(sh);
+		}
+		
+		int medals = loot.getNMedals();
+		
+		this.nMedals += medals;
     }
     
     public void setPendingDamage(Damage d){
