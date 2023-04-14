@@ -96,6 +96,7 @@ class CardDealer {
         suppliesPackages.add(new SuppliesPackage(3,50,3));    
         suppliesPackages.add(new SuppliesPackage(40,100,40));
         suppliesPackages.add(new SuppliesPackage(100,100,100));
+        suppliesPackages.add(new SuppliesPackage(1,50,3));  // añadido
     }
     private void createWeapons() {
        weapons.add(new Weapon("Láser infinito",WeaponType.LASER,100));
@@ -122,8 +123,8 @@ class CardDealer {
        weapons.add(new Weapon("Cañón ACME",WeaponType.PLASMA,1)); 
        weapons.add(new Weapon("Cañón ACME",WeaponType.PLASMA,1)); 
        weapons.add(new Weapon("Cañón ACME",WeaponType.PLASMA,1)); 
-       weapons.add(new Weapon("Cañón mejorado",WeaponType.PLASMA,2));       
-       
+       weapons.add(new Weapon("Cañón mejorado",WeaponType.PLASMA,2));  
+       weapons.add(new Weapon("Cañón normal",WeaponType.PLASMA,3)); // añadido 
     }
     private void createShieldBoosters() {
        shieldBoosters.add(new ShieldBooster("El escudo infinito",2.0f,100));
@@ -137,6 +138,7 @@ class CardDealer {
        shieldBoosters.add(new ShieldBooster("Escudo ACME",1.5f,2));
        shieldBoosters.add(new ShieldBooster("Escudo normal",3.0f,2));
        shieldBoosters.add(new ShieldBooster("Escudo normal",4.0f,2));
+       shieldBoosters.add(new ShieldBooster("Escudo normal",4.0f,3)); // añadido
     }
     private void createHangars() {
         hangars.add(new Hangar(4));
@@ -148,6 +150,7 @@ class CardDealer {
         hangars.add(new Hangar(2));
         hangars.add(new Hangar(1));
         hangars.add(new Hangar(1));
+        hangars.add(new Hangar(1)); // añadido
     }
     private void createEnemies() {
         Loot regularLoot0=new Loot(1,2,1,1,1);
@@ -212,7 +215,8 @@ class CardDealer {
         enemies.add(new EnemyStarShip("Enemigo normal 3",150,70,regularLoot0,regularSpecificDamage0));   
         enemies.add(new EnemyStarShip("Enemigo normal 3",150,70,regularLoot0,regularSpecificDamage0));
         enemies.add(new EnemyStarShip("Enemigo normal 3",150,70,regularLoot0,regularSpecificDamage0));        
-          
+        enemies.add(new EnemyStarShip("Enemigo normal 2",150,70,regularLoot0,mediumSpecificDamage0));   // añadido     
+
         enemies.add(new EnemyStarShip("Enemigo difícil 0",200,100,goodLoot,hardSpecificDamage0));          
         enemies.add(new EnemyStarShip("Enemigo difícil 1",100,200,goodLoot,hardSpecificDamage0));   
         
