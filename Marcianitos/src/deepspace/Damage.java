@@ -67,7 +67,8 @@ public class Damage {
         }
         else {  // estamos usando array de weapontype
             ArrayList<WeaponType> result = new ArrayList();
-            ArrayList<Weapon> aux = w;
+            ArrayList<Weapon> aux = new ArrayList(w);
+            
                     
             for (int i = 0; i<this.getWeapons().size(); i++) {
                 WeaponType element = this.getWeapons().get(i);

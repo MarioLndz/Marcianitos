@@ -153,6 +153,23 @@ public class GameUniverse {
     }
     
     public boolean nextTurn() {
-        throw new UnsupportedOperationException();
+        boolean ret = false;
+        GameState state = gameState.getState();
+        
+        if(state == GameState.AFTERCOMBAT) {
+            boolean stationState = currentStation.validState();
+            
+            if(stationState) {
+                currentStationIndex = (currentStationIndex+1) % spaceStations.size();
+                turns++;
+                currentStation = spaceStations.get(currentStationIndex);
+                currentStation.cleanUpMountedItems();
+                CardDealer dealer = CardDealer.getInstance();
+                currentEnemy = dealer.nextEnemy();
+                gameState.next(turns, spaceStations.size());
+                ret = true;
+            }
+        }
+        return ret;
     }
 }
