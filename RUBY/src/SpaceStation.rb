@@ -107,11 +107,15 @@ module Deepspace
 		end
 		
 		def move()
-			fuelUnits -= fuelUnits*getSpeed();
+			fuelUnits -= fuelUnits*getSpeed()
 		end
 		
 		def protection() 
-		
+			factor = 1
+			shieldBoosters.each do |s|
+				factor *= s.useIt
+			end	
+			return (@shieldPower * factor)		
 		end
 		
 		def receiveHangar(h)

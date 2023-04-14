@@ -109,11 +109,28 @@ module DeepSpace
 			
 		end 	
 		
-		# Para la proxima practica
 		def init (names)
 		end
 		
 		def nextTurn
+			ret = false
+			state = @gameState
+			
+			if(state == GameState::AFTERCOMBAT)
+				stationState = @currentStation.validState9
+				
+				if (stationState)
+					@currentStationIndex = (@currentStationIndex+1) % @spaceStations.length()
+					@turns+=1
+					@currentStation = @spaceStations[currentStationIndex]
+					@currentStation.cleanUpMountedItems()
+					dealer = CardDealer.getInstance()
+					@currentEnemy = dealer.nextEnemy()
+					@gameState.next(@turns, @spaceStations.length())
+					ret = true
+				end
+			end
+			return ret
 		end
 		
 		def combat

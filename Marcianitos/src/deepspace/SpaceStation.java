@@ -167,7 +167,13 @@ public class SpaceStation {
     }
     
     public float protection(){
-        throw new UnsupportedOperationException();
+        int size = this.shieldBoosters.size();
+        int factor = 1;
+        for (int i = 0; i < size; ++i) {
+            ShieldBooster s = this.shieldBoosters.get(i);
+            factor *= s.useIt();
+        }
+        return (shieldPower * factor);
     }
     
     public void receiveHangar(Hangar h){
