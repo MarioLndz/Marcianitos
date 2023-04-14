@@ -88,7 +88,21 @@ public class SpaceStation {
     }
     
     public void discardWeapon(int i){
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        
+        int size = weapons.size();
+        
+        if(i>=0 && i<size){
+            
+            Weapon w = weapons.remove(i);
+            
+            if(pendingDamage != null){
+                
+                pendingDamage.discardWeapon(w);
+                
+                cleanPendingDamage();
+            }
+        }
     }
     
     public void discardWeaponInHangar(int i){
@@ -97,8 +111,28 @@ public class SpaceStation {
     }
     
     public float fire(){
-        throw new UnsupportedOperationException();
+        
+        // throw new UnsupportedOperationException();
+        
+        int size = weapons.size();
+        
+        float factor=1f;
+        
+        Weapon w;
+        
+        for(int i=0;i<size;i++){
+            
+            w = weapons.get(i);
+            
+            factor *= w.useIt();
+                      
+        }
+        
+        return (ammoPower*factor);           
+          
     }
+    
+    
     
     public float getAmmoPower(){
         return this.ammoPower;

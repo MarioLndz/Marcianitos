@@ -80,6 +80,43 @@ public class GameUniverse {
     
     public void init(ArrayList<String> names) {
         
+        GameState state = gameState.getState();
+        
+        if(state == GameState.CANNOTPLAY){
+            
+            CardDealer dealer = CardDealer.getInstance();
+            
+            for(int i=0;i<names.size();i++){
+                
+                SuppliesPackage supplies = dealer.suppliesPackages.next();
+                
+                SpaceStation station = new SpaceStation(names.get(i),supplies);
+                
+                spaceStations.add(station);
+                
+                int nh = dice.initWithNHangars();
+                
+                int nw = dice.initWithNWeapons();
+                
+                int ns = dice.initWithNShields();
+                
+                Loot lo = new Loot(0,nw,ns,nh,0);
+                
+                station.setLoot(lo);
+                                   
+            }
+            
+            currentStationIndex = dice.whoStarts(names.size());
+            
+            SpaceStation currentStation = spaceStations.get(currentStationIndex);
+            
+            EnemyStarShip currentEnemy = dealer.nextEnemy();
+            
+            gameState.next(turns, spaceStations.size());
+            
+            
+        }
+        
     }
     
     public void mountShieldBooster(int i){
