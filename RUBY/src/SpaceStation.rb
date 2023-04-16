@@ -64,6 +64,15 @@ module Deepspace
 		
 		def discardWeapon(i)
 		
+			size=@weapons.size()
+			if (i>=0 && i<size)
+				w=@weapons.delete_at(i)
+				
+				if (@pendingDamage != null)
+					@pendingDamage.discardWeapon(w)
+					cleanPendingDamage
+				end
+			end		
 		end
 		
 		def discardWeaponInHangar(i)
@@ -134,7 +143,16 @@ module Deepspace
 			return (retorno)
 		end
 		
-		def receiveShot(shot) 
+		def receiveShot(shot)
+			myProtection=protection
+			if(myProtection>=shot)
+				@shieldPower=@shieldPower-(@@SHIELDLOSSPERUNITSHOT*shot)
+				@shieldPower=Max(0.0,shieldPower)
+				shotResult::RESIST
+			else
+				@shieldPower=0.0
+				shotResult::DONOTRESIST
+			end
 		
 		end
 		
