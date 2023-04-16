@@ -109,7 +109,30 @@ module DeepSpace
 			
 		end 	
 		
-		def init (names)
+		def init (names)    ## revisar este método
+			
+			##state=@gameState hace falta??
+			
+			
+			if(state==GameState::CANNOTPLAY)
+				dealer=CardDealer.instance()
+				names.each do |names.length|
+					supplies=dealer.nextSuppliesPackage
+					station=SpaceStation.new(names.at(i),supplies)
+					@spaceStation << station
+					nh=@dice.initWithNHangars
+					nw=@dice.initWithNWeapons
+					ns=@dice.initWithNShields
+					lo=Loot.new(0,nw,ns,nh,0)
+					station.setLoot(lo)
+				end
+				
+				@currentStationIndex = @dice.whoStarts(names.length)
+				@currentStation=@spaceStation[@currentStationIndex] #se hace así?
+				@currentEnemy=dealer.nextEnemy
+				@gameState.next(@turns,@spaceStation.length)
+			end
+				
 		end
 		
 		def nextTurn
