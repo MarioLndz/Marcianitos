@@ -238,7 +238,21 @@ public class SpaceStation {
     }
     
     public ShotResult receiveShot(float shot){
-        throw new UnsupportedOperationException();
+	    
+	    
+        // throw new UnsupportedOperationException();
+	    
+	    float myProtection = Protection();
+	    
+	    if(myProtection >= shot){
+		    shieldPower-=SHIELDLOSSPERUNITSHOT*shot;
+		    shieldPower=Max(0f,shieldPower);
+		    return ShotResult.RESIST;
+	    }
+	    else{
+		    shieldPower=0f;
+	    	    return ShotResult.DONOTRESIST;
+    	    }
     }
     
     public void receiveSupplies(SuppliesPackage s){
