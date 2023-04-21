@@ -111,7 +111,6 @@ public class SpaceStation {
     }
     
     public float fire(){
-<<<<<<< HEAD
         
         // throw new UnsupportedOperationException();
         
@@ -129,20 +128,7 @@ public class SpaceStation {
                       
         }
         
-        return (ammoPower*factor);           
-          
-=======
-        int size = this.weapons.size();
-		
-		float factor = 1f;
-
-		for (int i = 0; i < size; ++i){
-			Weapon w = weapons.get(i);
-			factor *= w.useIt();
-		}
-		
-		return (ammoPower*factor);
->>>>>>> 67ab684375894aa35324610b685f40107b439ebe
+        return (ammoPower*factor);
     }
     
     
@@ -242,11 +228,11 @@ public class SpaceStation {
 	    
         // throw new UnsupportedOperationException();
 	    
-	    float myProtection = Protection();
+	    float myProtection = protection();
 	    
 	    if(myProtection >= shot){
 		    shieldPower-=SHIELDLOSSPERUNITSHOT*shot;
-		    shieldPower=Max(0f,shieldPower);
+		    shieldPower = Float.max(0f, shieldPower);
 		    return ShotResult.RESIST;
 	    }
 	    else{

@@ -23,7 +23,7 @@ public class EnemyToUI {
         shieldPower=enemy.getShieldPower();
     
         loot=enemy.getLoot().getUIversion();
-        damage = enemy.getDamage().getUIVersion();
+        damage = enemy.getDamage().getUIversion();
     }
 
     public String getName() {

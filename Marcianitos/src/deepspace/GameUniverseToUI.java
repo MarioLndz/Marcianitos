@@ -15,7 +15,7 @@ public class GameUniverseToUI {
     
     GameUniverseToUI(SpaceStation station,EnemyStarShip enemy) {
         currentStation = station.getUIversion();
-        currentEnemy= enemy.getUIVersion();
+        currentEnemy= enemy.getUIversion();
     }
 
     public SpaceStationToUI getCurrentStation() {
