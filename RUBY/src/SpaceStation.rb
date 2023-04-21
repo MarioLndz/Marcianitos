@@ -23,11 +23,12 @@ module Deepspace
 			@name=n
 			@ammoPower = 0
 			@shieldPower = 0
+			@fuelUnits = 0
 			receiveSupplies(supplies)
 			
 			@nMedals=0
-			@weapons=nil
-			@shieldBoosters=nil
+			@weapons=Array.new()
+			@shieldBoosters=Array.new()
 			@hangar=nil
 			@pendingDamage=nil
 		end
@@ -82,15 +83,9 @@ module Deepspace
 		end
 		
 		def fire()
-			size = weapons.length()
-			
 			factor = 1
 			
-			Weapon w
-			puts "prueba"
-			for i in 0..size
-				w = weapons.get(i)
-				puts i
+			@weapons.each do |w|
 				factor *= w.useIt()
 			end
 			
@@ -172,7 +167,9 @@ module Deepspace
 		def receiveSupplies(s) 
 			@ammoPower += s.ammoPower
 			@shieldPower += s.shieldPower
+			
 			assignFuelValue(fuelUnits + s.fuelUnits)
+			
 		end
 		
 		def receiveWeapon(w)
@@ -183,7 +180,41 @@ module Deepspace
 		end
 		
 		def setLoot(loot)
-		
+			dealer = CardDealer.new()
+			
+			#Aniadimos Hangars
+			h = @loot.getNHangars()
+			if (h > 0)
+				hangar = dealer.nextHangar()
+				
+				receiveHangar(hangar)
+			end
+			
+			#Aniadimos supplies
+			elements = @loot.getNSupplies()
+			for i in (1..elements) do
+				sup = dealer.nextSuppliesPackage()
+				receiveSupplies(sup)
+			end
+			
+			# Aniadimos Weapons
+			elements = @loot.getNWeapons()
+			for i in (1..elements) do
+				weap = dealer.nextWeapon()
+				receiveWeapon(weap)
+			end
+			
+			#Aniadimos Shields
+			elements = @loot.getNShields()
+			for i in (1..elements) do
+				sh = dealer.nextShieldBooster()
+				receiveShieldBooster(sh)
+			end
+			
+			medals = @loot.getNMedals
+
+			@nMedals += medals
+
 		end
 		
 		def setPendingDamage(d)
@@ -224,5 +255,5 @@ module Deepspace
 		end
 
 	end # class
-
+	
 end # module

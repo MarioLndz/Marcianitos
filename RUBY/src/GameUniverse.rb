@@ -20,7 +20,7 @@ module DeepSpace
 			
 			@dice = Dice.new
 			
-			@spaceStations = []
+			@spaceStations = Array.new
 			
 			@currentStationIndex = -1
 			
@@ -116,9 +116,9 @@ module DeepSpace
 			
 			if(state==GameState::CANNOTPLAY)
 				dealer=CardDealer.instance()
-				names.each do |names.length|
+				names.each do |n|
 					supplies=dealer.nextSuppliesPackage
-					station=SpaceStation.new(names.at(i),supplies)
+					station=SpaceStation.new(n,supplies)
 					@spaceStation << station
 					nh=@dice.initWithNHangars
 					nw=@dice.initWithNWeapons
@@ -157,10 +157,63 @@ module DeepSpace
 		end
 		
 		def combat
+			resultado = CombatResult::NOCOMBAT
+			state = @gameState.state
+
+			if ((state == GameState::BEFORECOMBAT) || (state == GameState::INIT))
+				resultado = combatGo(@currentStation, @currentEnemy)
+			end
 		end
 		
 		def combatGo (station, enemy)
-		end
+			ch = @dice.firstShot()
+
+			if (ch == GameCharacter::ENEMYSTARSHIP) # Ataca enemigo primero
+				fire = enemy.fire()
+
+				result = station.receiveShot(fire)
+
+				if (result == ShotResult::RESIST)
+					fire = station.fire()
+					result = enemy.receiveShot(fire)
+
+					enemyWins = (result == ShotResult::RESIST)
+				else
+					enemyWins = true
+				end
+			else	# Ataca jugador primero
+				fire = station.fire()
+
+				result = enemy.receiveShot(fire)
+
+				enemyWins = (result == ShotResult::RESIST)
+			end
+
+			if (enemyWins)
+				s = station.getSpeed()
+
+				moves = dice.spaceStationMoves(s)
+
+				if (!moves)
+					damage = enemy.getDamage()
+					station.setPendingDamage (damage)
+
+					resultado = CombatResult::ENEMYWINS
+				else
+					station.move()
+					resultado = CombatResult::STATIONESCAPES
+				end
+			else
+				aLoot = enemy.getLoot()
+				station.setLoot(aLoot)
+
+				resultado = CombatResult::STATIONWINS
+			end
+
+			gameState.next(@turns, @spaceStations.size())
+
+			return (resultado)
+		end		
 	end
 
 end
