@@ -49,10 +49,10 @@ public class SpaceStation {
         
         // estos de abajo creo q se inicializarian así
         this.nMedals = 0; 
-        this.weapons = null;
-        this.shieldBoosters = null;
+        this.weapons = new ArrayList<Weapon> ();
+        this.shieldBoosters = new ArrayList<ShieldBooster> ();
         this.hangar = null;
-        this.pendingDamage = null;       
+        this.pendingDamage = null; 
     }
     
     public void cleanUpMountedItems() {
@@ -79,7 +79,16 @@ public class SpaceStation {
     }
     
     public void discardShieldBooster(int i){
-        throw new UnsupportedOperationException();
+        int size = shieldBoosters.size();
+        
+        if(i>=0 && i<size){
+                        
+            if(pendingDamage != null){
+                
+                pendingDamage.discardShieldBooster();
+                cleanPendingDamage();
+            }
+        }    
     }
     
     public void discardShieldBoosterInHangar(int i){
@@ -88,7 +97,6 @@ public class SpaceStation {
     }
     
     public void discardWeapon(int i){
-        //throw new UnsupportedOperationException();
         
         int size = weapons.size();
         
@@ -111,9 +119,7 @@ public class SpaceStation {
     }
     
     public float fire(){
-        
-        // throw new UnsupportedOperationException();
-        
+                
         int size = weapons.size();
         
         float factor=1f;
@@ -130,8 +136,6 @@ public class SpaceStation {
         
         return (ammoPower*factor);
     }
-    
-    
     
     public float getAmmoPower(){
         return this.ammoPower;
@@ -224,21 +228,19 @@ public class SpaceStation {
     }
     
     public ShotResult receiveShot(float shot){
-	    
-	    
-        // throw new UnsupportedOperationException();
-	    
-	    float myProtection = protection();
-	    
-	    if(myProtection >= shot){
-		    shieldPower-=SHIELDLOSSPERUNITSHOT*shot;
-		    shieldPower = Float.max(0f, shieldPower);
-		    return ShotResult.RESIST;
-	    }
-	    else{
-		    shieldPower=0f;
-	    	    return ShotResult.DONOTRESIST;
-    	    }
+	ShotResult ret; 
+        float myProtection = protection();
+
+        if(myProtection >= shot){
+            shieldPower-=SHIELDLOSSPERUNITSHOT*shot;
+            shieldPower = Float.max(0f, shieldPower);
+            ret = ShotResult.RESIST;
+        }
+        else{
+            shieldPower=0f;
+            ret = ShotResult.DONOTRESIST;
+        }
+        return ret;
     }
     
     public void receiveSupplies(SuppliesPackage s){
@@ -256,49 +258,47 @@ public class SpaceStation {
         return resultado;
     }
     
-	public void setLoot(Loot loot) {
+    public void setLoot(Loot loot) {
+        
         CardDealer dealer = CardDealer.getInstance();
-		
-		// Aniadimos Hangars
-		int h = loot.getNHangars();
-		if (h > 0){
-			hangar = dealer.nextHangar();
-			
-			this.receiveHangar(hangar);
-		}
-		
-		// Aniadimos supplies
-		int elements = loot.getNSupplies();
-		for (int i = 1; i < elements; ++i){
-			SuppliesPackage sup = dealer.nextSuppliesPackage();
-			receiveSupplies(sup);
-		}
-		
-		// Aniadimos Weapons
-		elements = loot.getNWeapons();
-		for (int i = 1; i < elements; ++i){
-			Weapon weap = dealer.nextWeapon();
-			receiveWeapon(weap);
-		}
-		
-		// Aniadimos Shields
-		elements = loot.getNShields();
-		for (int i = 1; i < elements; ++i){
-			ShieldBooster sh = dealer.nextShieldBooster();
-			
-			receiveShieldBooster(sh);
-		}
-		
-		int medals = loot.getNMedals();
-		
-		this.nMedals += medals;
+
+        // Aniadimos Hangars
+        int h = loot.getNHangars();
+        if (h > 0){
+            hangar = dealer.nextHangar();
+
+            this.receiveHangar(hangar);
+        }
+
+        // Aniadimos supplies
+        int elements = loot.getNSupplies();
+        for (int i = 0; i < elements; ++i){
+            SuppliesPackage sup = dealer.nextSuppliesPackage();
+            receiveSupplies(sup);
+        }
+
+        // Aniadimos Weapons
+        elements = loot.getNWeapons();
+        for (int i = 0; i < elements; ++i){
+            Weapon weap = dealer.nextWeapon();
+            receiveWeapon(weap);
+        }
+
+        // Aniadimos Shields
+        elements = loot.getNShields();
+        for (int i = 0; i < elements; ++i){
+            ShieldBooster sh = dealer.nextShieldBooster();
+
+            receiveShieldBooster(sh);
+        }
+
+        int medals = loot.getNMedals();
+
+        this.nMedals += medals;
     }
     
     public void setPendingDamage(Damage d){
-        d.adjust(weapons, shieldBoosters);
-        // se almacena el resultado en el atributo correspondiente ???
-        // creo q es esto:
-        this.pendingDamage = d;
+        this.pendingDamage = d.adjust(weapons, shieldBoosters);
     }
     
     public boolean validState(){

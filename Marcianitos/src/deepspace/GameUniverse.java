@@ -31,74 +31,79 @@ public class GameUniverse {
         
         // crear dado
         this.dice = new Dice();
+        
+        currentStationIndex=0;
+        currentEnemy=null;
+        currentStation=null;
+        spaceStations = new ArrayList<SpaceStation>();
     }
     
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
         boolean enemyWins;
-		GameCharacter ch = dice.firstShot();
-		CombatResult resultado;
-		
-		if (ch == GameCharacter.ENEMYSTARSHIP){	// Ataca enemigo primero
-			float fire = enemy.fire();
-			
-			ShotResult result = station.receiveShot(fire);
-			
-			if (result == ShotResult.RESIST){
-				fire = station.fire();
-				result = enemy.receiveShot(fire);
-				
-				enemyWins = (result == ShotResult.RESIST);
-			} else {
-				enemyWins = true;
-			}
-			
-		} else {	// Ataca jugador primero
-			float fire = station.fire();
-			ShotResult result = enemy.receiveShot(fire);
-			
-			enemyWins = (result == ShotResult.RESIST);
-		}
-		
-		
-		if (enemyWins){
-			float s = station.getSpeed();
-			
-			boolean moves = dice.spaceStationMoves(s);
-			
-			if (!moves){
-				Damage damage = enemy.getDamage();
-				station.setPendingDamage(damage);
-				
-				resultado = CombatResult.ENEMYWINS;
-				
-			} else {
-				station.move();
-				resultado = CombatResult.STATIONESCAPES;
-			}
-			
-		} else {
-			Loot aLoot = enemy.getLoot();
-			station.setLoot(aLoot);
-			
-			resultado = CombatResult.STATIONWINS;
-			
-		}
-		
-		gameState.next(turns, spaceStations.size());
-		
-		return (resultado);
+        GameCharacter ch = dice.firstShot();
+        CombatResult resultado;
+
+        if (ch == GameCharacter.ENEMYSTARSHIP){	// Ataca enemigo primero
+                float fire = enemy.fire();
+
+                ShotResult result = station.receiveShot(fire);
+
+                if (result == ShotResult.RESIST){
+                        fire = station.fire();
+                        result = enemy.receiveShot(fire);
+
+                        enemyWins = (result == ShotResult.RESIST);
+                } else {
+                        enemyWins = true;
+                }
+
+        } else {	// Ataca jugador primero
+                float fire = station.fire();
+                ShotResult result = enemy.receiveShot(fire);
+
+                enemyWins = (result == ShotResult.RESIST);
+        }
+
+
+        if (enemyWins){
+                float s = station.getSpeed();
+
+                boolean moves = dice.spaceStationMoves(s);
+
+                if (!moves){
+                        Damage damage = enemy.getDamage();
+                        station.setPendingDamage(damage);
+
+                        resultado = CombatResult.ENEMYWINS;
+
+                } else {
+                        station.move();
+                        resultado = CombatResult.STATIONESCAPES;
+                }
+
+        } else {
+                Loot aLoot = enemy.getLoot();
+                station.setLoot(aLoot);
+
+                resultado = CombatResult.STATIONWINS;
+
+        }
+
+        gameState.next(turns, spaceStations.size());
+
+        return (resultado);
     }
 
     public CombatResult combat() {
         CombatResult resultado = CombatResult.NOCOMBAT;
 		
-		GameState state = gameState.getState();
-		
-		if ((state == GameState.BEFORECOMBAT) || state == GameState.INIT) {		// Combate permitido
-			resultado = combat(currentStation, currentEnemy);
-		}
-		
-		return (resultado);
+        GameState state = gameState.getState();
+
+        if ((state == GameState.BEFORECOMBAT) || state == GameState.INIT) {		// Combate permitido
+                resultado = combat(currentStation, currentEnemy);
+        }
+
+        return (resultado);
     }
     
     public void discardHangar() {
@@ -168,15 +173,12 @@ public class GameUniverse {
             
             currentStationIndex = dice.whoStarts(names.size());
             
-            SpaceStation currentStation = spaceStations.get(currentStationIndex);
+            currentStation = spaceStations.get(currentStationIndex);
             
-            EnemyStarShip currentEnemy = dealer.nextEnemy();
+            currentEnemy = dealer.nextEnemy();
             
-            gameState.next(turns, spaceStations.size());
-            
-            
-        }
-        
+            gameState.next(turns, spaceStations.size());            
+        }      
     }
     
     public void mountShieldBooster(int i){

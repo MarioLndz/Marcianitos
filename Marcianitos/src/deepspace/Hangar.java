@@ -17,8 +17,8 @@ public class Hangar {
     
     Hangar(int capacity){
         this.maxElements = capacity;
-        this.shieldBoosters = null;
-        this.weapons = null;
+        this.shieldBoosters = new ArrayList<ShieldBooster>();
+        this.weapons = new ArrayList<Weapon>();
     }
     
     Hangar(Hangar h) {

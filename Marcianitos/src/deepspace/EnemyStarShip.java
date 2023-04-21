@@ -8,7 +8,7 @@ package deepspace;
  *
  * @author laura
  */
-public class EnemyStarShip {
+public class EnemyStarShip {    // funciona
     private float ammoPower;
     private String name;
     private float shieldPower;

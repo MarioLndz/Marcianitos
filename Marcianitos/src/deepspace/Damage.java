@@ -56,7 +56,7 @@ public class Damage {
         return pos;
     }
     
-    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {  
+    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) { // funciona 
         
         Damage ajustado;
         int l_nshields = Math.min(s.size(), this.getNShields());
@@ -84,7 +84,7 @@ public class Damage {
         return ajustado;
     }
     
-    public void discardWeapon(Weapon w) {
+    public void discardWeapon(Weapon w) {   // funciona
         if (getWeapons() != null) 
             getWeapons().remove(w.getType());
         else
@@ -92,13 +92,12 @@ public class Damage {
                 this.nWeapons--;
     }
     
-    public void discarShieldBooster() {
+    public void discardShieldBooster() { //funciona
         if (getNShields() > 0)
             this.nShields --;
     }
     
-    public boolean hasNoEffect(){
-        // NO SE SI ESTO ESTA BIEN
+    public boolean hasNoEffect(){   //funciona
         boolean no_weapon_damage = nWeapons == NO_USO ? (this.weapons.isEmpty()) : (this.nWeapons == 0);
 
         return (no_weapon_damage && (this.nShields == 0));
@@ -115,6 +114,19 @@ public class Damage {
     
     public ArrayList<WeaponType> getWeapons(){
         return this.weapons;
+    }
+    
+    public String toString() {
+    
+        String out = "numero shields: " + nShields + "\n";
+        if (getWeapons() != null) {
+            out += getWeapons().toString();
+        }
+        else {
+            out += "numero weapons: " + nWeapons + "\n";
+        }
+        
+        return out;
     }
 }
 
