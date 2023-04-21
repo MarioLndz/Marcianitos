@@ -82,6 +82,19 @@ module Deepspace
 		end
 		
 		def fire()
+			size = weapons.length()
+			
+			factor = 1
+			
+			Weapon w
+			puts "prueba"
+			for i in 0..size
+				w = weapons.get(i)
+				puts i
+				factor *= w.useIt()
+			end
+			
+			return (ammoPower*factor)
 		
 		end
 		
