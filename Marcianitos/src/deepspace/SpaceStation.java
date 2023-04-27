@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author laura
  */
 public class SpaceStation {
-    static private int MAXFUEL = 100;     //atributo de clase creo q es asi
+    static private int MAXFUEL = 100;     
     static private float SHIELDLOSSPERUNITSHOT = 0.1f;
     
     private float ammoPower;

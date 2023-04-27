@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author laura
  */
 public class GameUniverse {
-    static private int WIN = 10;     //atributo de clase creo q es asi
+    static private int WIN = 10;
     
     private int currentStationIndex;
     private int turns;
