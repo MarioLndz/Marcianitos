@@ -40,14 +40,15 @@ module Deepspace
 		attr_reader :nShields, :nWeapons, :weapons
 		
 		def adjust(w,s)   ## no estoy muy seguro
-		
+			d = nil
+			
 			l_nshields = [s.length, nShields].min
 
 			if weapons==nil
 			
 				l_nweapons = [w.length, nWeapons].min
 				
-				return Damage.newNumericWeapons(l_nweapons,l_nshields)
+				d = Damage.newNumericWeapons(l_nweapons,l_nshields)
 
 			else
 				result = []
@@ -62,8 +63,10 @@ module Deepspace
 					end
 				end
 
-				Damage.newSpecificWeapons(result, l_nshields)
+				d =Damage.newSpecificWeapons(result, l_nshields)
 			end
+			
+			return d
 		end
 		
 		
@@ -122,7 +125,7 @@ module Deepspace
 			if (nWeapons != @@NOUSO)
 				out+=", nWeapons: #{@nWeapons}\n"
 			else
-				out+="\tWeapons: [#{@weapons.join(', ')}]\n"
+				out+="\tWeapons: [#{@weapons.join(' // ')}]\n"
 			end
 			out+="------- end of Damage -------"
 			return out

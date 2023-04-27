@@ -2,6 +2,7 @@
 
 require_relative 'SpaceStationToUI'
 require_relative 'Weapon'
+require_relative 'WeaponType'
 require_relative 'ShieldBooster'
 require_relative 'Hangar'
 require_relative 'Damage'
@@ -118,7 +119,7 @@ module Deepspace
 			if (hangar != nil) 
 				w = hangar.removeWeapon(i)
 				if (w != nil)
-					weapons.push(s)
+					weapons.push(w)
 				end
 			end
 		end
@@ -231,8 +232,8 @@ module Deepspace
 		def to_s
 			out="Space Station - Name: #{@name}\n"
 			out+="\tnMedals: #{@nMedals}, Fuel units: #{@fuelUnits.round(2)}, Power: #{@ammoPower}, Shields: #{@shieldPower}\n"
-			out+="\tWeapons: [#{@weapons.join(', ')}]\n"
-			out+="\tShieldBooster: [#{@shieldBoosters.join(', ')}]\n"
+			out+="\tWeapons: [#{@weapons.join(' // ')}]\n"
+			out+="\tShieldBooster: [#{@shieldBoosters.join(' // ')}]\n"
 			out+="\tHangars: #{@hangar}\n"
 			out+="\tPendingDamage: #{@pendingDamage}\n" 
 			out+="------- end of Space Station >> #{@name} << -------"

@@ -29,20 +29,20 @@ module Deepspace
 		end
 		
 		def spaceAvailable()
-			retorno=1
+			retorno=true
 						
-			if (@maxElements < (@weapons.length + @shieldBoosters.length))
-				retorno=0
+			if (@maxElements <= (@weapons.length + @shieldBoosters.length))
+				retorno=false
 			end
 			
 			return (retorno)
 		end
 		
 		def addWeapon(w)
-			retorno=0
-						
+			retorno=false
+			
 			if spaceAvailable()
-				retorno=1
+				retorno=true
 				@weapons << w
 			end
 			
@@ -50,11 +50,10 @@ module Deepspace
 		end
 		
 		def addShieldBooster(s)
-		
-			retorno=0
+			retorno=false
 						
 			if spaceAvailable()
-				retorno=1
+				retorno=true
 				@shieldBoosters << s 
 			end
 			
@@ -74,7 +73,7 @@ module Deepspace
 		
 		def  removeShieldBooster(s)
 			
-			if (s < @shieldBooster.length && s >= 0)
+			if (s < @shieldBoosters.length && s >= 0)
 				retorno = @shieldBoosters.delete_at(s)
 			else
 				retorno = nil
@@ -89,8 +88,8 @@ module Deepspace
 		
 		def to_s
 			out="Hangar - capacity: #{@maxElements}\n"
-			out+="\tWeapons: [#{@weapons.join(', ')}]\n"
-			out+="\tShieldBoosters: [#{@shieldBoosters.join(', ')}]\n"
+			out+="\tWeapons: [#{@weapons.join(' // ')}]\n"
+			out+="\tShieldBoosters: [#{@shieldBoosters.join(' // ')}]\n"
 			out+="------- end of Hangar -------"
 			return out
 		end

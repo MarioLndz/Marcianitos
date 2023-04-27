@@ -39,7 +39,7 @@ module Deepspace
 		end 
 		
 		def to_s
-			return "Name: "+ @name +"Boost: #{@boost}, Uses: #{@uses}"
+			return "Name: "+ @name +", Boost: #{@boost}, Uses: #{@uses}"
 		end     
 	end
 end
