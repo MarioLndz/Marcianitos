@@ -55,7 +55,15 @@ module Deepspace
 		end
 		
 		def discardShieldBooster(i)
-			
+			size = @shieldBoosters.length
+			if (i>=0 && i<size)
+				s=@shieldBoosters.delete_at(i)
+				
+				if (@pendingDamage != null)
+					@pendingDamage.discardShieldBooster(w)
+					cleanPendingDamage
+				end
+			end	
 		end
 		
 		def discardShieldBoosterInHangar(i)
@@ -66,7 +74,7 @@ module Deepspace
 		
 		def discardWeapon(i)
 		
-			size=@weapons.size()
+			size=@weapons.length
 			if (i>=0 && i<size)
 				w=@weapons.delete_at(i)
 				
