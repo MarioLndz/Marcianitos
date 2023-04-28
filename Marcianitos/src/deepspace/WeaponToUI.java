@@ -32,13 +32,4 @@ public class WeaponToUI {
         return uses;
     }
     
-    public String toString(){
-        
-        String salida;
-       
-        salida = "Type=" + getType().name() + ", Uses=" + getUses() + ", Power=" + getPower();
-        
-        return salida;
-    }
-    
 }
