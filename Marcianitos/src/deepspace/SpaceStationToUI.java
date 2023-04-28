@@ -26,7 +26,7 @@ public class SpaceStationToUI {
     
     SpaceStationToUI(SpaceStation station) {
         weapons=new ArrayList<>();
-        shieldBoosters=new ArrayList<>(); 
+        shieldBoosters=new ArrayList<>();         
         
         name=station.getName();
         nMedals=station.getNMedals();
@@ -50,13 +50,16 @@ public class SpaceStationToUI {
         else {
             hangar=null;
         }
-            
+        
+        // MIGUEL: Añadido de  pendingDamage  y su consultor
+        
         Damage d = station.getPendingDamage();
         if (d != null) {
           pendingDamage = d.getUIversion();
         } else {
           pendingDamage = null;
         }
+            
     }
 
     public String getName() {
@@ -94,19 +97,4 @@ public class SpaceStationToUI {
     public DamageToUI getPendingDamage() {
         return pendingDamage;
     }
-    
-    public String toString(){
-        
-        String salida;
-        
-        salida = "name=" + this.getName() + ", nMedals=" + this.getnMedals() 
-                + ", ammoPower=" + this.getAmmoPower() + ", fuelUnits=" + this.getFuelUnits()
-                + ", shieldPower=" + this.getShieldPower() + ", weapons=" + this.getWeapons().toString()
-                + ", shieldBoosters=" + this.getShieldBoosters().toString() + ", hangar=" + this.getHangar().toString()
-                + ", pendingDamage=" + this.getPendingDamage().toString();
-
-
-        return salida;
-    }
-
 }

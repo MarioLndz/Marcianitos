@@ -5,7 +5,7 @@ module Deepspace
 	class SuppliesPackage		# ponerle visibilidad de paquete
 	
 		#constructor
-		def initialize(a,f,s)
+		def initialize(a,f,s)  # a es float, f es float, s es float
 			# atributos de instancia privados
 			@ammoPower=a
 			@fuelUnits=f

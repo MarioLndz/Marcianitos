@@ -11,17 +11,17 @@ module Deepspace
 		
 		private_class_method :new
 		
-		def initialize(s,w,wp)
+		def initialize(s,w,wp)  # s int es numero de escudos, w int es numero de armas, wp es array de weapontype 
 			@nShields=s
 			@nWeapons=w
 			@weapons=wp
 		end
 		
-		def self.newNumericWeapons(w, s)
+		def self.newNumericWeapons(w, s)  # w es numero de armas int, s int es numero de escudos
 			return new(s, w, nil)
 		end
 		
-		def self.newSpecificWeapons(wl, s)
+		def self.newSpecificWeapons(wl, s)  #wl es array de weapontype, s int es numero de escudos
 			return new(s, @@NOUSO, wl)
 		end
 		
@@ -39,7 +39,7 @@ module Deepspace
 		
 		attr_reader :nShields, :nWeapons, :weapons
 		
-		def adjust(w,s)   ## funciona
+		def adjust(w,s)   ## funciona    # w es un jarray list de Weapon,s es un Array list de shield
 			d = nil
 			
 			l_nshields = [s.length, nShields].min
@@ -66,11 +66,11 @@ module Deepspace
 				d =Damage.newSpecificWeapons(result, l_nshields)
 			end
 			
-			return d
+			return d    # d es un Damage ajustado a lo que hemos pasado
 		end
 		
 		
-		def discardWeapon(w)
+		def discardWeapon(w)    # w es Weapon
 		
 			if @nWeapons == @@NOUSO
 			
@@ -88,9 +88,9 @@ module Deepspace
 				
 				if @nWeapons > 0
 					@nWeapons -= 1
-				end
+				end                    # es void()
 			end
-			
+			  
 		end
 			
 			
@@ -100,7 +100,7 @@ module Deepspace
 				
 				@nShields -= 1
 				
-			end
+			end              # es void()
 			
 		end
 		
@@ -116,7 +116,7 @@ module Deepspace
 				
 			end
 			
-			return retorno
+			return retorno        # true si no se pierden accesorios
 		end
 		
 		def to_s
@@ -132,7 +132,7 @@ module Deepspace
 		end
 		
 		private 
-		def arrayContainsType(w,t)
+		def arrayContainsType(w,t)   # w es arraylist de Weapon y t es WeaponType
 			
 			contador=0
 			retorno = -1
@@ -146,7 +146,7 @@ module Deepspace
 				end
 			end
 			
-			return retorno					
+			return retorno	# devuelve indice de la primer posición de w que coincida con el tipo t	
 		end
 		
 	end

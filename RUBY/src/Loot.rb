@@ -2,7 +2,7 @@
 
 module Deepspace
 	class Loot
-		def initialize (supplies,weapons,shields,hangars,medals)
+		def initialize (supplies,weapons,shields,hangars,medals)  # son todos int
 			@nSupplies = supplies
 			@nWeapons = weapons
 			@nShields = shields

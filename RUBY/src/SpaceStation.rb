@@ -21,7 +21,7 @@ module Deepspace
 		  :shieldPower, :shieldBoosters, :hangar, :weapons, \
 		  :pendingDamage, :MAXFUEL, :SHIELDLOSSPERUNITSHOT
 	  
-		def initialize (n, supplies)		
+		def initialize (n, supplies)	# n string, supplies es SuppliesPackage	
 			@name=n
 			@ammoPower = 0
 			@shieldPower = 0
@@ -35,7 +35,7 @@ module Deepspace
 			@pendingDamage=nil
 		end
 		
-		def cleanUpMountedItems()
+		def cleanUpMountedItems()  # void()
 			#Compruebo las armas sin usos y elimino las que no le queden usos
 			@weapons.each do |w|
 				if (w.uses == 0)
@@ -51,11 +51,11 @@ module Deepspace
 			end
 		end
 		
-		def discardHangar()
+		def discardHangar()  # void()
 			@hangar=nil
 		end
 		
-		def discardShieldBooster(i)
+		def discardShieldBooster(i)   # i es indice del arma
 			size = @shieldBoosters.length
 			if (i>=0 && i<size)
 				s=@shieldBoosters.delete_at(i)
@@ -65,15 +65,15 @@ module Deepspace
 					cleanPendingDamage
 				end
 			end	
-		end
+		end        #void()
 		
-		def discardShieldBoosterInHangar(i)
+		def discardShieldBoosterInHangar(i)  # i es indice del escudo que se descarta
 			if (hangar != nil)
 				hangar.removeShieldBooster(i) 
-			end
+			end		# void()
 		end
 		
-		def discardWeapon(i)
+		def discardWeapon(i)  # i es indice del arma
 		
 			size=@weapons.length
 			if (i>=0 && i<size)
@@ -84,12 +84,12 @@ module Deepspace
 					cleanPendingDamage
 				end
 			end		
-		end
+		end      # void()
 		
-		def discardWeaponInHangar(i)
+		def discardWeaponInHangar(i)  # i es indice del arma que se descarta
 			if (hangar != nil)
 				hangar.removeWeapon(i)
-			end
+			end         # void()
 		end
 		
 		def fire()
@@ -99,7 +99,7 @@ module Deepspace
 				factor *= w.useIt()
 			end
 			
-			return (ammoPower*factor)
+			return (ammoPower*factor)  #float
 		
 		end
 		
@@ -108,36 +108,46 @@ module Deepspace
 		end
 		
 		def getSpeed() 
+<<<<<<< HEAD
 			return (@fuelUnits.to_f/@@MAXFUEL)
+=======
+			return (fuelUnits/MAXFUEL)   # devuelve float
+>>>>>>> 2f099750431bcfeeb759efcc36c460270b4d2fcb
 		end
 		
 		def getUIversion()
 			SpaceStationToUI.new(self)
 		end
 		
-		def mountShieldBooster(i)
+		def mountShieldBooster(i)  # i es indice dentro del Hangar
 			if (hangar != nil) 
 				s = hangar.removeShieldBooster(i)
 				if (s != nil)
 					shieldBoosters.push(s)
-				end
+				end        # void()
 			end
 		end
 		
-		def mountWeapon(i)
+		def mountWeapon(i)   # i es indice dentro del Hangar
 			if (hangar != nil) 
 				w = hangar.removeWeapon(i)
 				if (w != nil)
 					weapons.push(w)
 				end
-			end
+			end       # void()
 		end
+<<<<<<< HEAD
 		
 		def move()
 			@fuelUnits -= @fuelUnits*getSpeed()
+=======
+		 
+		def move()   # void()
+			fuelUnits -= fuelUnits*getSpeed()
+>>>>>>> 2f099750431bcfeeb759efcc36c460270b4d2fcb
 		end
 		
-		def protection() 
+		def protection()  #float
 			factor = 1
 			shieldBoosters.each do |s|
 				factor *= s.useIt
@@ -145,23 +155,23 @@ module Deepspace
 			return (@shieldPower * factor)		
 		end
 		
-		def receiveHangar(h)
+		def receiveHangar(h)  # h es un Hangar
 			if (hangar == nil)
 				@hangar = h
-			end
+			end   # es void()
 		end
 		
-		def receiveShieldBooster(s) 
+		def receiveShieldBooster(s)  # s es ShieldBooster
 			retorno = false
 			
 			if (hangar != nil)
 				retorno = hangar.addShieldBooster(s)	#creo q asi devuelve true o false ya
 			end
 			
-			return (retorno)
+			return (retorno)   # bool si consigue añadir el escudo
 		end
 		
-		def receiveShot(shot)
+		def receiveShot(shot)  # shot es float
 			myProtection=protection
 			if(myProtection>=shot)
 				@shieldPower=@shieldPower-(@@SHIELDLOSSPERUNITSHOT*shot)
@@ -169,7 +179,11 @@ module Deepspace
 				ShotResult::RESIST
 			else
 				@shieldPower=0.0
+<<<<<<< HEAD
 				ShotResult::DONOTRESIST
+=======
+				shotResult::DONOTRESIST   # devuelve shotResult
+>>>>>>> 2f099750431bcfeeb759efcc36c460270b4d2fcb
 			end
 		
 		end
@@ -182,14 +196,14 @@ module Deepspace
 			
 		end
 		
-		def receiveWeapon(w)
+		def receiveWeapon(w)  # w es Weapon
 			retorno = false
 			if (hangar != nil)
 				retorno = hangar.addWeapon(w)	#creo q asi devuelve true o false ya
-			end
+			end  # bool si ha conseguido añadir el arma
 		end
 		
-		def setLoot(loot)
+		def setLoot(loot)  #loot es Loot
 			dealer = CardDealer.new()
 			
 			#Aniadimos Hangars
@@ -197,7 +211,7 @@ module Deepspace
 			if (h > 0)
 				hangar = dealer.nextHangar()
 				
-				receiveHangar(hangar)
+				receiveHangar(hangar)  
 			end
 			
 			#Aniadimos supplies
@@ -225,17 +239,17 @@ module Deepspace
 
 			@nMedals += medals
 
-		end
+		end  # void()
 		
-		def setPendingDamage(d)
+		def setPendingDamage(d)   # d es Damage
 			d.adjust(weapons, shieldBoosters)
 			# se almacena el resultado en el atributo correspondiente ???
 			# creo q es esto:
-			@pendingDamage = d
+			@pendingDamage = d      # void()
 		end
 		
 		def validState()
-			return (@pendingDamage == nil || @pendingDamage.hasNoEffect())
+			return (@pendingDamage == nil || @pendingDamage.hasNoEffect())   # bool 
 		end
 		
 		def to_s
@@ -250,19 +264,19 @@ module Deepspace
 		end
 		
 		private 	#todos los metodos q haya debajo de esto son privados (solo los de instancia)
-		def assignFuelValue(f)
+		def assignFuelValue(f)  # f es float
 			if (f < @@MAXFUEL)
 				@fuelUnits = f
 			else
 				@fuelUnits = @@MAXFUEL
 			end
-		end
+		end      # no devulve nada
 		
 		def cleanPendingDamage()
 			if (@pendingDamage.hasNoEffect())
 				pendingDamage = nil 
 			end 
-		end
+		end  # void
 
 	end # class
 

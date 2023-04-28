@@ -7,7 +7,7 @@ module Deepspace
 	class ShieldBooster		# ponerle visibilidad de paquete -> visibilidad publica
 	
 		#constructor
-		def initialize(n,b,u)
+		def initialize(n,b,u)  # n string, b float, u int
 			# atributos de instancia privados
 			@name=n
 			@boost=b
@@ -35,7 +35,7 @@ module Deepspace
 				retorno = boost
 			end
 			
-			return retorno
+			return retorno  #devuelve un float
 		end 
 		
 		def to_s

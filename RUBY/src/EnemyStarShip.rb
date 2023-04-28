@@ -5,7 +5,7 @@ require_relative 'ShotResult'
 module DeepSpace
 	class EnemyStarShip
 		# Constructor
-		def initialize (n, ap, sp, l, d)
+		def initialize (n, ap, sp, l, d)  # n string, ap float, sp float, l loot, d Damage
 			@name = n
 			@ammoPower = ap
 			@shieldPower = sp
@@ -28,21 +28,21 @@ module DeepSpace
 		attr_reader :damage
 		
 		def protection ()
-			return @shieldPower
+			return @shieldPower   # devulve float
 		end
 		
 		def fire ()
-			return @ammoPower
+			return @ammoPower   # devuelve float
 		end
 		
-		def receiveShot (shot)
+		def receiveShot (shot)   # shot es un float
 			resultado = ShotResult::RESIST
 			
 			if (this.protection() < shot)
 				resultado = ShotResult::DONOTRESIST
 			end
 			
-			return (resultado)
+			return (resultado)   # devuelve un ShotResult
 		end
 		
 	end
