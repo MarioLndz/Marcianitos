@@ -39,7 +39,7 @@ module Deepspace
 		
 		attr_reader :nShields, :nWeapons, :weapons
 		
-		def adjust(w,s)   ## no estoy muy seguro
+		def adjust(w,s)   ## funciona
 			d = nil
 			
 			l_nshields = [s.length, nShields].min

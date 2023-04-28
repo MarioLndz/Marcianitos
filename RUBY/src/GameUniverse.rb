@@ -24,7 +24,7 @@ module DeepSpace
 			
 			@currentStationIndex = -1
 			
-			@currentEnemy = EnemyStarShip.new
+			@currentEnemy = nil 	#EnemyStarShip.new creo q falla pq el constructor recibe cosas
 		end
 		
 		def haveAWinner()
@@ -111,15 +111,14 @@ module DeepSpace
 		
 		def init (names)    ## revisar este método
 			
-			##state=@gameState hace falta??
-			
+			state=@gameState 
 			
 			if(state==GameState::CANNOTPLAY)
 				dealer=CardDealer.instance()
 				names.each do |n|
 					supplies=dealer.nextSuppliesPackage
 					station=SpaceStation.new(n,supplies)
-					@spaceStation << station
+					@spaceStations << station
 					nh=@dice.initWithNHangars
 					nw=@dice.initWithNWeapons
 					ns=@dice.initWithNShields
@@ -128,9 +127,9 @@ module DeepSpace
 				end
 				
 				@currentStationIndex = @dice.whoStarts(names.length)
-				@currentStation=@spaceStation[@currentStationIndex] #se hace así?
+				@currentStation=@spaceStations[@currentStationIndex]
 				@currentEnemy=dealer.nextEnemy
-				@gameState.next(@turns,@spaceStation.length)
+				@gameState.next(@turns,@spaceStations.length)
 			end
 				
 		end
@@ -140,12 +139,12 @@ module DeepSpace
 			state = @gameState
 			
 			if(state == GameState::AFTERCOMBAT)
-				stationState = @currentStation.validState9
+				stationState = @currentStation.validState
 				
 				if (stationState)
 					@currentStationIndex = (@currentStationIndex+1) % @spaceStations.length()
 					@turns+=1
-					@currentStation = @spaceStations[currentStationIndex]
+					@currentStation = @spaceStations[@currentStationIndex]
 					@currentStation.cleanUpMountedItems()
 					dealer = CardDealer.getInstance()
 					@currentEnemy = dealer.nextEnemy()
