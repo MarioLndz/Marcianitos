@@ -7,6 +7,7 @@ require_relative 'ShieldBooster'
 require_relative 'Hangar'
 require_relative 'Damage'
 require_relative 'SuppliesPackage'
+require_relative 'ShotResult'
 
 module Deepspace
   
@@ -59,7 +60,7 @@ module Deepspace
 			if (i>=0 && i<size)
 				s=@shieldBoosters.delete_at(i)
 				
-				if (@pendingDamage != null)
+				if (@pendingDamage != nil)
 					@pendingDamage.discardShieldBooster(w)
 					cleanPendingDamage
 				end
@@ -78,7 +79,7 @@ module Deepspace
 			if (i>=0 && i<size)
 				w=@weapons.delete_at(i)
 				
-				if (@pendingDamage != null)
+				if (@pendingDamage != nil)
 					@pendingDamage.discardWeapon(w)
 					cleanPendingDamage
 				end
@@ -107,7 +108,7 @@ module Deepspace
 		end
 		
 		def getSpeed() 
-			return (fuelUnits/MAXFUEL)
+			return (@fuelUnits.to_f/@@MAXFUEL)
 		end
 		
 		def getUIversion()
@@ -133,7 +134,7 @@ module Deepspace
 		end
 		
 		def move()
-			fuelUnits -= fuelUnits*getSpeed()
+			@fuelUnits -= @fuelUnits*getSpeed()
 		end
 		
 		def protection() 
@@ -164,11 +165,11 @@ module Deepspace
 			myProtection=protection
 			if(myProtection>=shot)
 				@shieldPower=@shieldPower-(@@SHIELDLOSSPERUNITSHOT*shot)
-				@shieldPower=Max(0.0,shieldPower)
-				shotResult::RESIST
+				@shieldPower=[0.0,shieldPower].max
+				ShotResult::RESIST
 			else
 				@shieldPower=0.0
-				shotResult::DONOTRESIST
+				ShotResult::DONOTRESIST
 			end
 		
 		end
@@ -265,10 +266,21 @@ module Deepspace
 
 	end # class
 
-	supplies = SuppliesPackage.new(1,2,3)
+	supplies = SuppliesPackage.new(1,10,3)
 	estacion = SpaceStation.new(3, supplies)
+	hangar = Hangar.new(3)
+	shield = ShieldBooster.new("Escudo", 5, 2)
 
-	estacion.receiveShot(2)
+	weapon = Weapon.new("Arma de destruccion", WeaponType::LASER, 2)
+	
+	estacion.receiveHangar(hangar)
+
+	estacion.receiveShieldBooster(shield)
+	estacion.receiveWeapon(weapon)
+
+	estacion.mountWeapon(0)
+
+	puts estacion.protection
 
 	puts estacion.to_s
 	
