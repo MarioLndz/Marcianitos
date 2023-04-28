@@ -7,7 +7,7 @@ module Deepspace
 
 	class Weapon
 
-		def initialize(n,t,u)
+		def initialize(n,t,u) # n es string, t es WeaponType, u es int
 			@name = n
 			@type = t
 			@uses = u

@@ -29,8 +29,11 @@ module DeepSpace
 		
 		def haveAWinner()
 			
-			return @currentStation.getNMedals >= @@WIN
+			return @currentStation.getNMedals >= @@WIN   # devuelve un bool
 		end
+		
+		
+		# llaman a los mount y discard de la estacion espacial
 		
 		def discardHangar()
 			
@@ -109,7 +112,7 @@ module DeepSpace
 			
 		end 	
 		
-		def init (names)    ## revisar este método
+		def init (names)    # names es arraylist de string
 			
 			state=@gameState 
 			
@@ -132,7 +135,7 @@ module DeepSpace
 				@gameState.next(@turns,@spaceStations.length)
 			end
 				
-		end
+		end 			# void()
 		
 		def nextTurn
 			ret = false
@@ -152,7 +155,7 @@ module DeepSpace
 					ret = true
 				end
 			end
-			return ret
+			return ret  # bool comprueba que el jugador no tiene un daño pendiente en cuyo caso pasa al siguiente jugador
 		end
 		
 		def combat
@@ -162,10 +165,10 @@ module DeepSpace
 			if ((state == GameState::BEFORECOMBAT) || (state == GameState::INIT))
 				resultado = combatGo(@currentStation, @currentEnemy)
 			end
-		end
+		end		# devuelve combatResult
 		
-		def combatGo (station, enemy)
-			ch = @dice.firstShot()
+		def combatGo (station, enemy)  # station es un SpaceStation y enemy un EnemyStartship
+			ch = @dice.firstShot() 
 
 			if (ch == GameCharacter::ENEMYSTARSHIP) # Ataca enemigo primero
 				fire = enemy.fire()
@@ -213,6 +216,6 @@ module DeepSpace
 
 			return (resultado)
 		end		
-	end
+	end				# devuelve un combatResult
 
 end

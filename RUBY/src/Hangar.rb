@@ -5,7 +5,7 @@ require_relative 'WeaponType'
 
 module Deepspace
 	class Hangar
-		def initialize(capacity)
+		def initialize(capacity)  # int 
 			@maxElements = capacity
 			@shieldBoosters = Array.new()
 			@weapons = Array.new()
@@ -38,7 +38,7 @@ module Deepspace
 			return (retorno)
 		end
 		
-		def addWeapon(w)
+		def addWeapon(w)    # donde w es un Weapon
 			retorno=false
 			
 			if spaceAvailable()
@@ -46,21 +46,21 @@ module Deepspace
 				@weapons << w
 			end
 			
-			return retorno
+			return retorno       # devuelve un bool en función de si se puede añadir
 		end
 		
-		def addShieldBooster(s)
+		def addShieldBooster(s)    # donde s es un ShieldBooster
 			retorno=false
 						
 			if spaceAvailable()
 				retorno=true
 				@shieldBoosters << s 
 			end
-			
-			return retorno
+			  
+			return retorno    # devuelve un bool en función de si se puede añadir
 		end
 		
-		def removeWeapon(w)	
+		def removeWeapon(w)	   # donde w es un entero (indice de array)
 					
 			if (w < @weapons.length && w >= 0)
 				retorno = @weapons.delete_at(w)
@@ -68,10 +68,10 @@ module Deepspace
 				retorno = nil
 			end
 			
-			return retorno
+			return retorno   # devuelve el weapon eliminado
 		end
 		
-		def  removeShieldBooster(s)
+		def  removeShieldBooster(s)    # donde s es un entero (indice de array)
 			
 			if (s < @shieldBoosters.length && s >= 0)
 				retorno = @shieldBoosters.delete_at(s)
@@ -79,7 +79,7 @@ module Deepspace
 				retorno = nil
 			end
 			
-			return retorno
+			return retorno     # devuelve el shield eliminado
 		end
 				
 		def getUIversion()

@@ -3,7 +3,7 @@
 module Deepspace
 	module WeaponType
 		class Type
-			def initialize (p)
+			def initialize (p) # p es float
 				@power = p
 			end
 			
