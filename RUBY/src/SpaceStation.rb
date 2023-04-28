@@ -256,5 +256,12 @@ module Deepspace
 		end
 
 	end # class
+
+	supplies = SuppliesPackage.new(1,2,3)
+	estacion = SpaceStation.new(3, supplies)
+
+	estacion.receiveShot(2)
+
+	puts estacion.to_s
 	
 end # module
