@@ -7,6 +7,7 @@ require_relative 'ShieldBooster'
 require_relative 'Hangar'
 require_relative 'Damage'
 require_relative 'SuppliesPackage'
+require_relative 'ShotResult'
 
 module Deepspace
   
@@ -161,14 +162,14 @@ module Deepspace
 		end
 		
 		def receiveShot(shot)  # shot es float
-			myProtection=protection
+			myProtection=protection()
 			if(myProtection>=shot)
 				@shieldPower=@shieldPower-(@@SHIELDLOSSPERUNITSHOT*shot)
-				@shieldPower=Max(0.0,shieldPower)
-				shotResult::RESIST
+				@shieldPower=[0.0,@shieldPower].max
+				ShotResult::RESIST
 			else
 				@shieldPower=0.0
-				shotResult::DONOTRESIST   # devuelve shotResult
+				ShotResult::DONOTRESIST   # devuelve shotResult
 			end
 		
 		end
