@@ -125,7 +125,21 @@ module Deepspace
 			if (nWeapons != @@NOUSO)
 				out+=", nWeapons: #{@nWeapons}\n"
 			else
-				out+="\tWeapons: [#{@weapons.join(' // ')}]\n"
+				#out+="\tWeapons: [#{@weapons.join(' // ')}]\n"
+				out += "\tWeapons: "
+				weapons.each do |w|
+					if (w == WeaponType::LASER)
+						type = "LASER"
+					else 
+						if (w == WeaponType::MISSILE)
+							type = "MISSILE"
+						else
+							type = "PLASMA"
+						end
+					end
+					out += type + " // "
+				end			
+				out += "\n"	
 			end
 			out+="------- end of Damage -------"
 			return out
@@ -134,16 +148,16 @@ module Deepspace
 		private 
 		def arrayContainsType(w,t)   # w es arraylist de Weapon y t es WeaponType
 			
-			contador=0
+			i = 0
 			retorno = -1
+			sigo = true
 			
-			w.each do |weapon_aux|
-			
-				if weapon_aux.type == t
-					retorno = contador
-				else
-					contador+=1
+			while (sigo && i < w.length)
+				if w[i].type == t
+					retorno = i
+					sigo = false
 				end
+				i += 1
 			end
 			
 			return retorno	# devuelve indice de la primer posición de w que coincida con el tipo t	
@@ -152,3 +166,4 @@ module Deepspace
 	end
 	
 end			
+
