@@ -417,6 +417,7 @@ class TextMainView
     out += "Botín : \n"
     out += showLoot(anEnemy.loot)
     out += "Pérdidas : \n"
+    out += "Pérdidas : \n"
     out += showDamage(anEnemy.damage)
     return out
   end

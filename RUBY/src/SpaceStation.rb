@@ -266,4 +266,11 @@ module Deepspace
 		end  # void
 
 	end # class
+	
+	
+	s = SpaceStation.new("space", SuppliesPackage.new(3,4,5))
+	puts s.to_s
+	
+	sui = SpaceStationToUI.new(s)
+	puts sui.to_s
 end # module

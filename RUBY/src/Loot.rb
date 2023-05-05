@@ -1,4 +1,5 @@
 #encoding: UTF-8
+require_relative 'LootToUI'
 
 module Deepspace
 	class Loot
@@ -19,6 +20,10 @@ module Deepspace
 		attr_reader :nHangars
 
 		attr_reader :nMedals
+		
+		def getUIversion()
+			return LootToUI.new(self)
+		end
 		
 		def to_s
 			return "Supplies: #{@nSupplies}, Weapons: #{@nWeapons}, Shields: #{@nShields}, Hangars: #{@nHangars}, Medals: #{@nMedals}"

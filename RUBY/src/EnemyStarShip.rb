@@ -19,6 +19,10 @@ module Deepspace
 			new(other.name, other.ammoPower, other.shieldPower, other.loot, other.damage)
 		end
 		
+		def getUIversion()
+			return EnemyToUI.new(self)
+		end
+		
 		# Consultores publicos
 		attr_reader :ammoPower
 		attr_reader :loot
@@ -42,6 +46,14 @@ module Deepspace
 			end
 			
 			return (resultado)   # devuelve un ShotResult
+		end
+		
+		def to_s
+			out = "ENEMY - Name: " + @name + ", ammoPower:  #{@ammoPower}, shieldPower: #{@shieldPower} \n"
+			out += "\tLoot: " + @loot.to_s + "\n"
+			out += "\tDamage: " + @damage.to_s + "\n"
+			out += "------- end of Enemy " + @name + " -------"
+			return out
 		end
 		
 	end

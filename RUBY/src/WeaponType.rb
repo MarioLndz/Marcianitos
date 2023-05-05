@@ -9,6 +9,19 @@ module Deepspace
 			
 			attr_reader	:power
 			
+			def to_s
+				if (self == WeaponType::LASER)
+					type = "LASER"
+				else 
+					if (self == WeaponType::MISSILE)
+						type = "MISSILE"
+					else
+						type = "PLASMA"
+					end
+				end
+				
+				return type
+			end
 		end
 		
 		LASER = Type.new(2.0)

@@ -39,17 +39,7 @@ module Deepspace
 		end
 		
 		def to_s
-			if (@type == WeaponType::LASER)
-				type = "LASER"
-			else 
-				if (@type == WeaponType::MISSILE)
-					type = "MISSILE"
-				else
-					type = "PLASMA"
-				end
-			end
-			
-			return "Name: " + @name + ", Type: " + type +", Power: #{@type.power}, Uses: #{@uses}"
+			return "Name: " + @name + ", Type: " + @type.to_s + ", Power: #{@type.power}, Uses: #{@uses}"
 		end
 		
 	end	

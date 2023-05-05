@@ -38,7 +38,7 @@ module Deepspace
 	#WEAPON
         w = Weapon.new("weapon", WeaponType::MISSILE, 4)
         puts "\nWEAPON"
-        puts "Type:\t" + w.type()
+        #puts "Type:\t" + w.type()
         puts "Uses:\t" + w.uses().to_s
         puts "Power:\t" + w.power().to_s
         puts "UseIt:\t" + w.useIt().to_s
@@ -105,5 +105,5 @@ module Deepspace
         }
         
         puts "\nspaceStationMoves (speed = " + speed.to_s + "): " + prob_spaceStationMoves.to_s + "/" + TOPE.to_s
-        
+
 end

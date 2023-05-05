@@ -1,3 +1,12 @@
+require_relative 'CombatResult'
+require_relative 'EnemyStarShip'
+require_relative 'SpaceStation'
+require_relative 'GameStateController'
+require_relative 'Dice'
+require_relative 'GameUniverseToUI'
+require_relative 'CardDealer'
+
+
 module Deepspace
 
 # 30.3.17 - Translation from Java
@@ -24,5 +33,5 @@ class EnemyToUI
   end
     
 end # class
-
+  
 end # module
