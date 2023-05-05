@@ -16,15 +16,20 @@ class Loot {
     private int nShields;
     private int nHangars;
     private int nMedals;
+	
+	private boolean getEfficient;
+	private boolean spaceCity;
     
-    Loot(int supplies, int weapons, int shields, int hangars, int medals){
+    Loot(int supplies, int weapons, int shields, int hangars, int medals, boolean ef, boolean city){
         
         nSupplies=supplies;
         nWeapons=weapons;
         nShields=shields;
         nHangars= hangars;
-        nMedals=medals;       
-       
+        nMedals=medals;
+		
+		getEfficient = ef;
+		spaceCity = city;
     }
     
     LootToUI getUIversion() {
@@ -55,6 +60,14 @@ class Loot {
         
         return nMedals;
     }
+	
+	public boolean getEfficient (){
+		return (getEfficient);
+	}
+	
+	public boolean spaceCity (){
+		return (spaceCity);
+	}
     
     public String toString(){
         

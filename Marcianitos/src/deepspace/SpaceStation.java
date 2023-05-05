@@ -54,6 +54,19 @@ public class SpaceStation {
         this.hangar = null;
         this.pendingDamage = null; 
     }
+
+	public SpaceStation(SpaceStation otro) {
+		this(otro.name, new SuppliesPackage(otro.ammoPower, otro.shieldPower, otro.fuelUnits));
+        
+        // estos de abajo creo q se inicializarian así
+        this.nMedals = otro.nMedals; 
+        this.weapons = otro.weapons;
+        this.shieldBoosters = otro.shieldBoosters;
+        this.hangar = otro.hangar;
+        this.pendingDamage = otro.pendingDamage;
+		
+	}
+	
     
     public void cleanUpMountedItems() {
         // Compruebo las armas sin usos y elimino las que no le queden usos
@@ -258,7 +271,7 @@ public class SpaceStation {
         return resultado;
     }
     
-    public void setLoot(Loot loot) {
+    public Transformation setLoot(Loot loot) {
         
         CardDealer dealer = CardDealer.getInstance();
 
@@ -295,6 +308,16 @@ public class SpaceStation {
         int medals = loot.getNMedals();
 
         this.nMedals += medals;
+		
+		Transformation result = Transformation.NOTRANSFORM;
+		
+		if (loot.getEfficient()){
+			result = Transformation.GETEFFICIENT;
+		} else if (loot.spaceCity()) {
+			result = Transformation.SPACECITY;
+		}
+		
+		return (result);
     }
     
     public void setPendingDamage(Damage d){
