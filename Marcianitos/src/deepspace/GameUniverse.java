@@ -218,4 +218,12 @@ public class GameUniverse {
         }
         return ret;
     }
+    
+    private void makeStationefficient(){
+        
+        if(dice.extraEfficiency()){
+            
+            
+        }
+    }
 }
