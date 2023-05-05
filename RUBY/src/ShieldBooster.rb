@@ -24,8 +24,9 @@ module Deepspace
 		end
 		
 		# consultor publico 
-		attr_reader:uses
-		attr_reader:boost
+		attr_reader :uses
+		attr_reader :boost
+		attr_reader :name
 		
 		# metodo de instancia publico
 		def useIt

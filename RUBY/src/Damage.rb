@@ -34,7 +34,7 @@ module Deepspace
 		end
 		
 		def getUIversion()
-			return damegeToUI.new(self)
+			return DamageToUI.new(self)
 		end
 		
 		attr_reader :nShields, :nWeapons, :weapons

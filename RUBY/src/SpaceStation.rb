@@ -8,6 +8,7 @@ require_relative 'Hangar'
 require_relative 'Damage'
 require_relative 'SuppliesPackage'
 require_relative 'ShotResult'
+require_relative 'Loot'
 
 module Deepspace
   
@@ -87,8 +88,8 @@ module Deepspace
 		end      # void()
 		
 		def discardWeaponInHangar(i)  # i es indice del arma que se descarta
-			if (hangar != nil)
-				hangar.removeWeapon(i)
+			if (@hangar != nil)
+				@hangar.removeWeapon(i)
 			end         # void()
 		end
 		
@@ -134,7 +135,7 @@ module Deepspace
 		end
 		 
 		def move()   # void()
-			fuelUnits -= fuelUnits*getSpeed()
+			@fuelUnits -= @fuelUnits*getSpeed()
 		end
 		
 		def protection()  #float
@@ -190,10 +191,10 @@ module Deepspace
 		end
 		
 		def setLoot(loot)  #loot es Loot
-			dealer = CardDealer.new()
+			dealer = CardDealer.instance
 			
 			#Aniadimos Hangars
-			h = @loot.getNHangars()
+			h = loot.nHangars
 			if (h > 0)
 				hangar = dealer.nextHangar()
 				
@@ -201,27 +202,27 @@ module Deepspace
 			end
 			
 			#Aniadimos supplies
-			elements = @loot.getNSupplies()
+			elements = loot.nSupplies
 			for i in (1..elements) do
 				sup = dealer.nextSuppliesPackage()
 				receiveSupplies(sup)
 			end
 			
 			# Aniadimos Weapons
-			elements = @loot.getNWeapons()
+			elements = loot.nWeapons
 			for i in (1..elements) do
 				weap = dealer.nextWeapon()
 				receiveWeapon(weap)
 			end
 			
 			#Aniadimos Shields
-			elements = @loot.getNShields()
+			elements = loot.nShields
 			for i in (1..elements) do
 				sh = dealer.nextShieldBooster()
 				receiveShieldBooster(sh)
 			end
 			
-			medals = @loot.getNMedals
+			medals = loot.nMedals
 
 			@nMedals += medals
 
@@ -265,5 +266,4 @@ module Deepspace
 		end  # void
 
 	end # class
-	
 end # module

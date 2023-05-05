@@ -5,7 +5,7 @@ module Deepspace
 # @author Profe
 
 class LootToUI
-  attr_reader :nSupplies, :nWeapons, :nShields, :nHangars, :nMedals, :efficient, :spaceCity
+  attr_reader :nSupplies, :nWeapons, :nShields, :nHangars, :nMedals
 
   def initialize(l)
     @nSupplies=l.nSupplies
@@ -13,12 +13,10 @@ class LootToUI
     @nShields=l.nShields
     @nHangars=l.nHangars
     @nMedals=l.nMedals
-    @efficient=l.efficient
-    @spaceCity=l.spaceCity
   end
 
   def to_s
-    return "Supplies: #{@nSupplies}, Weapons: #{@nWeapons}, Shields: #{@nShields}, Hangars: #{@nHangars}, Medals: #{@nMedals}, Get Efficient: #{@efficient}, Space City: #{@spaceCity}"
+    return "Supplies: #{@nSupplies}, Weapons: #{@nWeapons}, Shields: #{@nShields}, Hangars: #{@nHangars}, Medals: #{@nMedals}"
   end
 
 end # class

@@ -59,10 +59,23 @@ end # module
 
 if $0 == __FILE__ then
   class TestCard
-    attr_reader :a
-    def initialize (a)
+    attr_accessor :a, :b
+    def initialize (a,b=nil)
       @a=a
+      if b != nil then
+        @b = Array.new(b)
+      else 
+        @b=Array.new()
+        @b << 1
+        @b << 2
+        @b << 3
+      end
     end
+    
+    def self.newCopy(tc)
+      new(tc.a, tc.b)
+    end
+    
   end
   
   test=Deepspace::CardDeck.new
@@ -72,6 +85,10 @@ if $0 == __FILE__ then
   test.add(TestCard.new(4))
   test.add(TestCard.new(5))
   for i in 0..15 do
-    puts test.next.a
+    c = test.next
+    puts c.a
+    puts "[ #{c.b[0]}  ]"
+    c.a +=10
+    c.b.delete_at(0)
   end
 end

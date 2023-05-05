@@ -1,24 +1,35 @@
 
 module Deepspace
 
-#  2.3.17 - Translation from Java
-# 24.5.17 - Adaptation to P4  
+# 2.3.17 - Translation from Java
 # @author Profe
     
 class DamageToUI
   
-  private_class_method :new
-  
-  attr_reader :nShields
+  attr_reader :nWeapons, :weapons, :nShields
   
   def initialize (d) 
+    @nWeapons=d.nWeapons
     @nShields=d.nShields
+    tmp=d.weapons
+    if (tmp!=nil) then
+      @weapons=Array.new(tmp)
+    else
+      @weapons=nil
+    end
   end
     
   public
   
   def getWeaponInfo() 
-    raise "ERROR: This method has not been implemented yet!"
+    out = "";
+    
+    if (nWeapons == -1) then
+      out += "[" + @weapons.join(", ") + "]"
+    else
+      out += @nWeapons.to_s
+    end
+    return out
   end
     
   def to_s

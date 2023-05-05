@@ -24,11 +24,10 @@ module Deepspace
 		attr_reader :loot
 		attr_reader :name
 		attr_reader :shieldPower
-		attr_reader :loot
 		attr_reader :damage
 		
 		def protection ()
-			return @shieldPower   # devulve float
+			return @shieldPower   # devuelve float
 		end
 		
 		def fire ()
@@ -38,7 +37,7 @@ module Deepspace
 		def receiveShot (shot)   # shot es un float
 			resultado = ShotResult::RESIST
 			
-			if (this.protection() < shot)
+			if (protection() < shot)
 				resultado = ShotResult::DONOTRESIST
 			end
 			

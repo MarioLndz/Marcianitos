@@ -21,7 +21,7 @@ module Deepspace
 				copy.addShieldBooster(shieldBooster)
 			end
 			
-			h.weapon.each do |weapon|
+			h.weapons.each do |weapon|
 				copy.addWeapon(weapon)
 			end
 			
@@ -93,7 +93,8 @@ module Deepspace
 			out+="------- end of Hangar -------"
 			return out
 		end
-	end	
+
+	end
 end
 		
 		

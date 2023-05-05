@@ -40,7 +40,7 @@ module Deepspace
 		
 		def discardHangar()
 			
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  ##no estoy muy seguro de que esa sea la sintaxis  
+			if @gameState == GameState::INIT || @gameState == GameState::AFTERCOMBAT  ##no estoy muy seguro de que esa sea la sintaxis  
 																					  ##en todos los discard
 				@currentStation.discardHangar()
 			end
@@ -48,7 +48,7 @@ module Deepspace
 		
 		def discardShieldBooster(i)
 		
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  
+			if @gameState == GameState::INIT || @gameState == GameState::AFTERCOMBAT  
 			
 				@currentStation.discardShieldBooster(i)
 			end
@@ -56,15 +56,7 @@ module Deepspace
 		
 		def discardShieldBoosterInHangar(i)
 		
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  
-			
-				@currentStation.discardShieldBoosterInHangar(i)
-			end
-		end
-		
-		def discardShieldBoosterInHangar(i)
-		
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  
+			if @gameState == GameState::INIT || @gameState == GameState::AFTERCOMBAT  
 			
 				@currentStation.discardShieldBoosterInHangar(i)
 			end
@@ -72,15 +64,14 @@ module Deepspace
 		
 		def discardWeapon(i)
 		
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  
+			if state() == GameState::INIT || state() == GameState::AFTERCOMBAT  
 			
 				@currentStation.discardWeapon(i)
 			end
 		end
 		
 		def discardWeaponInHangar(i)
-		
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  
+			if state() == GameState::INIT || state() == GameState::AFTERCOMBAT  
 			
 				@currentStation.discardWeaponInHangar(i)
 			end
@@ -99,7 +90,7 @@ module Deepspace
 		
 		def mountShieldBooster(i)
 			
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  
+			if state() == GameState::INIT || state() == GameState::AFTERCOMBAT  
 			
 				@currentStation.mountShieldBooster(i)
 			end
@@ -107,9 +98,8 @@ module Deepspace
 		end
 		
 		def mountWeapon(i)
-			
-			if @gameState == GameState::Init || @gameState == GameState::AFTERCOMBAT  
-			
+
+			if state() == GameState::INIT || state() == GameState::AFTERCOMBAT 
 				@currentStation.mountWeapon(i)
 			end
 			
@@ -117,7 +107,7 @@ module Deepspace
 		
 		def init (names)    # names es arraylist de string
 			
-			_state = state 
+			_state = state() 
 			
 			if(_state==GameState::CANNOTPLAY)
 				dealer=CardDealer.instance()
@@ -142,9 +132,9 @@ module Deepspace
 		
 		def nextTurn
 			ret = false
-			state = @gameState
+			_state = state()
 			
-			if(state == GameState::AFTERCOMBAT)
+			if(_state == GameState::AFTERCOMBAT)
 				stationState = @currentStation.validState
 				
 				if (stationState)
@@ -152,7 +142,7 @@ module Deepspace
 					@turns+=1
 					@currentStation = @spaceStations[@currentStationIndex]
 					@currentStation.cleanUpMountedItems()
-					dealer = CardDealer.getInstance()
+					dealer = CardDealer.instance
 					@currentEnemy = dealer.nextEnemy()
 					@gameState.next(@turns, @spaceStations.length())
 					ret = true
@@ -163,9 +153,9 @@ module Deepspace
 		
 		def combat
 			resultado = CombatResult::NOCOMBAT
-			state = @gameState.state
+			_state = state()
 
-			if ((state == GameState::BEFORECOMBAT) || (state == GameState::INIT))
+			if ((_state == GameState::BEFORECOMBAT) || (_state == GameState::INIT))
 				resultado = combatGo(@currentStation, @currentEnemy)
 			end
 		end		# devuelve combatResult
@@ -197,10 +187,10 @@ module Deepspace
 			if (enemyWins)
 				s = station.getSpeed()
 
-				moves = dice.spaceStationMoves(s)
+				moves = @dice.spaceStationMoves(s)
 
 				if (!moves)
-					damage = enemy.getDamage()
+					damage = enemy.damage
 					station.setPendingDamage (damage)
 
 					resultado = CombatResult::ENEMYWINS
@@ -209,13 +199,13 @@ module Deepspace
 					resultado = CombatResult::STATIONESCAPES
 				end
 			else
-				aLoot = enemy.getLoot()
+				aLoot = enemy.loot
 				station.setLoot(aLoot)
 
 				resultado = CombatResult::STATIONWINS
 			end
 
-			gameState.next(@turns, @spaceStations.size())
+			@gameState.next(@turns, @spaceStations.size())
 
 			return (resultado)
 		end		
