@@ -2,7 +2,7 @@
 
 require_relative 'ShotResult'
 
-module DeepSpace
+module Deepspace
 	class EnemyStarShip
 		# Constructor
 		def initialize (n, ap, sp, l, d)  # n string, ap float, sp float, l loot, d Damage

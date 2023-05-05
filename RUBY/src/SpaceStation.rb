@@ -265,23 +265,5 @@ module Deepspace
 		end  # void
 
 	end # class
-
-	supplies = SuppliesPackage.new(1,10,3)
-	estacion = SpaceStation.new(3, supplies)
-	hangar = Hangar.new(3)
-	shield = ShieldBooster.new("Escudo", 5, 2)
-
-	weapon = Weapon.new("Arma de destruccion", WeaponType::LASER, 2)
-	
-	estacion.receiveHangar(hangar)
-
-	estacion.receiveShieldBooster(shield)
-	estacion.receiveWeapon(weapon)
-
-	estacion.mountWeapon(0)
-
-	puts estacion.protection
-
-	puts estacion.to_s
 	
 end # module

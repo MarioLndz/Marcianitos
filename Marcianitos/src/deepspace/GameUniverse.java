@@ -172,7 +172,7 @@ public class GameUniverse {
                 
                 int ns = dice.initWithNShields();
                 
-                Loot lo = new Loot(0,nw,ns,nh,0);
+                Loot lo = new Loot(0, nw, ns, nh, 0);
                 
                 station.setLoot(lo);
                                    

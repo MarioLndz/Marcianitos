@@ -5,13 +5,15 @@ require_relative 'EnemyStarShip'
 require_relative 'SpaceStation'
 require_relative 'GameStateController'
 require_relative 'Dice'
+require_relative 'GameUniverseToUI'
+require_relative 'CardDealer'
 
-module DeepSpace
+module Deepspace
 	class GameUniverse
 		# Atributos de clase
 		@@WIN = 10
 		
-		def initialize
+		def initialize()
 			@currentStation = nil
 			
 			@gameState = GameStateController.new
@@ -25,6 +27,7 @@ module DeepSpace
 			@currentStationIndex = -1
 			
 			@currentEnemy = nil 	#EnemyStarShip.new creo q falla pq el constructor recibe cosas
+			
 		end
 		
 		def haveAWinner()
@@ -90,7 +93,7 @@ module DeepSpace
 		
 		def getUIversion()
 		
-			return GameUniverseToUI.new(self)
+			return GameUniverseToUI.new(@currentStation, @currentStation)
 			
 		end
 		
@@ -114,9 +117,9 @@ module DeepSpace
 		
 		def init (names)    # names es arraylist de string
 			
-			state=@gameState 
+			_state = state 
 			
-			if(state==GameState::CANNOTPLAY)
+			if(_state==GameState::CANNOTPLAY)
 				dealer=CardDealer.instance()
 				names.each do |n|
 					supplies=dealer.nextSuppliesPackage
