@@ -15,6 +15,7 @@ class Dice {
     private final float NSHIELDSPROB;
     private final float NWEAPONSPROB;
     private final float FIRSTSHOTPROB;
+    private static final float EXTRAEFFIENCYPROB=0.8f;
     
     private Random generator;
     
@@ -93,6 +94,14 @@ class Dice {
         return (retorno);
     }
     
+    public boolean extraEfficiency(){   // en caso de devolver true se hará la extraefficiency
+        
+        float num = this.generator.nextFloat();
+        boolean retorno = (num > EXTRAEFFIENCYPROB);  // para que se true en caso de que haya que hacerlo
+        return retorno;
+        
+    } 
+    
     public String toString(){
         
         String salida;
@@ -102,5 +111,9 @@ class Dice {
 
         return salida;
     }
+    
+    
+    
+    
 
 }
