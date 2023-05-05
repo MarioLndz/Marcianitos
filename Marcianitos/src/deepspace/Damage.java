@@ -10,36 +10,38 @@ import java.util.ArrayList;
  *
  * @author laura
  */
-public class Damage {
+abstract public class Damage {
     private int nShields;
-    private int nWeapons;
-    private ArrayList<WeaponType> weapons; 
+    //private int nWeapons;
+    //private ArrayList<WeaponType> weapons; 
     
-    static final int NO_USO = -1;
+    // static final int NO_USO = -1;  no hace falta creo
     
-    Damage(int w, int s){
-        this.nWeapons = w;
+    //creo q este sería el unico constrctor
+    Damage (int s) {
         this.nShields = s;
-        weapons = null;
+    }
+    
+    /*
+    Damage(int w, int s){
+        //this.nWeapons = w;
+        this.nShields = s;
+       // weapons = null;    creo que ya no hace falta
     }
     
     Damage(ArrayList<WeaponType> wl, int s) {
-        this.weapons = wl;
+        //this.weapons = wl;
         this.nShields = s;
-        this.nWeapons = NO_USO; 
+        //this.nWeapons = NO_USO; 
     }
+    */
     
-    Damage (Damage d) {
-        this.nShields = d.getNShields();
-        this.nWeapons = d.getNWeapons();
-        this.weapons = d.getWeapons();
-    }
+    // nuevo "constructor de copia"
+    abstract public Damage copy();
     
-    DamageToUI getUIversion() {
-        return new DamageToUI(this);
-    }
+    abstract DamageToUI getUIversion();
     
-    private int arrayContainsType(ArrayList<Weapon> w, WeaponType t) {        
+    int arrayContainsType(ArrayList<Weapon> w, WeaponType t) {        
         int pos = -1;
         boolean encontrado = false;
         int i = 0;
@@ -56,77 +58,22 @@ public class Damage {
         return pos;
     }
     
-    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) { // funciona 
-        
-        Damage ajustado;
-        int l_nshields = Math.min(s.size(), this.getNShields());
+    abstract public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s);
 
-        if (this.getWeapons() == null) { // estamos usando solo numero de weapon
-            int l_nweapons = Math.min(w.size(), this.getNWeapons());
-            ajustado = new Damage(l_nweapons, l_nshields);
-        }
-        else {  // estamos usando array de weapontype
-            ArrayList<WeaponType> result = new ArrayList();
-            ArrayList<Weapon> aux = new ArrayList(w);
-            
-                    
-            for (int i = 0; i<this.getWeapons().size(); i++) {
-                WeaponType element = this.getWeapons().get(i);
-                int indice = this.arrayContainsType(aux, element);
-                if (indice != -1) {
-                    result.add(element);
-                    aux.remove(indice);
-                }
-            }            
-            ajustado = new Damage(result, l_nshields);
-        }
-
-        return ajustado;
-    }
-    
-    public void discardWeapon(Weapon w) {   // funciona
-        if (getWeapons() != null) 
-            getWeapons().remove(w.getType());
-        else
-            if (getNWeapons() > 0)
-                this.nWeapons--;
-    }
+    abstract public void discardWeapon(Weapon w);
     
     public void discardShieldBooster() { //funciona
         if (getNShields() > 0)
             this.nShields --;
     }
     
-    public boolean hasNoEffect(){   //funciona
-        boolean no_weapon_damage = nWeapons == NO_USO ? (this.weapons.isEmpty()) : (this.nWeapons == 0);
-
-        return (no_weapon_damage && (this.nShields == 0));
-
-    }
+    abstract public boolean hasNoEffect();
     
     public int getNShields() {
         return this.nShields;
     }
     
-    public int getNWeapons() {
-        return this.nWeapons;
-    }
-    
-    public ArrayList<WeaponType> getWeapons(){
-        return this.weapons;
-    }
-    
     public String toString() {
-    
-        String out = "numero shields: " + nShields + "\n";
-        if (getWeapons() != null) {
-            out += getWeapons().toString();
-        }
-        else {
-            out += "numero weapons: " + nWeapons + "\n";
-        }
-        
-        return out;
+        return ("numero shields: " + nShields + "\n");
     }
 }
-
