@@ -128,16 +128,7 @@ module Deepspace
 				#out+="\tWeapons: [#{@weapons.join(' // ')}]\n"
 				out += "\tWeapons: "
 				weapons.each do |w|
-					if (w == WeaponType::LASER)
-						type = "LASER"
-					else 
-						if (w == WeaponType::MISSILE)
-							type = "MISSILE"
-						else
-							type = "PLASMA"
-						end
-					end
-					out += type + " // "
+					out += w.to_s + " // "
 				end			
 				out += "\n"	
 			end
