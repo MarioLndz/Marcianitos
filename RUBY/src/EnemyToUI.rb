@@ -1,10 +1,10 @@
-require_relative 'CombatResult'
-require_relative 'EnemyStarShip'
-require_relative 'SpaceStation'
-require_relative 'GameStateController'
-require_relative 'Dice'
-require_relative 'GameUniverseToUI'
-require_relative 'CardDealer'
+#require_relative 'CombatResult'
+#require_relative 'EnemyStarShip'
+#require_relative 'SpaceStation'
+#require_relative 'GameStateController'
+#require_relative 'Dice'
+#require_relative 'GameUniverseToUI'
+#require_relative 'CardDealer'
 
 
 module Deepspace

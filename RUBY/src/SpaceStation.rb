@@ -1,6 +1,7 @@
 #encoding: UTF-8
 
 require_relative 'SpaceStationToUI'
+
 require_relative 'Weapon'
 require_relative 'WeaponType'
 require_relative 'ShieldBooster'
@@ -229,10 +230,10 @@ module Deepspace
 		end  # void()
 		
 		def setPendingDamage(d)   # d es Damage
-			d.adjust(weapons, shieldBoosters)
+			#d.adjust(@weapons, @shieldBoosters)
 			# se almacena el resultado en el atributo correspondiente ???
 			# creo q es esto:
-			@pendingDamage = d      # void()
+			@pendingDamage = d.adjust(@weapons, @shieldBoosters)      # void()
 		end
 		
 		def validState()
@@ -267,10 +268,9 @@ module Deepspace
 
 	end # class
 	
+	#s = SpaceStation.new("space", SuppliesPackage.new(3,4,5))
+	#puts s.to_s
 	
-	s = SpaceStation.new("space", SuppliesPackage.new(3,4,5))
-	puts s.to_s
-	
-	sui = SpaceStationToUI.new(s)
-	puts sui.to_s
+	#sui = SpaceStationToUI.new(s)
+	#puts sui.to_s
 end # module
