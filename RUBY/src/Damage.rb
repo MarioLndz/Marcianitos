@@ -44,7 +44,7 @@ module Deepspace
 			
 			l_nshields = [s.length, nShields].min
 
-			if weapons==nil
+			if @weapons==nil
 			
 				l_nweapons = [w.length, nWeapons].min
 				
@@ -54,7 +54,7 @@ module Deepspace
 				result = []
 				w_aux = w.clone
 				
-				weapons.each do |element|
+				@weapons.each do |element|
 					indice = arrayContainsType(w_aux, element)
               
 					if indice != -1
@@ -122,12 +122,12 @@ module Deepspace
 		def to_s
 			out="Damage - nShields: #{@nShields}"
 						
-			if (nWeapons != @@NOUSO)
+			if (@nWeapons != @@NOUSO)
 				out+=", nWeapons: #{@nWeapons}\n"
 			else
 				#out+="\tWeapons: [#{@weapons.join(' // ')}]\n"
 				out += "\tWeapons: "
-				weapons.each do |w|
+				@weapons.each do |w|
 					out += w.to_s + " // "
 				end			
 				out += "\n"	
@@ -156,5 +156,23 @@ module Deepspace
 		
 	end
 	
+	#tipos = Array.new
+	#tipos << WeaponType::LASER
+	#tipos << WeaponType::MISSILE
+
+	#shields = Array.new
+	#shields << "AAA"
+
+	#d = Damage.newSpecificWeapons(tipos, 3)
+	#puts d.getUIversion
+
+	#pendingDamage = Damage.newSpecificWeapons(Array.new, 2)
+
+	#armas = Array.new
+	#armas << Weapon.new("MISIL", WeaponType::MISSILE, 2)
+
+	#pendingDamage = d.adjust(armas, shields)
+	#puts pendingDamage.getUIversion
+
 end			
 
