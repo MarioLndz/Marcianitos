@@ -8,7 +8,7 @@ package deepspace;
  *
  * @author mario & Laura
  */
-class ShieldBooster {
+class ShieldBooster implements CombatElement {
     private String name;
     private float boost;
     private int uses;
@@ -33,10 +33,13 @@ class ShieldBooster {
         return (this.boost);
     }
     
+    // lo mismo q con Weapon, no creo q esto sea así
+    @Override
     public int getUses (){
         return (this.uses);
     }
     
+    @Override
     public float useIt(){
         float retorno = 1;
         

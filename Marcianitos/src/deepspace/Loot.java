@@ -9,7 +9,7 @@ package deepspace;
  *
  * @author mario
  */
-class Loot {
+class Loot {    // terminada
     
     private int nSupplies;
     private int nWeapons;
@@ -17,8 +17,8 @@ class Loot {
     private int nHangars;
     private int nMedals;
 	
-	private boolean getEfficient;
-	private boolean spaceCity;
+    private boolean getEfficient;
+    private boolean spaceCity;
     
     Loot(int supplies, int weapons, int shields, int hangars, int medals, boolean ef, boolean city){
         
@@ -28,8 +28,8 @@ class Loot {
         nHangars= hangars;
         nMedals=medals;
 		
-		getEfficient = ef;
-		spaceCity = city;
+	getEfficient = ef;
+	spaceCity = city;
     }
     
     LootToUI getUIversion() {
@@ -61,20 +61,20 @@ class Loot {
         return nMedals;
     }
 	
-	public boolean getEfficient (){
-		return (getEfficient);
-	}
-	
-	public boolean spaceCity (){
-		return (spaceCity);
-	}
+    public boolean getEfficient (){
+        return (getEfficient);
+    }
+
+    public boolean spaceCity (){
+        return (spaceCity);
+    }
     
     public String toString(){
         
         String salida;
         
         salida = "Supplies=" + nSupplies + ", Weapons=" + nWeapons + ", Shields=" + nShields + ", Hangars=" + nHangars;
-
+        salida += ",getEfficient: " + getEfficient + ", spaceCity: " + spaceCity + "\n";
         return salida;
     }
     

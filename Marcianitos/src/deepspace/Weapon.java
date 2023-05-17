@@ -8,7 +8,7 @@ package deepspace;
  *
  * @author mario
  */
-class Weapon {
+class Weapon implements CombatElement{
     private String name;
     private WeaponType type;
     private int uses;
@@ -33,14 +33,20 @@ class Weapon {
         return (this.type);
     }
     
-    public int getUses (){
+    // ns si esto está bien pq no tiene ninguna utilidad poner exactamente lo mismo
+    // pero q haya una interfaz
+    @Override
+    public int getUses(){
         return (this.uses);
     }
+    
     
     public float power (){
         return (type.getPower());
     }
     
+    // lo mismo q el getUses, no creo q esté bien
+    @Override
     public float useIt(){
         float retorno = 1;
         
