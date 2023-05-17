@@ -6,12 +6,29 @@ import java.util.ArrayList;
  *
  * @author laura
  */
-public class SpecificDamage extends Damage{
+public class SpecificDamage extends Damage{     // terminada
     private ArrayList<WeaponType> weapons; 
     
     SpecificDamage(ArrayList<WeaponType> wl, int s) {
         super(s);
         this.weapons = wl;
+    }
+    
+    private int arrayContainsType(ArrayList<Weapon> w, WeaponType t) {        
+        int pos = -1;
+        boolean encontrado = false;
+        int i = 0;
+        
+        while(i<w.size() && !encontrado) {
+            if (w.get(i).getType() == t) {
+                encontrado = true;
+                pos = i;
+            }
+            else
+                i++;
+        }
+        
+        return pos;
     }
     
     // "constructor de copia"

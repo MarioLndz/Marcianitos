@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author laura
  */
-public class NumericDamage extends Damage{
+public class NumericDamage extends Damage{  // terminada
     private int nWeapons;
     
     NumericDamage (int w, int s){
@@ -35,7 +35,7 @@ public class NumericDamage extends Damage{
     }
     
     @Override
-    public void discardWeapon(Weapon w) {   // funciona
+    public void discardWeapon(Weapon w) { 
         if (getNWeapons() > 0)
             this.nWeapons--;
     }

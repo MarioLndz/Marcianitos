@@ -14,6 +14,7 @@ public class TestP1 {
     
     public static void main(String[] args) {												
         // LOOT
+/*
         Loot l = new Loot(2,5,1,6,3);
         
         
@@ -59,12 +60,12 @@ public class TestP1 {
         
         Damage d = new Damage(0,0);
         Damage d2 = new Damage(a,0);
-        /*
+        
         System.out.println(d2.toString());
         d2.discardWeapon(we4);
         System.out.println(d2.toString());
-*/
-        System.out.println(d2.hasNoEffect());
 
+        System.out.println(d2.hasNoEffect());
+*/
     }
 }

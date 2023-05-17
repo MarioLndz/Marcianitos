@@ -10,8 +10,9 @@ import java.util.ArrayList;
  *
  * @author laura
  */
-abstract public class Damage {
+abstract public class Damage {      // terminada
     private int nShields;
+    
     //private int nWeapons;
     //private ArrayList<WeaponType> weapons; 
     
@@ -41,6 +42,7 @@ abstract public class Damage {
     
     abstract DamageToUI getUIversion();
     
+/*  Creo q este metodo iría en specificDamage q es el q trabaja con array
     int arrayContainsType(ArrayList<Weapon> w, WeaponType t) {        
         int pos = -1;
         boolean encontrado = false;
@@ -57,12 +59,13 @@ abstract public class Damage {
         
         return pos;
     }
+*/
     
     abstract public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s);
 
     abstract public void discardWeapon(Weapon w);
     
-    public void discardShieldBooster() { //funciona
+    public void discardShieldBooster() { 
         if (getNShields() > 0)
             this.nShields --;
     }
