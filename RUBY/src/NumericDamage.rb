@@ -5,6 +5,8 @@ module Deepspace
 
 class NumericDamage < Damage	#terminada
   	  
+  	public_class_method :new
+
 	attr_reader :nWeapons
 	  
 	def initialize (w,s)  #w = num weapons, s=num shields

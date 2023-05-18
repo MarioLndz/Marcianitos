@@ -4,7 +4,9 @@ require_relative 'Damage'
 module Deepspace
 
 class SpecificDamage < Damage	#terminada
-    
+
+	public_class_method :new
+
 	attr_reader :weapons
   
 	def initialize (wl,s)   #wl es array de weapontype, s int es numero de escudos
