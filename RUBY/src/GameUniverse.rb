@@ -28,6 +28,7 @@ module Deepspace
 			
 			@currentEnemy = nil 	#EnemyStarShip.new creo q falla pq el constructor recibe cosas
 			
+			@haveSpaceCity = false
 		end
 		
 		def haveAWinner()
@@ -198,17 +199,47 @@ module Deepspace
 					station.move()
 					resultado = CombatResult::STATIONESCAPES
 				end
-			else
+			else	#estación espacial vence al enemigo
 				aLoot = enemy.loot
-				station.setLoot(aLoot)
-
-				resultado = CombatResult::STATIONWINS
+				t = station.setLoot(aLoot)	#t es de tipo Transformation
+				
+				case t
+					when Transformation::GETEFFICIENT
+						resultado = CombatResult::STATIONWINSANDCONVERTS
+						makeStationEfficient
+					when Transformation::SPACECITY
+						resultado = CombatResult::STATIONWINSANDCONVERTS
+						createSpaceCity
+					else
+						resultado = CombatResult::STATIONWINS
+				end
 			end
 
 			@gameState.next(@turns, @spaceStations.size())
 
-			return (resultado)
+			return (resultado)		# devuelve un combatResult
 		end		
-	end				# devuelve un combatResult
+	
+	
+		private
+		
+		def makeStationEfficient
+			if (@dice.extraEfficiency)
+			#	@currentStation = BetaPowerEfficientSpaceStation.new(        )
+			else
+			#	@currentStation = PowerEfficientSpaceStation.new(    )
+			end
+		end		#void
+		
+		def createSpaceCity
+			if (@haveSpaceCity == false)
+			
+				#hacer muchas cosas
+			
+				@haveSpaceCity = true
+			end
+		end		#void
+		
+	end   #class		
 
-end
+end		#module

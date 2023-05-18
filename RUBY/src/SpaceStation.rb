@@ -223,11 +223,23 @@ module Deepspace
 				receiveShieldBooster(sh)
 			end
 			
+			#Aniadimos medals
 			medals = loot.nMedals
-
 			@nMedals += medals
 
-		end  # void()
+			#Comprobamos si hay transformación
+			result = Transformation::NOTRANSFORM
+			
+			if(loot.getEfficient())
+				result = Transformation::GETEFFICIENT
+			else
+				if (loot.spaceCity)
+					result = Transformation::SPACECITY
+				end
+			end
+			
+			return result
+		end  # devuelve elemento de tipo Transformation
 		
 		def setPendingDamage(d)   # d es Damage
 			#d.adjust(@weapons, @shieldBoosters)

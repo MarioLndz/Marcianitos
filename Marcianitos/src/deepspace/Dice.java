@@ -15,7 +15,7 @@ class Dice {
     private final float NSHIELDSPROB;
     private final float NWEAPONSPROB;
     private final float FIRSTSHOTPROB;
-    private static final float EXTRAEFFIENCYPROB=0.8f;
+    private final float EXTRAEFFIENCYPROB;    
     
     private Random generator;
     
@@ -24,6 +24,7 @@ class Dice {
         this.NSHIELDSPROB = 0.25f;
         this.NWEAPONSPROB = 0.33f;
         this.FIRSTSHOTPROB = 0.5f;
+        this.EXTRAEFFIENCYPROB = 0.8f; 
         
         this.generator = new Random();
     }
@@ -99,7 +100,6 @@ class Dice {
         float num = this.generator.nextFloat();
         boolean retorno = (num > EXTRAEFFIENCYPROB);  // para que se true en caso de que haya que hacerlo
         return retorno;
-        
     } 
     
     public String toString(){

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author laura
  */
-public class SpaceStation {
+public class SpaceStation implements SpaceFighter {
     static private int MAXFUEL = 100;     
     static private float SHIELDLOSSPERUNITSHOT = 0.1f;
     
@@ -131,6 +131,7 @@ public class SpaceStation {
             getHangar().removeWeapon(i);
     }
     
+    @Override
     public float fire(){
                 
         int size = weapons.size();
@@ -216,6 +217,7 @@ public class SpaceStation {
         this.fuelUnits -= this.fuelUnits*this.getSpeed();
     }
     
+    @Override
     public float protection(){
         int size = this.shieldBoosters.size();
         int factor = 1;
@@ -240,6 +242,7 @@ public class SpaceStation {
         return resultado; 
     }
     
+    @Override
     public ShotResult receiveShot(float shot){
 	ShotResult ret; 
         float myProtection = protection();
@@ -305,19 +308,20 @@ public class SpaceStation {
             receiveShieldBooster(sh);
         }
 
+        // Aniadimos medals
         int medals = loot.getNMedals();
-
         this.nMedals += medals;
-		
-		Transformation result = Transformation.NOTRANSFORM;
-		
-		if (loot.getEfficient()){
-			result = Transformation.GETEFFICIENT;
-		} else if (loot.spaceCity()) {
-			result = Transformation.SPACECITY;
-		}
-		
-		return (result);
+	
+        // Comprobar si hay transformación
+        Transformation result = Transformation.NOTRANSFORM;
+
+        if (loot.getEfficient()){
+            result = Transformation.GETEFFICIENT;
+        } else if (loot.spaceCity()) {
+            result = Transformation.SPACECITY;
+        }
+                
+        return (result);
     }
     
     public void setPendingDamage(Damage d){

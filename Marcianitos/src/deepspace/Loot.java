@@ -9,7 +9,7 @@ package deepspace;
  *
  * @author mario
  */
-class Loot {    // terminada
+public class Loot {    // terminada
     
     private int nSupplies;
     private int nWeapons;

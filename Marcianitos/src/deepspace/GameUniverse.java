@@ -22,6 +22,8 @@ public class GameUniverse {
     private SpaceStation currentStation;
     private ArrayList<SpaceStation> spaceStations;
     
+    private boolean haveSpaceCity;
+    
     public GameUniverse(){
         // crear contador de estados de juego
         this.gameState = new GameStateController();
@@ -36,6 +38,8 @@ public class GameUniverse {
         currentEnemy=null;
         currentStation=null;
         spaceStations = new ArrayList<SpaceStation>();
+        
+        haveSpaceCity = false;  // supongo q empieza así, ns
     }
     
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
@@ -44,56 +48,60 @@ public class GameUniverse {
         CombatResult resultado;
 
         if (ch == GameCharacter.ENEMYSTARSHIP){	// Ataca enemigo primero
-                float fire = enemy.fire();
+            float fire = enemy.fire();
 
-                ShotResult result = station.receiveShot(fire);
+            ShotResult result = station.receiveShot(fire);
 
-                if (result == ShotResult.RESIST){
-                        fire = station.fire();
-                        result = enemy.receiveShot(fire);
+            if (result == ShotResult.RESIST){
+                    fire = station.fire();
+                    result = enemy.receiveShot(fire);
 
-                        enemyWins = (result == ShotResult.RESIST);
-                } else {
-                        enemyWins = true;
-                }
+                    enemyWins = (result == ShotResult.RESIST);
+            } else {
+                    enemyWins = true;
+            }
 
         } else {	// Ataca jugador primero
-                float fire = station.fire();
-                ShotResult result = enemy.receiveShot(fire);
+            float fire = station.fire();
+            ShotResult result = enemy.receiveShot(fire);
 
-                enemyWins = (result == ShotResult.RESIST);
+            enemyWins = (result == ShotResult.RESIST);
         }
 
 
         if (enemyWins){
-                float s = station.getSpeed();
+            float s = station.getSpeed();
 
-                boolean moves = dice.spaceStationMoves(s);
+            boolean moves = dice.spaceStationMoves(s);
 
-                if (!moves){
-                        Damage damage = enemy.getDamage();
-                        station.setPendingDamage(damage);
+            if (!moves){
+                Damage damage = enemy.getDamage();
+                station.setPendingDamage(damage);
 
-                        resultado = CombatResult.ENEMYWINS;
+                resultado = CombatResult.ENEMYWINS;
 
-                } else {
-                        station.move();
-                        resultado = CombatResult.STATIONESCAPES;
-                }
+            } else {
+                station.move();
+                resultado = CombatResult.STATIONESCAPES;
+            }
 
-        } else {
-                Loot aLoot = enemy.getLoot();
-                station.setLoot(aLoot);
-				
-				//TODO: TRANSFORMACIONES
-				if (aLoot.getEfficient() || aLoot.spaceCity()){
-					resultado = CombatResult.STATIONWINSANDCONVERTS;
-				} else {
-					resultado = CombatResult.STATIONWINS;
-				}
-				
-                
+        } else {    // estación espacial vence al enemigo
+            Loot aLoot = enemy.getLoot();
+            Transformation t = station.setLoot(aLoot);
 
+            switch (t) {
+                case GETEFFICIENT:
+                    resultado = CombatResult.STATIONWINSANDCONVERTS;
+                    this.makeStationEfficient();
+                    break;
+                case SPACECITY:
+                    resultado = CombatResult.STATIONWINSANDCONVERTS;
+                    this.createSpaceCity();
+                    break;
+                default:
+                    resultado = CombatResult.STATIONWINS;
+                    break;
+            }
         }
 
         gameState.next(turns, spaceStations.size());
@@ -107,7 +115,7 @@ public class GameUniverse {
         GameState state = gameState.getState();
 
         if ((state == GameState.BEFORECOMBAT) || state == GameState.INIT) {		// Combate permitido
-                resultado = combat(currentStation, currentEnemy);
+            resultado = combat(currentStation, currentEnemy);
         }
 
         return (resultado);
@@ -219,11 +227,22 @@ public class GameUniverse {
         return ret;
     }
     
-    private void makeStationefficient(){
+    private void makeStationEfficient(){    // hay q poner bien los constructores
         
-        if(dice.extraEfficiency()){
+        if(dice.extraEfficiency())
+            // this.currentStation = new BetaPowerEfficientSpaceStation();
+        else
+            // this.currentStation = new PowerEfficientSpaceStation();
+    }
+    
+    private void createSpaceCity() {
+        if (this.haveSpaceCity == false) {
+            // convertir estacion espacial actual en ciudad espacial
+            // usando como estación espacial base la actual y como 
+            // colaboradoras el resto las estaciones espaciales. 
+            // Actualiza la referencia a currentStation
             
-            
+            this.haveSpaceCity = true;
         }
     }
 }

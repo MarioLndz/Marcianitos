@@ -8,7 +8,7 @@ package deepspace;
  *
  * @author mario
  */
-class SuppliesPackage {
+public class SuppliesPackage {
     private float ammoPower;
     private float fuelUnits;
     private float shieldPower;

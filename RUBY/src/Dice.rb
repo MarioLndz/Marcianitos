@@ -9,8 +9,9 @@ module Deepspace
 			@NSHIELDSPROB = 0.25
 			@NWEAPONSPROB = 0.33
 			@FIRSTSHOTPROB = 0.5
-			@generator = Random.new
+			@EXTRAEFFIENCYPROB = 0.8
 			
+			@generator = Random.new
 		end
 		
 		attr_reader :generator
@@ -73,6 +74,10 @@ module Deepspace
 			
 			return (retorno)
 		end
+		
+		def extraEfficiency
+			return (@generator.rand() > @EXTRAEFFIENCYPROB)
+		end		#true en caso de que haya que hacerla extra eficiente
 		
 		def to_s()
                 
