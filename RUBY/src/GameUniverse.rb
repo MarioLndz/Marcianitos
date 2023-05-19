@@ -119,7 +119,7 @@ module Deepspace
 					nh=@dice.initWithNHangars
 					nw=@dice.initWithNWeapons
 					ns=@dice.initWithNShields
-					lo=Loot.new(0,nw,ns,nh,0)
+					lo=Loot.new(0,nw,ns,nh,0, False, False)
 					station.setLoot(lo)
 				end
 				
@@ -225,17 +225,15 @@ module Deepspace
 		
 		def makeStationEfficient
 			if (@dice.extraEfficiency)
-			#	@currentStation = BetaPowerEfficientSpaceStation.new(        )
+				@currentStation = BetaPowerEfficientSpaceStation.new(@currentStation)
 			else
-			#	@currentStation = PowerEfficientSpaceStation.new(    )
+				@currentStation = PowerEfficientSpaceStation.new(@currentStation)
 			end
 		end		#void
 		
-		def createSpaceCity
+		def createSpaceCity		#no estoy segura
 			if (@haveSpaceCity == false)
-			
-				#hacer muchas cosas
-			
+				@currentStation = SpaceCity.new(@currentStation, @spaceStations)
 				@haveSpaceCity = true
 			end
 		end		#void

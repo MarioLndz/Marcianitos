@@ -133,10 +133,10 @@ class CardDealer
     end
     
     def createEnemies() 
-        regularLoot0=Loot.new(1,2,1,1,1)
-        regularLoot1=Loot.new(1,1,2,1,1)
-        badLoot=Loot.new(1,1,1,0,1)
-        goodLoot=Loot.new(2,2,2,1,2)
+        regularLoot0=Loot.new(1,2,1,1,1, False, False)
+        regularLoot1=Loot.new(1,1,2,1,1, False, False)
+        badLoot=Loot.new(1,1,1,0,1, False, False)
+        goodLoot=Loot.new(2,2,2,1,2, False, False)
         
         regularDamage0=Damage.newNumericWeapons(2,1) 
         regularDamage1=Damage.newNumericWeapons(1,1) 

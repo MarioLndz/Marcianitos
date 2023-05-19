@@ -180,7 +180,7 @@ public class GameUniverse {
                 
                 int ns = dice.initWithNShields();
                 
-                Loot lo = new Loot(0, nw, ns, nh, 0);
+                Loot lo = new Loot(0, nw, ns, nh, 0, false, false);
                 
                 station.setLoot(lo);
                                    
@@ -229,11 +229,13 @@ public class GameUniverse {
     
     private void makeStationEfficient(){    // hay q poner bien los constructores
         
+
         if(dice.extraEfficiency())
             this.currentStation = new BetaPowerEfficientSpaceStation(currentStation);
         else
             this.currentStation = new PowerEfficientSpaceStation(currentStation);
     }
+
     
     private void createSpaceCity() {
         if (this.haveSpaceCity == false) {
