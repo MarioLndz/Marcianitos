@@ -138,8 +138,8 @@ class CardDealer {
         hangars.add(new Hangar(1));
     }
     private void createEnemies() {
-        Loot regularLoot0=new Loot(1,2,1,1,1,1);
-        Loot regularLoot1=new Loot(1,1,2,1,1,0,0);
+        Loot regularLoot0=new Loot(1,2,1,1,1);
+        Loot regularLoot1=new Loot(1,1,2,1,1);
         Loot badLoot=new Loot(1,1,1,0,1);
         Loot goodLoot=new Loot(2,2,2,1,2);
         
