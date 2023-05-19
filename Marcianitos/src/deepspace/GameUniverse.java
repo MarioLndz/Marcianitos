@@ -239,11 +239,7 @@ public class GameUniverse {
     
     private void createSpaceCity() {
         if (this.haveSpaceCity == false) {
-            // convertir estacion espacial actual en ciudad espacial
-            // usando como estación espacial base la actual y como 
-            // colaboradoras el resto las estaciones espaciales. 
-            // Actualiza la referencia a currentStation
-            
+            this.currentStation = new SpaceCity(currentStation, spaceStations);
             this.haveSpaceCity = true;
         }
     }
