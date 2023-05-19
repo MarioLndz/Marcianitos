@@ -20,6 +20,10 @@ public class Loot {    // terminada
     private boolean getEfficient;
     private boolean spaceCity;
     
+	Loot (int supplies, int weapons, int shields, int hangars, int medals){
+		this(supplies, weapons, shields, hangars, medals, false, false);
+	}
+	
     Loot(int supplies, int weapons, int shields, int hangars, int medals, boolean ef, boolean city){
         
         nSupplies=supplies;
@@ -28,8 +32,8 @@ public class Loot {    // terminada
         nHangars= hangars;
         nMedals=medals;
 		
-	getEfficient = ef;
-	spaceCity = city;
+		getEfficient = ef;
+		spaceCity = city;
     }
     
     LootToUI getUIversion() {
