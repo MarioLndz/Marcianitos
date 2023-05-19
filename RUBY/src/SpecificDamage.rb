@@ -1,5 +1,6 @@
 
 require_relative 'Damage'
+require_relative 'SpecificDamageToUI'
 
 module Deepspace
 
