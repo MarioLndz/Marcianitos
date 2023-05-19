@@ -13,7 +13,7 @@ require_relative 'Loot'
 
 module Deepspace
   
-	class SpaceStation
+	class SpaceStation		#terminada
 
 		#atributos de clase
 		@@MAXFUEL=100
@@ -35,6 +35,16 @@ module Deepspace
 			@shieldBoosters=Array.new()
 			@hangar=nil
 			@pendingDamage=nil
+		end
+		
+		#constructor de copia
+		def constructor(station)	#station es una estación espacial
+			new(station.name, SuppliesPackage.new(station.ammoPower, station.shieldPower, station.fuelUnits))
+			@nMedals=station.nMedals
+			@weapons=station.weapons
+			@shieldBoosters=station.shieldBoosters
+			@hangar=station.hangar
+			@pendingDamage=station.pendingDamage
 		end
 		
 		def cleanUpMountedItems()  # void()
@@ -60,10 +70,10 @@ module Deepspace
 		def discardShieldBooster(i)   # i es indice del arma
 			size = @shieldBoosters.length
 			if (i>=0 && i<size)
-				s=@shieldBoosters.delete_at(i)
+				@shieldBoosters.delete_at(i)
 				
 				if (@pendingDamage != nil)
-					@pendingDamage.discardShieldBooster(w)
+					@pendingDamage.discardShieldBooster()
 					cleanPendingDamage
 				end
 			end	

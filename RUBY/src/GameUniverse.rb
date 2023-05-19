@@ -225,17 +225,15 @@ module Deepspace
 		
 		def makeStationEfficient
 			if (@dice.extraEfficiency)
-			#	@currentStation = BetaPowerEfficientSpaceStation.new(        )
+				@currentStation = BetaPowerEfficientSpaceStation.new(@currentStation)
 			else
-			#	@currentStation = PowerEfficientSpaceStation.new(    )
+				@currentStation = PowerEfficientSpaceStation.new(@currentStation)
 			end
 		end		#void
 		
-		def createSpaceCity
+		def createSpaceCity		#no estoy segura
 			if (@haveSpaceCity == false)
-			
-				#hacer muchas cosas
-			
+				@currentStation = SpaceCity.new(@currentStation, @spaceStations)
 				@haveSpaceCity = true
 			end
 		end		#void
