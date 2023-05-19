@@ -55,17 +55,17 @@ public class SpaceStation implements SpaceFighter {
         this.pendingDamage = null; 
     }
 
-	public SpaceStation(SpaceStation otro) {
-		this(otro.name, new SuppliesPackage(otro.ammoPower, otro.shieldPower, otro.fuelUnits));
-        
+    public SpaceStation(SpaceStation otro) {
+        this(otro.name, new SuppliesPackage(otro.ammoPower, otro.shieldPower, otro.fuelUnits));
+
         // estos de abajo creo q se inicializarian así
         this.nMedals = otro.nMedals; 
         this.weapons = otro.weapons;
         this.shieldBoosters = otro.shieldBoosters;
         this.hangar = otro.hangar;
         this.pendingDamage = otro.pendingDamage;
-		
-	}
+
+    }
 	
     
     public void cleanUpMountedItems() {
@@ -95,6 +95,8 @@ public class SpaceStation implements SpaceFighter {
         int size = shieldBoosters.size();
         
         if(i>=0 && i<size){
+            
+            shieldBoosters.remove(i);
                         
             if(pendingDamage != null){
                 
