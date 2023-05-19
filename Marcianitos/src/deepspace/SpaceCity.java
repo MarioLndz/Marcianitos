@@ -52,8 +52,9 @@ public class SpaceCity extends SpaceStation {
 	}
 	
 	@Override
-	public void setLoot (Loot loot) {
-		
+	public Transformation setLoot (Loot loot) {
+		super.setLoot(loot);
+		return (Transformation.NOTRANSFORM);
 	}
 	
 }
