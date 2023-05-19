@@ -1,3 +1,4 @@
+
 module Deepspace
 
 
@@ -45,7 +46,7 @@ class SpaceStationToUI
   end
   
   def to_s
-    out="Space Station - Name: #{@name}\n"
+    out="Space Station - Name: #{name}\n"
     out+="\tnMedals: #{@nMedals}, Fuel units: #{@fuelUnits.round(2)}, Power: #{@ammoPower}, Shields: #{@shieldPower}\n"
     out+="\tWeapons: [#{@weapons.join(', ')}]\n"
     out+="\tShieldBooster: [#{@shieldBoosters.join(', ')}]\n"
@@ -54,7 +55,6 @@ class SpaceStationToUI
     out+="------- end of Space Station >> #{@name} << -------"
     return out
   end
-
 
 end # class
 

@@ -1,4 +1,5 @@
-module Deepspace
+
+module Deepspace;
   
 class WeaponToUI 
 
@@ -13,19 +14,9 @@ class WeaponToUI
     end  
     
     def to_s
-		if (@type == WeaponType::LASER)
-			type = "LASER"
-		else 
-			if (@type == WeaponType::MISSILE)
-				type = "MISSILE"
-			else
-				type = "PLASMA"
-			end
-		end
-		
-			return "Type: " + @type.to_s + ", Power: #{@type.power}, Uses: #{@uses}"
-	end
+      return "Type: #{@type}, Power: #{@power}, Uses: #{@uses}"
+    end
     
 end # class
-	
+
 end # module

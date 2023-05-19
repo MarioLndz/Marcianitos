@@ -85,7 +85,7 @@ module Deepspace
 		
 		def getUIversion()
 		
-			return GameUniverseToUI.new(@currentStation, @currentStation)
+			return GameUniverseToUI.new(@currentStation, @currentEnemy)
 			
 		end
 		
@@ -119,7 +119,7 @@ module Deepspace
 					nh=@dice.initWithNHangars
 					nw=@dice.initWithNWeapons
 					ns=@dice.initWithNShields
-					lo=Loot.new(0,nw,ns,nh,0, False, False)
+					lo=Loot.new(0,nw,ns,nh,0, false, false)
 					station.setLoot(lo)
 				end
 				
@@ -159,6 +159,8 @@ module Deepspace
 			if ((_state == GameState::BEFORECOMBAT) || (_state == GameState::INIT))
 				resultado = combatGo(@currentStation, @currentEnemy)
 			end
+
+			return (resultado)
 		end		# devuelve combatResult
 		
 		def combatGo (station, enemy)  # station es un SpaceStation y enemy un EnemyStartship

@@ -10,6 +10,7 @@ require_relative 'Damage'
 require_relative 'SuppliesPackage'
 require_relative 'ShotResult'
 require_relative 'Loot'
+require_relative 'Transformation'
 
 module Deepspace
   
@@ -240,7 +241,7 @@ module Deepspace
 			#Comprobamos si hay transformación
 			result = Transformation::NOTRANSFORM
 			
-			if(loot.getEfficient())
+			if(loot.efficient)
 				result = Transformation::GETEFFICIENT
 			else
 				if (loot.spaceCity)
