@@ -15,11 +15,23 @@ public class BetaPowerEfficientSpaceStation extends PowerEfficientSpaceStation{
     
     BetaPowerEfficientSpaceStation(SpaceStation station){
         super(station);
+        dice=new Dice();
     }
-
-    float fire(){
+    
+    @Override
+    public float fire(){
         
+        float retorno;
         
+        if(dice.extraEfficiency()){
+            
+            retorno=EFFIENCYFACTOR*super.fire();
+        }
+        else{
+            retorno=super.fire();
+        }
+        
+        return retorno;
     }
     
 }

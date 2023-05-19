@@ -230,9 +230,9 @@ public class GameUniverse {
     private void makeStationEfficient(){    // hay q poner bien los constructores
         
         if(dice.extraEfficiency())
-            // this.currentStation = new BetaPowerEfficientSpaceStation();
+            this.currentStation = new BetaPowerEfficientSpaceStation(currentStation);
         else
-            // this.currentStation = new PowerEfficientSpaceStation();
+            this.currentStation = new PowerEfficientSpaceStation(currentStation);
     }
     
     private void createSpaceCity() {
