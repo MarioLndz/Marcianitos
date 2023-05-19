@@ -283,9 +283,9 @@ public class SpaceStation implements SpaceFighter {
         // Aniadimos Hangars
         int h = loot.getNHangars();
         if (h > 0){
-            hangar = dealer.nextHangar();
+            Hangar _hangar = dealer.nextHangar();
 
-            this.receiveHangar(hangar);
+            this.receiveHangar(_hangar);
         }
 
         // Aniadimos supplies
