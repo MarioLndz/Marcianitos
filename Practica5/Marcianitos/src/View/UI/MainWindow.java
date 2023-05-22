@@ -49,8 +49,8 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // Inputs
     @Override
     public ArrayList<String> readNamePlayers(){     //lo pone en el pdf
-        NamesCapture namesCapt = new NamesCapture(this);    // hay q cambiar el constructor de NamesCapture
-        return ramesCapt.getNames();
+        NamesCapture namesCapt = new NamesCapture(this);    // hay q terminar el constructor de NamesCapture
+        return namesCapt.getNames();    // añadir getNames a NamesCapture
     }
     
     // Outputs
