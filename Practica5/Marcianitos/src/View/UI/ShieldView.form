@@ -66,14 +66,14 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="shield.getUses()" type="code"/>
+          <Connection code="String.valueOf(shield.getUses())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="shield.getBoost()" type="code"/>
+          <Connection code="String.valueOf(shield.getBoost())" type="code"/>
         </Property>
       </Properties>
     </Component>

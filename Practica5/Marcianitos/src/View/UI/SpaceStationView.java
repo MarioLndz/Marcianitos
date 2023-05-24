@@ -56,13 +56,13 @@ public class SpaceStationView extends javax.swing.JPanel {
 
         jLabel4.setText("Medallas:");
 
-        jLabel5.setText(station.getAmmoPower());
+        jLabel5.setText(String.valueOf(station.getAmmoPower()));
 
-        jLabel6.setText(station.getShieldPower());
+        jLabel6.setText(String.valueOf(station.getShieldPower()));
 
-        jLabel7.setText(station.getFuelUnits());
+        jLabel7.setText(String.valueOf(station.getFuelUnits()));
 
-        jLabel8.setText(station.getnMedals());
+        jLabel8.setText(String.valueOf(station.getnMedals()));
 
         jPanel1.setBackground(new java.awt.Color(0, 242, 242));
 

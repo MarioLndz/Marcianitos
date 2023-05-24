@@ -5,6 +5,7 @@
 package View.UI;
 
 import deepspace.WeaponToUI;
+import deepspace.WeaponType;
 
 /**
  *
@@ -44,11 +45,11 @@ public class WeaponView extends javax.swing.JPanel {
 
         jLabel3.setText("Tipo:");
 
-        numUsos.setText(w.getUses());
+        numUsos.setText(Integer.toString(w.getUses()));
 
-        potencia.setText(w.getPower());
+        potencia.setText(String.valueOf(w.getPower()));
 
-        type.setText(w.getType());
+        type.setText(WeaponType.toString(w.getType()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

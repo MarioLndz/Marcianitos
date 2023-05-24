@@ -111,28 +111,28 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="station.getAmmoPower()" type="code"/>
+          <Connection code="String.valueOf(station.getAmmoPower())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="station.getShieldPower()" type="code"/>
+          <Connection code="String.valueOf(station.getShieldPower())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="station.getFuelUnits()" type="code"/>
+          <Connection code="String.valueOf(station.getFuelUnits())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="station.getnMedals()" type="code"/>
+          <Connection code="String.valueOf(station.getnMedals())" type="code"/>
         </Property>
       </Properties>
     </Component>

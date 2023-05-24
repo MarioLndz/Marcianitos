@@ -38,7 +38,7 @@ public class DamageView extends javax.swing.JPanel {
 
         jLabel2.setText("Armas:");
 
-        jLabel3.setText(damage.getNShields());
+        jLabel3.setText(String.valueOf(damage.getNShields()));
 
         jLabel4.setText(damage.getWeaponInfo());
 
@@ -48,14 +48,14 @@ public class DamageView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );

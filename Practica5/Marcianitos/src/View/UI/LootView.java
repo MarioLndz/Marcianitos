@@ -51,15 +51,15 @@ public class LootView extends javax.swing.JPanel {
 
         jLabel5.setText("Medallas:");
 
-        jLabel6.setText(loot.getnWeapons());
+        jLabel6.setText(String.valueOf(loot.getnWeapons()));
 
-        jLabel7.setText(loot.getnShields());
+        jLabel7.setText(String.valueOf(loot.getnShields()));
 
-        jLabel8.setText(loot.getnHangars());
+        jLabel8.setText(String.valueOf(loot.getnHangars()));
 
-        jLabel9.setText(loot.getnSupplies());
+        jLabel9.setText(String.valueOf(loot.getnSupplies()));
 
-        jLabel10.setText(loot.getnMedals());
+        jLabel10.setText(String.valueOf(loot.getnMedals()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

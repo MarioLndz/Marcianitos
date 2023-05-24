@@ -14,7 +14,7 @@ import deepspace.GameUniverse;
  *
  * @author Profe
  */
-public class PlayWithUI {
+public class PlayWithConsoleUI {
     public static void main(String[] args) {
       DeepSpaceView ui;
       GameUniverse game = new GameUniverse();

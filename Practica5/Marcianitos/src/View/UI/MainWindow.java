@@ -60,7 +60,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // Outputs
     @Override
     public boolean confirmExitMessage() {
-        
+        return (true);
     }
     
     @Override

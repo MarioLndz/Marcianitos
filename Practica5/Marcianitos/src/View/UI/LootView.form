@@ -113,35 +113,35 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="loot.getnWeapons()" type="code"/>
+          <Connection code="String.valueOf(loot.getnWeapons())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="loot.getnShields()" type="code"/>
+          <Connection code="String.valueOf(loot.getnShields())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="loot.getnHangars()" type="code"/>
+          <Connection code="String.valueOf(loot.getnHangars())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="loot.getnSupplies()" type="code"/>
+          <Connection code="String.valueOf(loot.getnSupplies())" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="loot.getnMedals()" type="code"/>
+          <Connection code="String.valueOf(loot.getnMedals())" type="code"/>
         </Property>
       </Properties>
     </Component>

@@ -22,4 +22,23 @@ public enum WeaponType {
     float getPower(){
         return (this.power);
     }
+	
+	public static String toString (WeaponType tipo){
+		String s = new String();
+		
+		switch (tipo) {
+			case LASER:
+				s += "Láser";
+				break;
+			case MISSILE:
+				s += "Misil";
+				break;
+			case PLASMA:
+				s += "Plasma";
+				break;
+		}
+		
+		return s;
+	}
+	
 }

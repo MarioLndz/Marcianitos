@@ -38,9 +38,9 @@ public class ShieldView extends javax.swing.JPanel {
 
         jLabel2.setText("Usos:");
 
-        jLabel3.setText(shield.getUses());
+        jLabel3.setText(String.valueOf(shield.getUses()));
 
-        jLabel4.setText(shield.getBoost());
+        jLabel4.setText(String.valueOf(shield.getBoost()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
