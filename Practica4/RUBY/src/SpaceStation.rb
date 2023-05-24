@@ -42,8 +42,8 @@ module Deepspace
 		def constructor(station)	#station es una estación espacial
 			new(station.name, SuppliesPackage.new(station.ammoPower, station.shieldPower, station.fuelUnits))
 			@nMedals=station.nMedals
-			@weapons=station.weapons
-			@shieldBoosters=station.shieldBoosters
+			@weapons=station.weapons.clone()
+			@shieldBoosters=station.shieldBoosters.clone()
 			@hangar=station.hangar
 			@pendingDamage=station.pendingDamage
 		end

@@ -230,17 +230,25 @@ public class GameUniverse {
     private void makeStationEfficient(){    // hay q poner bien los constructores
         
 
-        if(dice.extraEfficiency())
+        if(dice.extraEfficiency()) {
             this.currentStation = new BetaPowerEfficientSpaceStation(currentStation);
-        else
+		
+		} else {
             this.currentStation = new PowerEfficientSpaceStation(currentStation);
-    }
+    
+		}
+		
+		spaceStations.set(this.currentStationIndex, this.currentStation);
+		
+	}
 
     
     private void createSpaceCity() {
         if (this.haveSpaceCity == false) {
             this.currentStation = new SpaceCity(currentStation, spaceStations);
             this.haveSpaceCity = true;
+			
+			spaceStations.set(this.currentStationIndex, currentStation);
         }
     }
 }

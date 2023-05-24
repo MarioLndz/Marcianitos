@@ -231,12 +231,18 @@ module Deepspace
 			else
 				@currentStation = PowerEfficientSpaceStation.new(@currentStation)
 			end
+			
+			@spaceStations[@currentStationIndex] = @currentStation
+			
 		end		#void
 		
 		def createSpaceCity		#no estoy segura
 			if (@haveSpaceCity == false)
 				@currentStation = SpaceCity.new(@currentStation, @spaceStations)
 				@haveSpaceCity = true
+				
+				@spaceStations[@currentStationIndex] = @currentStation
+				
 			end
 		end		#void
 		
