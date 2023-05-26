@@ -8,6 +8,7 @@ import View.DeepSpaceView;
 import deepspace.GameState;
 import deepspace.GameUniverseToUI;
 import java.util.ArrayList;
+import controller.Controller;
 
 /**
  *
@@ -15,16 +16,34 @@ import java.util.ArrayList;
  */
 public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
-    private EnemyView e;
-    
+    private String appName;
+    private SpaceStationView stationView;
+	private EnemyView enemyView;
     
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
-        e = new EnemyView();
-        jpEnemy.add(e);
+		appName = "Deepspace 1.0";
+		
+        enemyView = new EnemyView();
+        jpEnemy.add(enemyView);
+		
+		stationView = new SpaceStationView();
+		jpStation.add(stationView);
+		
+        setTitle (appName);
+        repaint();
+        setLocationRelativeTo(null);
+        
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                Controller.getInstance().finish(0);
+            }
+        });
     }
     
     ////////////////////////////////
@@ -41,9 +60,10 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     private GameState state;
   
     @Override
-     public void updateView(){  
-        
-     }
+    public void updateView(){  
+        enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
+		stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
+    }
      
     @Override
     public void showView() {    // lo pone en el pdf
@@ -136,7 +156,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         jpEnemy.setLayout(jpEnemyLayout);
         jpEnemyLayout.setHorizontalGroup(
             jpEnemyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jpEnemyLayout.setVerticalGroup(
             jpEnemyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,35 +176,34 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonSigTurno)
                             .addComponent(jButtonCombatir, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
-                        .addComponent(jButtonSalir)
-                        .addContainerGap(35, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jpEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButtonSalir))
+                    .addComponent(jpEnemy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jpEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonCombatir, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSigTurno)
-                    .addComponent(jButtonSalir))
-                .addGap(43, 43, 43))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonCombatir, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSigTurno)
+                            .addComponent(jButtonSalir))
+                        .addGap(43, 43, 43))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();

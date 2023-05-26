@@ -20,6 +20,10 @@ public class LootView extends javax.swing.JPanel {
     public LootView() {
         initComponents();
     }
+	
+	void setLoot (LootToUI l){
+		
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
