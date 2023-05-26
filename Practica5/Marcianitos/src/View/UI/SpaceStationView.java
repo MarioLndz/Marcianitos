@@ -22,7 +22,7 @@ public class SpaceStationView extends javax.swing.JPanel {
         initComponents();
     }
 
-    void setStation(SpaceStationToUI station) {
+    void setSpaceStation(SpaceStationToUI station) {
         ammoPower.setText(String.valueOf(station.getAmmoPower()));
         shieldPower.setText(String.valueOf(station.getShieldPower()));
         nMedals.setText(String.valueOf(station.getnMedals()));
@@ -44,7 +44,7 @@ public class SpaceStationView extends javax.swing.JPanel {
         WeaponView weaponView;
         for (WeaponToUI w : weapons) {
             weaponView = new WeaponView();
-            weaponView.setWeapon(w);
+            weaponView.SetWeapon(w);
             p.add(weaponView);
         }
     }

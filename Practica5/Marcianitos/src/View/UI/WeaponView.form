@@ -29,7 +29,7 @@
                   <Component id="potencia" min="-2" max="-2" attributes="0"/>
                   <Component id="numUsos" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="145" max="32767" attributes="0"/>
+              <EmptySpace pref="146" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
@@ -90,23 +90,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="numUsos">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Integer.toString(w.getUses())" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Uses"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="potencia">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="String.valueOf(w.getPower())" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="AmmoPower"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="type">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="WeaponType.toString(w.getType())" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="WeaponType"/>
       </Properties>
     </Component>
   </SubComponents>

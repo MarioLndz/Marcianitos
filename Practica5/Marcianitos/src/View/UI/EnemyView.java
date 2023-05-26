@@ -25,9 +25,23 @@ public class EnemyView extends javax.swing.JPanel {
         jpPerdidas.add(damage);
         initComponents();
     }
-    
-    void setEnemy(EnemyToUI enemy) {
-        loot.set
+	
+    void setEnemy (EnemyToUI e){
+        jLEnemyName.setText(e.getName());
+        jLAmmoPower.setText(String.valueOf(e.getAmmoPower()));
+        jLShieldPower.setText(String.valueOf(e.getShieldPower()));
+
+        loot.removeAll();
+        damage.removeAll();
+
+        LootView lootView = new LootView();
+        lootView.setLoot(e.getLoot());
+
+        loot.add(lootView);
+
+        DamageView damageView = new DamageView();
+        damageView.setDamage(e.getDamage());
+        damage.add(damageView);
     }
 
     /**
@@ -44,9 +58,9 @@ public class EnemyView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLEnemyName = new javax.swing.JLabel();
+        jLAmmoPower = new javax.swing.JLabel();
+        jLShieldPower = new javax.swing.JLabel();
 
         jpLoot.setBackground(new java.awt.Color(0, 53, 53));
         jpLoot.setBorder(javax.swing.BorderFactory.createTitledBorder("Botín"));
@@ -84,11 +98,11 @@ public class EnemyView extends javax.swing.JPanel {
 
         jLabel3.setText("Potencia de defensa: ");
 
-        jLabel4.setText(e.getName());
+        jLEnemyName.setText("EnemyName");
 
-        jLabel5.setText(String.valueOf(e.getAmmoPower()));
+        jLAmmoPower.setText("EnemyAmmoPower");
 
-        jLabel6.setText(String.valueOf(e.getShieldPower()));
+        jLShieldPower.setText("EnemyShieldPower");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,9 +120,9 @@ public class EnemyView extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))))
+                            .addComponent(jLShieldPower)
+                            .addComponent(jLAmmoPower)
+                            .addComponent(jLEnemyName))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,15 +131,15 @@ public class EnemyView extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(jLEnemyName))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5))
+                    .addComponent(jLAmmoPower))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(jLShieldPower))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jpLoot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -138,12 +152,12 @@ public class EnemyView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLAmmoPower;
+    private javax.swing.JLabel jLEnemyName;
+    private javax.swing.JLabel jLShieldPower;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jpLoot;
     private javax.swing.JPanel jpPerdidas;
     // End of variables declaration//GEN-END:variables
