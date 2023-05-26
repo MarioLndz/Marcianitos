@@ -19,7 +19,8 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
     private String appName;
     private SpaceStationView stationView;
-	private EnemyView enemyView;
+    private EnemyView enemyView;
+    //m
     
     /**
      * Creates new form MainWindow
