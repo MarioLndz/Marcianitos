@@ -21,7 +21,15 @@ public class NamesCapture extends javax.swing.JDialog {
     public NamesCapture(MainWindow parent) {
         super(parent, true);
         initComponents();
-        // terminar de añadir cosas
+        setLocationRelativeTo (null);
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {      // para q al cerrar la ventana deje de ejecutarse
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                // Se decide que cancelar la entrada de nombres supone no iniciar la aplicación
+                System.exit(0);
+            }
+        });
     }
 	
 	ArrayList<String> getNames (){

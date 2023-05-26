@@ -5,6 +5,7 @@
 package View.UI;
 
 import View.DeepSpaceView;
+import controller.Controller;
 import deepspace.GameState;
 import deepspace.GameUniverseToUI;
 import java.util.ArrayList;
@@ -23,8 +24,13 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
      */
     public MainWindow() {
         initComponents();
-        e = new EnemyView();
-        jpEnemy.add(e);
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {  // para q al cerrar la ventana deje de ejecutarse
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                Controller.getInstance().finish(0);
+            }
+        });
     }
     
     ////////////////////////////////

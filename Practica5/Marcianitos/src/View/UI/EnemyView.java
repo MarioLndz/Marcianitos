@@ -11,8 +11,6 @@ import deepspace.EnemyToUI;
  * @author laura
  */
 public class EnemyView extends javax.swing.JPanel {
-
-    private EnemyToUI e;
             
     private LootView loot;
     private DamageView damage;
@@ -20,12 +18,16 @@ public class EnemyView extends javax.swing.JPanel {
     /**
      * Creates new form EnemyView
      */
-    public EnemyView(EnemyToUI e) {
-        loot = new LootView(e.getLoot());
-        damage = new DamageView(e.getDamage());
+    public EnemyView() {
+        loot = new LootView();
+        damage = new DamageView();
         jpLoot.add(loot);
         jpPerdidas.add(damage);
         initComponents();
+    }
+    
+    void setEnemy(EnemyToUI enemy) {
+        loot.set
     }
 
     /**
