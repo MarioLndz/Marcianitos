@@ -20,12 +20,12 @@ public class EnemyView extends javax.swing.JPanel {
     /**
      * Creates new form EnemyView
      */
-    public EnemyView() {
-        initComponents();
-        loot = new LootView();
-        damage = new DamageView();
+    public EnemyView(EnemyToUI e) {
+        loot = new LootView(e.getLoot());
+        damage = new DamageView(e.getDamage());
         jpLoot.add(loot);
         jpPerdidas.add(damage);
+        initComponents();
     }
 
     /**

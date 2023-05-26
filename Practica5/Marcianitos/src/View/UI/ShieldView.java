@@ -11,12 +11,13 @@ import deepspace.ShieldToUI;
  */
 public class ShieldView extends javax.swing.JPanel {
 
+    private ShieldToUI shield;
+    
     /**
      * Creates new form ShieldView
      */
-    
-    private ShieldToUI shield;
-    public ShieldView() {
+    public ShieldView(ShieldToUI s) {
+        shield = s;
         initComponents();
     }
 

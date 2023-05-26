@@ -17,7 +17,8 @@ public class LootView extends javax.swing.JPanel {
     
     private LootToUI loot;
     
-    public LootView() {
+    public LootView(LootToUI l) {
+        loot = l;
         initComponents();
     }
 

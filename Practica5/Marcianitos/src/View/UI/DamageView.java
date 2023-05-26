@@ -11,12 +11,13 @@ import deepspace.DamageToUI;
  */
 public class DamageView extends javax.swing.JPanel {
 
+    private DamageToUI damage;
+    
     /**
      * Creates new form DamageView
      */
-    
-    private DamageToUI damage;
-    public DamageView() {
+    public DamageView(DamageToUI d) {
+        damage = d;
         initComponents();
     }
 

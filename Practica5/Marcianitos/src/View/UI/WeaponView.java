@@ -13,12 +13,13 @@ import deepspace.WeaponType;
  */
 public class WeaponView extends javax.swing.JPanel {
 
-    private WeaponToUI w;
+    private WeaponToUI weapon;
     
     /**
      * Creates new form WeaponView
      */
-    public WeaponView() {
+    public WeaponView(WeaponToUI w) {
+        weapon = w;
         initComponents();
     }
 

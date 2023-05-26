@@ -10,22 +10,22 @@ import deepspace.SpaceStationToUI;
  * @author mario
  */
 public class SpaceStationView extends javax.swing.JPanel {
-
-    /**
-     * Creates new form SpaceStationView
-     */
     
     private SpaceStationToUI station;
     private ShieldView shield;
     private WeaponView weapon;
     
-    public SpaceStationView() {
-        initComponents();
-        shield = new ShieldView();
-        weapon = new WeaponView();
+    /**
+     * Creates new form SpaceStationView
+     */
+    public SpaceStationView(SpaceStationToUI st) {
+        station = st;
+        shield = new ShieldView();  // ver como se pasan estos parametros
+        weapon = new WeaponView();  // ver como se pasan estos parametros
         
         jPanel1.add(shield);
         jPanel2.add(weapon);
+        initComponents();
     }
 
     /**
