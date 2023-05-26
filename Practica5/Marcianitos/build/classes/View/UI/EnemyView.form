@@ -139,23 +139,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLEnemyName">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="e.getName()" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="EnemyName"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLAmmoPower">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="String.valueOf(e.getAmmoPower())" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="EnemyAmmoPower"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLShieldPower">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="String.valueOf(e.getShieldPower())" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="EnemyShieldPower"/>
       </Properties>
     </Component>
   </SubComponents>

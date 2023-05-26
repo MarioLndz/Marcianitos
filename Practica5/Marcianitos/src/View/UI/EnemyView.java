@@ -11,8 +11,6 @@ import deepspace.EnemyToUI;
  * @author laura
  */
 public class EnemyView extends javax.swing.JPanel {
-
-    private EnemyToUI e;
             
     private LootView loot;
     private DamageView damage;
@@ -21,6 +19,10 @@ public class EnemyView extends javax.swing.JPanel {
      * Creates new form EnemyView
      */
     public EnemyView() {
+        loot = new LootView();
+        damage = new DamageView();
+        jpLoot.add(loot);
+        jpPerdidas.add(damage);
         initComponents();
     }
 	
@@ -93,11 +95,11 @@ public class EnemyView extends javax.swing.JPanel {
 
         jLabel3.setText("Potencia de defensa: ");
 
-        jLEnemyName.setText(e.getName());
+        jLEnemyName.setText("EnemyName");
 
-        jLAmmoPower.setText(String.valueOf(e.getAmmoPower()));
+        jLAmmoPower.setText("EnemyAmmoPower");
 
-        jLShieldPower.setText(String.valueOf(e.getShieldPower()));
+        jLShieldPower.setText("EnemyShieldPower");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

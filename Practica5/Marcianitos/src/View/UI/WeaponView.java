@@ -13,12 +13,14 @@ import deepspace.WeaponType;
  */
 public class WeaponView extends javax.swing.JPanel {
 
-    private WeaponToUI w;
+    private WeaponToUI weapon;
     
     /**
      * Creates new form WeaponView
+	 * @param w
      */
-    public WeaponView() {
+    public WeaponView(WeaponToUI w) {
+        weapon = w;
         initComponents();
     }
 
@@ -45,11 +47,11 @@ public class WeaponView extends javax.swing.JPanel {
 
         jLabel3.setText("Tipo:");
 
-        numUsos.setText(Integer.toString(w.getUses()));
+        numUsos.setText("Uses");
 
-        potencia.setText(String.valueOf(w.getPower()));
+        potencia.setText("AmmoPower");
 
-        type.setText(WeaponType.toString(w.getType()));
+        type.setText("WeaponType");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,7 +68,7 @@ public class WeaponView extends javax.swing.JPanel {
                     .addComponent(type)
                     .addComponent(potencia)
                     .addComponent(numUsos))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
