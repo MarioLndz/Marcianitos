@@ -42,6 +42,9 @@ public class EnemyView extends javax.swing.JPanel {
         DamageView damageView = new DamageView();
         damageView.setDamage(e.getDamage());
         damage.add(damageView);
+        
+        repaint();
+        revalidate();
     }
 
     /**
