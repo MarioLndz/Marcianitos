@@ -24,6 +24,7 @@ public class LootView extends javax.swing.JPanel {
         nShields.setText(String.valueOf(loot.getnShields()));
         nMedals.setText(String.valueOf(loot.getnMedals()));
         fuel.setText(String.valueOf(loot.getnSupplies()));
+        repaint();
     }
 
     /**

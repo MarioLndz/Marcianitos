@@ -19,21 +19,22 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
     private String appName;
     private SpaceStationView stationView;
-	private EnemyView enemyView;
+    private EnemyView enemyView;
+
     
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
-<<<<<<< HEAD
-		appName = "Deepspace 1.0";
+
+	appName = "Deepspace 1.0";
 		
         enemyView = new EnemyView();
         jpEnemy.add(enemyView);
 		
-		stationView = new SpaceStationView();
-		jpStation.add(stationView);
+	stationView = new SpaceStationView();
+	jpStation.add(stationView);
 		
         setTitle (appName);
         repaint();
@@ -65,7 +66,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     @Override
     public void updateView(){  
         enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
-		stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
+	stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
     }
      
     @Override

@@ -26,24 +26,26 @@ public class EnemyView extends javax.swing.JPanel {
         initComponents();
     }
 	
-	void setEnemy (EnemyToUI e){
-		jLEnemyName.setText(e.getName());
-		jLAmmoPower.setText(String.valueOf(e.getAmmoPower()));
-		jLShieldPower.setText(String.valueOf(e.getShieldPower()));
-		
-		loot.removeAll();
-		damage.removeAll();
-		
-		LootView lootView = new LootView();
-		lootView.setLoot(e.getLoot());
-		
-		loot.add(lootView);
-		
-		DamageView damageView = new DamageView();
-		damageView.setDamage(e.getDamage());
-		damage.add(damageView);
-		
-	}
+    void setEnemy (EnemyToUI e){
+        jLEnemyName.setText(e.getName());
+        jLAmmoPower.setText(String.valueOf(e.getAmmoPower()));
+        jLShieldPower.setText(String.valueOf(e.getShieldPower()));
+
+        loot.removeAll();
+        damage.removeAll();
+
+        LootView lootView = new LootView();
+        lootView.setLoot(e.getLoot());
+
+        loot.add(lootView);
+
+        DamageView damageView = new DamageView();
+        damageView.setDamage(e.getDamage());
+        damage.add(damageView);
+        
+        repaint();
+        revalidate();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

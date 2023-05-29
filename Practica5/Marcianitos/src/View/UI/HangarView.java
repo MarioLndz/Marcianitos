@@ -15,7 +15,7 @@ public class HangarView extends javax.swing.JPanel {
     /**
      * Creates new form HangarView
      */
-    public HangarView(HangarToUI h) {
+    public HangarView() {
         initComponents();
     }
 

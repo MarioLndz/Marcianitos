@@ -12,16 +12,19 @@ import deepspace.WeaponType;
  * @author laura
  */
 public class WeaponView extends javax.swing.JPanel {
-
-    private WeaponToUI weapon;
     
     /**
      * Creates new form WeaponView
 	 * @param w
      */
-    public WeaponView(WeaponToUI w) {
-        weapon = w;
+    public WeaponView() {
         initComponents();
+    }
+    
+    void SetWeapon(WeaponToUI w) {
+        numUsos.setText(WeaponType.toString(w.getType()));
+        potencia.setText(String.valueOf(w.getPower()));
+        type.setText(WeaponType.toString(w.getType()));             
     }
 
     /**
