@@ -60,8 +60,8 @@ public class SpaceStation implements SpaceFighter {
 
         // estos de abajo creo q se inicializarian así
         this.nMedals = otro.nMedals; 
-        this.weapons = otro.weapons;
-        this.shieldBoosters = otro.shieldBoosters;
+        this.weapons = (ArrayList<Weapon>) otro.weapons.clone();
+        this.shieldBoosters = (ArrayList<ShieldBooster>) otro.shieldBoosters.clone();
         this.hangar = otro.hangar;
         this.pendingDamage = otro.pendingDamage;
 
