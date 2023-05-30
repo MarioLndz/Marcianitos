@@ -5,6 +5,8 @@
 package View.UI;
 
 import deepspace.HangarToUI;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -17,8 +19,9 @@ public class HangarView extends javax.swing.JPanel {
      */
     public HangarView() {
         initComponents();
+		
     }
-
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

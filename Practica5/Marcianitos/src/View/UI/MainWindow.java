@@ -10,6 +10,7 @@ import deepspace.GameState;
 import deepspace.GameUniverseToUI;
 import java.util.ArrayList;
 import controller.Controller;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,15 +29,16 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     public MainWindow() {
         initComponents();
 
-	appName = "Deepspace 1.0";
+		appName = "Deepspace 1.0";
 		
         enemyView = new EnemyView();
         jpEnemy.add(enemyView);
 		
-	stationView = new SpaceStationView();
-	jpStation.add(stationView);
+		stationView = new SpaceStationView();
+		jpStation.add(stationView);
 		
         setTitle (appName);
+		this.setSize(1280, 760);
         repaint();
         setLocationRelativeTo(null);
         
@@ -66,7 +68,9 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     @Override
     public void updateView(){  
         enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
-	stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
+		stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
+		
+		
     }
      
     @Override
@@ -84,7 +88,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // Outputs
     @Override
     public boolean confirmExitMessage() {
-        return (true);
+        return (JOptionPane.showConfirmDialog(this, "¿Estás segur@ que deseas salir?", getAppName(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
     }
     
     @Override
@@ -122,7 +126,10 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         
     }
     /////////////////////////////////////
-
+	
+    public String getAppName() {
+        return appName;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,26 +140,15 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpStation = new javax.swing.JPanel();
         jpEnemy = new javax.swing.JPanel();
+        jpStation = new javax.swing.JPanel();
         jButtonSigTurno = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jButtonCombatir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jpStation.setBackground(new java.awt.Color(3, 53, 53));
-
-        javax.swing.GroupLayout jpStationLayout = new javax.swing.GroupLayout(jpStation);
-        jpStation.setLayout(jpStationLayout);
-        jpStationLayout.setHorizontalGroup(
-            jpStationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 299, Short.MAX_VALUE)
-        );
-        jpStationLayout.setVerticalGroup(
-            jpStationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
-        );
+        setResizable(false);
+        setSize(new java.awt.Dimension(1280, 720));
 
         jpEnemy.setBackground(new java.awt.Color(53, 3, 53));
 
@@ -164,12 +160,19 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         );
         jpEnemyLayout.setVerticalGroup(
             jpEnemyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGap(0, 502, Short.MAX_VALUE)
         );
+
+        jpStation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButtonSigTurno.setText("Siguiente Turno");
 
         jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         jButtonCombatir.setText("COMBATIR");
 
@@ -179,75 +182,48 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonSalir))
+                    .addComponent(jpEnemy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSigTurno)
-                            .addComponent(jButtonCombatir, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addComponent(jButtonSalir))
-                    .addComponent(jpEnemy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                            .addComponent(jButtonSigTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCombatir, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 209, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButtonCombatir, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSigTurno)
-                            .addComponent(jButtonSalir))
-                        .addGap(43, 43, 43))
+                        .addComponent(jButtonCombatir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jButtonSigTurno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 55, Short.MAX_VALUE)
+                        .addComponent(jButtonSalir))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
+
+        jpStation.setSize(790,700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        Controller.getInstance().finish(0);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCombatir;

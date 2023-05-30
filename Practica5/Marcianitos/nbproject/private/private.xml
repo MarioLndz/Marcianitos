@@ -2,16 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/home/laura/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/LootView.java</file>
-            <file>file:/home/laura/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/HangarView.java</file>
-            <file>file:/home/laura/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/DamageView.java</file>
-            <file>file:/home/laura/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/SpaceStationView.java</file>
-            <file>file:/home/laura/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/EnemyView.java</file>
+            <file>file:/home/mario/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/WeaponView.java</file>
+            <file>file:/home/mario/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/SpaceStationView.java</file>
+            <file>file:/home/mario/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/controller/Controller.java</file>
+            <file>file:/home/mario/NetBeansProjects/Marcianitos/Practica5/Marcianitos/src/View/UI/MainWindow.java</file>
         </group>
->>>>>>> da5216d7993cdbdddf598374e438ed738344a81c
     </open-files>
 </project-private>

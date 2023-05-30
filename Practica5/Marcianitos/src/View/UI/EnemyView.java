@@ -21,8 +21,6 @@ public class EnemyView extends javax.swing.JPanel {
     public EnemyView() {
         loot = new LootView();
         damage = new DamageView();
-        jpLoot.add(loot);
-        jpPerdidas.add(damage);
         initComponents();
     }
 	
