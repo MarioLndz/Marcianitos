@@ -80,7 +80,7 @@ module Deepspace
 		
 		def state()
 		
-			return @gameState.state       ## se hace así cuando está el attreader en lugar del get() ??
+			return @gameState.state       
 		end
 		
 		def getUIversion()
@@ -217,7 +217,7 @@ module Deepspace
 				end
 			end
 
-			@gameState.next(@turns, @spaceStations.size())
+			@gameState.next(@turns, @spaceStations.length)
 
 			return (resultado)		# devuelve un combatResult
 		end		
@@ -238,7 +238,14 @@ module Deepspace
 		
 		def createSpaceCity		#no estoy segura
 			if (@haveSpaceCity == false)
-				@currentStation = SpaceCity.new(@currentStation, @spaceStations)
+				others = []
+				for station in @spaceStations
+					if station != @currentStation
+				    	others << station
+				  	end
+				end
+
+        		@currentStation = SpaceCity.new(@currentStation, others)
 				@haveSpaceCity = true
 				
 				@spaceStations[@currentStationIndex] = @currentStation

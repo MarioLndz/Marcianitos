@@ -76,7 +76,7 @@ module Deepspace
 		end
 		
 		def extraEfficiency
-			return (@generator.rand() > @EXTRAEFFIENCYPROB)
+			return (@generator.rand() < @EXTRAEFFIENCYPROB)
 		end		#true en caso de que haya que hacerla extra eficiente
 		
 		def to_s()

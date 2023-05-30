@@ -24,8 +24,7 @@ class SpecificDamage < Damage	#terminada
     end
   
 	def adjust(w,s)   # w es un array list de Weapon, s es un Array list de shield
-		d = nil
-		
+			
 		l_nshields = [s.length, nShields].min
 		result = []
 		w_aux = w.clone

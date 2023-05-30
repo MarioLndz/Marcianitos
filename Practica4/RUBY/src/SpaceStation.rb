@@ -39,13 +39,23 @@ module Deepspace
 		end
 		
 		#constructor de copia
-		def constructor(station)	#station es una estación espacial
+		def self.constructorCopia(station)	#station es una estación espacial
 			new(station.name, SuppliesPackage.new(station.ammoPower, station.shieldPower, station.fuelUnits))
 			@nMedals=station.nMedals
 			@weapons=station.weapons.clone()
 			@shieldBoosters=station.shieldBoosters.clone()
-			@hangar=station.hangar
-			@pendingDamage=station.pendingDamage
+			
+			if (station.hangar != nil)
+				@hangar=station.hangar.newCopy(station.hangar)
+			else
+				@hangar=nil
+			end
+			
+			if (station.pendingDamage != nil)
+				@pendingDamage=station.pendingDamage.copy
+			else
+				@pendingDamage = nil
+			end
 		end
 		
 		def cleanUpMountedItems()  # void()
@@ -129,21 +139,25 @@ module Deepspace
 		end
 		
 		def mountShieldBooster(i)  # i es indice dentro del Hangar
-			if (hangar != nil) 
-				s = hangar.removeShieldBooster(i)
-				if (s != nil)
-					shieldBoosters.push(s)
-				end        # void()
+			if i >= 0 && i < @hangar.shieldBoosters.length
+				if (hangar != nil) 
+					s = hangar.removeShieldBooster(i)
+					if (s != nil)
+						shieldBoosters.push(s)
+					end        # void()
+				end
 			end
 		end
 		
 		def mountWeapon(i)   # i es indice dentro del Hangar
-			if (hangar != nil) 
-				w = hangar.removeWeapon(i)
-				if (w != nil)
-					weapons.push(w)
-				end
-			end       # void()
+			if i >= 0 && i < @hangar.weapons.length
+				if (hangar != nil) 
+					w = hangar.removeWeapon(i)
+					if (w != nil)
+						weapons.push(w)
+					end
+				end 
+			end      # void()
 		end
 		 
 		def move()   # void()
@@ -253,10 +267,9 @@ module Deepspace
 		end  # devuelve elemento de tipo Transformation
 		
 		def setPendingDamage(d)   # d es Damage
-			#d.adjust(@weapons, @shieldBoosters)
-			# se almacena el resultado en el atributo correspondiente ???
-			# creo q es esto:
-			@pendingDamage = d.adjust(@weapons, @shieldBoosters)      # void()
+			if (d != nil)			
+				@pendingDamage = d.adjust(@weapons, @shieldBoosters) 
+			end     # void()
 		end
 		
 		def validState()
@@ -284,9 +297,11 @@ module Deepspace
 		end      # no devulve nada
 		
 		def cleanPendingDamage()
-			if (@pendingDamage.hasNoEffect())
-				pendingDamage = nil 
-			end 
+			if(@pendingDamage != nil)
+				if (@pendingDamage.hasNoEffect())
+					pendingDamage = nil 
+				end 
+			end
 		end  # void
 
 	end # class

@@ -17,7 +17,7 @@ class NumericDamage < Damage	#terminada
 		
 	#devuelve copia del objeto actual
 	def copy
-		return self.new(@nWeapons,@nshields)	#ns si está bien
+		return NumericDamage.new(@nWeapons,@nshields)	#ns si está bien
 	end
 	  
 	def getUIversion
