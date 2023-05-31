@@ -5,7 +5,11 @@
 package View.UI;
 
 import deepspace.HangarToUI;
+import deepspace.ShieldToUI;
+import deepspace.WeaponToUI;
 import java.awt.Color;
+import java.awt.Component;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 
 /**
@@ -22,6 +26,50 @@ public class HangarView extends javax.swing.JPanel {
 		
     }
 	
+	void setHangar (HangarToUI h){
+		if (h != null){
+			WeaponView weaponView;
+
+			for (WeaponToUI w : h.getWeapons()) {
+					weaponView = new WeaponView();
+					weaponView.setWeapon(w);
+					jPWeapons.add(weaponView);
+			}
+
+			ShieldView shieldView;
+			for (ShieldToUI s : h.getShieldBoosters()) {
+				shieldView = new ShieldView();
+				shieldView.setShield(s);
+				jPShields.add(shieldView);
+			}
+		}
+		
+	}
+	
+	ArrayList<Integer> getSelectedWeapons(){
+		ArrayList<Integer> selectedWeapons = new ArrayList<>();
+        int i = 0;
+        for (Component c : jPWeapons.getComponents()) {
+            if (((WeaponView) c).isSelected()) {
+                selectedWeapons.add(i);
+            }
+            i++;
+        }
+        return selectedWeapons;
+	}
+	
+	ArrayList<Integer> getSelectedShields (){
+		ArrayList<Integer> selectedHangarShields = new ArrayList<>();
+        int i = 0;
+        for (Component c : jPShields.getComponents()) {
+            if (((ShieldView) c).isSelected()) {
+                selectedHangarShields.add(i);
+            }
+            i++;
+        }
+        return selectedHangarShields;
+	}
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,19 +79,17 @@ public class HangarView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 671, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 192, Short.MAX_VALUE)
-        );
+        jPWeapons = new javax.swing.JPanel();
+        jPShields = new javax.swing.JPanel();
+
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+        add(jPWeapons);
+        add(jPShields);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPShields;
+    private javax.swing.JPanel jPWeapons;
     // End of variables declaration//GEN-END:variables
 }

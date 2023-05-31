@@ -8,6 +8,7 @@ import deepspace.ShieldToUI;
 import deepspace.SpaceStationToUI;
 import deepspace.WeaponToUI;
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 
@@ -17,12 +18,17 @@ import javax.swing.BorderFactory;
  */
 public class SpaceStationView extends javax.swing.JPanel {
     
+	HangarView hangarView;
+	
     /**
      * Creates new form SpaceStationView
      */
     public SpaceStationView() {
-		this.setSize(790,700);
+		this.setSize(775,700);
         initComponents();
+		
+		hangarView = new HangarView();
+		jpHangar.add(hangarView);
     }
 
     void setSpaceStation(SpaceStationToUI station) {
@@ -40,12 +46,11 @@ public class SpaceStationView extends javax.swing.JPanel {
         
         // añado hangar
         HangarToUI h = station.getHangar();
+		hangarView.setHangar(h);
 		
 		if (h == null){
 			jpHangar.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "SIN HANGAR"));
 		} else {
-			addWeapons(h.getWeapons(),jpHangar);
-			addShields(h.getShieldBoosters(),jpHangar);
 			jpHangar.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Hangar con " + h.getMaxElements() + " elementos"));
 		}
         
@@ -70,6 +75,14 @@ public class SpaceStationView extends javax.swing.JPanel {
             p.add(shieldView);
         }
      }
+	 
+	ArrayList<Integer> getHangarSelectedWeapons (){
+        return (hangarView.getSelectedWeapons());
+	}
+	
+	ArrayList<Integer> getHangarSelectedShields (){
+        return (hangarView.getSelectedShields());
+	}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -217,8 +230,8 @@ public class SpaceStationView extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollShields, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -28,6 +28,8 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
      */
     public MainWindow() {
         initComponents();
+		
+		jButtonCombatir.setEnabled(false);
 
 		appName = "Deepspace 1.0";
 		
@@ -88,7 +90,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // Outputs
     @Override
     public boolean confirmExitMessage() {
-        return (JOptionPane.showConfirmDialog(this, "¿Estás segur@ que deseas salir?", getAppName(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
+        return (JOptionPane.showConfirmDialog(this, "¿Desea salir realmente?", getAppName(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
     }
     
     @Override
@@ -145,12 +147,17 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         jButtonSigTurno = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jButtonCombatir = new javax.swing.JButton();
+        jBMount = new javax.swing.JButton();
+        jBDiscard = new javax.swing.JButton();
+        jBDiscardHangar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
-        jpEnemy.setBackground(new java.awt.Color(53, 3, 53));
+        jpEnemy.setBackground(new java.awt.Color(204, 204, 204));
+        jpEnemy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jpEnemy.setOpaque(false);
 
         javax.swing.GroupLayout jpEnemyLayout = new javax.swing.GroupLayout(jpEnemy);
         jpEnemy.setLayout(jpEnemyLayout);
@@ -176,43 +183,72 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
         jButtonCombatir.setText("COMBATIR");
 
+        jBMount.setText("Equipar");
+        jBMount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMountActionPerformed(evt);
+            }
+        });
+
+        jBDiscard.setText("Descartar");
+        jBDiscard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiscardActionPerformed(evt);
+            }
+        });
+
+        jBDiscardHangar.setText("Descartar hangar completo");
+        jBDiscardHangar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiscardHangarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBMount, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBDiscardHangar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonSalir))
-                    .addComponent(jpEnemy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSigTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCombatir, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 209, Short.MAX_VALUE)))
+                    .addComponent(jpEnemy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonCombatir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jButtonSigTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 140, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonCombatir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
-                        .addComponent(jButtonSigTurno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 55, Short.MAX_VALUE)
-                        .addComponent(jButtonSalir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jButtonCombatir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSigTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBMount)
+                    .addComponent(jBDiscard)
+                    .addComponent(jBDiscardHangar)
+                    .addComponent(jButtonSalir))
+                .addGap(6, 6, 6))
         );
 
         jpStation.setSize(790,700);
@@ -224,8 +260,24 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         Controller.getInstance().finish(0);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    private void jBMountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMountActionPerformed
+        Controller.getInstance().mount(stationView.getHangarSelectedWeapons(), stationView.getHangarSelectedShields());
+		updateView();
+    }//GEN-LAST:event_jBMountActionPerformed
+
+    private void jBDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiscardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiscardActionPerformed
+
+    private void jBDiscardHangarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiscardHangarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiscardHangarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBDiscard;
+    private javax.swing.JButton jBDiscardHangar;
+    private javax.swing.JButton jBMount;
     private javax.swing.JButton jButtonCombatir;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonSigTurno;
