@@ -13,7 +13,7 @@ import deepspace.WeaponType;
  */
 public class WeaponView extends javax.swing.JPanel {
     
-	private boolean selected = false;
+    private boolean selected = false;
 	
     /**
      * Creates new form WeaponView
@@ -21,18 +21,19 @@ public class WeaponView extends javax.swing.JPanel {
      */
     public WeaponView() {
         initComponents();
-		setOpaque(selected);
+        setOpaque(selected);
     }
     
     void setWeapon(WeaponToUI w) {
         type.setText(WeaponType.toString(w.getType()));
         potencia.setText(String.valueOf(w.getPower()));
-        numUsos.setText(Integer.toString(w.getUses()));             
+        numUsos.setText(Integer.toString(w.getUses()));
+        repaint();
     }
 	
-	public boolean isSelected() {
-		return selected;
-	}
+    public boolean isSelected() {
+        return selected;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

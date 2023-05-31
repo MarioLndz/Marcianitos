@@ -4,7 +4,9 @@
  */
 package View.UI;
 
+import controller.Controller;
 import deepspace.EnemyToUI;
+import deepspace.GameState;
 
 /**
  *
@@ -19,27 +21,41 @@ public class EnemyView extends javax.swing.JPanel {
      * Creates new form EnemyView
      */
     public EnemyView() {
-        loot = new LootView();
-        damage = new DamageView();
         initComponents();
+        
+        loot = new LootView();
+        jpLoot.add(loot);
+        
+        damage = new DamageView();
+        jpPerdidas.add(damage);
     }
 	
     void setEnemy (EnemyToUI e){
         jLEnemyName.setText(e.getName());
         jLAmmoPower.setText(String.valueOf(e.getAmmoPower()));
         jLShieldPower.setText(String.valueOf(e.getShieldPower()));
-
+/*
         loot.removeAll();
         damage.removeAll();
 
         LootView lootView = new LootView();
-        lootView.setLoot(e.getLoot());
+        loot.setLoot(e.getLoot());
 
         loot.add(lootView);
 
         DamageView damageView = new DamageView();
         damageView.setDamage(e.getDamage());
         damage.add(damageView);
+       */
+
+        if(Controller.getInstance().getState() == GameState.BEFORECOMBAT || Controller.getInstance().getState() == GameState.INIT){
+            loot.setVisible(false);
+            damage.setVisible(false);
+        }
+        else{
+            loot.setVisible(true);
+            damage.setVisible(true);
+        }
         
         repaint();
         revalidate();

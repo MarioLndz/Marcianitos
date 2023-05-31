@@ -26,28 +26,29 @@ public class HangarView extends javax.swing.JPanel {
 		
     }
 	
-	void setHangar (HangarToUI h){
-		if (h != null){
-			WeaponView weaponView;
+    void setHangar (HangarToUI h){
+        if (h != null){
+            WeaponView weaponView;
 
-			for (WeaponToUI w : h.getWeapons()) {
-					weaponView = new WeaponView();
-					weaponView.setWeapon(w);
-					jPWeapons.add(weaponView);
-			}
+            for (WeaponToUI w : h.getWeapons()) {
+                weaponView = new WeaponView();
+                weaponView.setWeapon(w);
+                jPWeapons.add(weaponView);
+            }
 
-			ShieldView shieldView;
-			for (ShieldToUI s : h.getShieldBoosters()) {
-				shieldView = new ShieldView();
-				shieldView.setShield(s);
-				jPShields.add(shieldView);
-			}
-		}
-		
-	}
-	
-	ArrayList<Integer> getSelectedWeapons(){
-		ArrayList<Integer> selectedWeapons = new ArrayList<>();
+            ShieldView shieldView;
+            for (ShieldToUI s : h.getShieldBoosters()) {
+                shieldView = new ShieldView();
+                shieldView.setShield(s);
+                jPShields.add(shieldView);
+            }
+        } else
+            setVisible(false);
+
+    }
+
+    ArrayList<Integer> getSelectedWeapons(){
+        ArrayList<Integer> selectedWeapons = new ArrayList<>();
         int i = 0;
         for (Component c : jPWeapons.getComponents()) {
             if (((WeaponView) c).isSelected()) {
@@ -56,10 +57,10 @@ public class HangarView extends javax.swing.JPanel {
             i++;
         }
         return selectedWeapons;
-	}
-	
-	ArrayList<Integer> getSelectedShields (){
-		ArrayList<Integer> selectedHangarShields = new ArrayList<>();
+    }
+
+    ArrayList<Integer> getSelectedShields (){
+        ArrayList<Integer> selectedHangarShields = new ArrayList<>();
         int i = 0;
         for (Component c : jPShields.getComponents()) {
             if (((ShieldView) c).isSelected()) {
@@ -68,7 +69,7 @@ public class HangarView extends javax.swing.JPanel {
             i++;
         }
         return selectedHangarShields;
-	}
+    }
 	
     /**
      * This method is called from within the constructor to initialize the form.

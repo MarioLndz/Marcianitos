@@ -29,16 +29,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jpStation" min="-2" pref="790" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jBMount" min="-2" pref="135" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jBDiscard" min="-2" pref="135" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jBDiscardHangar" min="-2" pref="265" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="jpStation" min="-2" pref="790" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
@@ -71,12 +62,7 @@
                   <Component id="jpStation" min="-2" pref="650" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBMount" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBDiscard" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBDiscardHangar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jButtonSalir" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -127,6 +113,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Siguiente Turno"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSigTurnoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSalir">
       <Properties>
@@ -140,29 +129,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="COMBATIR"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBMount">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Equipar"/>
-      </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBMountActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBDiscard">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Descartar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBDiscardActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBDiscardHangar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Descartar hangar completo"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBDiscardHangarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCombatirActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

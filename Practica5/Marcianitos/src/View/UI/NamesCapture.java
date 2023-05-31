@@ -32,10 +32,10 @@ public class NamesCapture extends javax.swing.JDialog {
         });
     }
 	
-	ArrayList<String> getNames (){
-		this.setVisible (true);
-		return(names);
-	}
+    ArrayList<String> getNames (){
+        this.setVisible (true);
+        return(names);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,19 +152,19 @@ public class NamesCapture extends javax.swing.JDialog {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         names.clear();
-		if ((jtName1.getText().length() != 0) && jtName2.getText().length() != 0){
-			names.add (jtName1.getText());
-			names.add (jtName2.getText());
-			if (jtName3.getText().length() != 0) names.add (jtName3.getText());
-			if (jtName4.getText().length() != 0) names.add (jtName4.getText());
-			
-			dispose();
-		} else {
-			if (!error_mesagge.isVisible()){
-				error_mesagge.setVisible(true);
-				this.setSize(this.getWidth(), this.getHeight()+50);
-			}
-		}
+        if ((jtName1.getText().length() != 0) && jtName2.getText().length() != 0){
+            names.add (jtName1.getText());
+            names.add (jtName2.getText());
+            if (jtName3.getText().length() != 0) names.add (jtName3.getText());
+            if (jtName4.getText().length() != 0) names.add (jtName4.getText());
+
+            dispose();
+        } else {
+            if (!error_mesagge.isVisible()){
+                error_mesagge.setVisible(true);
+                this.setSize(this.getWidth(), this.getHeight()+50);
+            }
+        }
     }//GEN-LAST:event_startButtonActionPerformed
 
 	

@@ -22,25 +22,33 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     private SpaceStationView stationView;
     private EnemyView enemyView;
 
+    private static MainWindow instance = null;
+
+    public static MainWindow getInstance () {   
+        if (instance == null) {
+          instance = new MainWindow();
+        }
+        return instance;
+    }
     
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    private MainWindow() {
         initComponents();
 		
-		jButtonCombatir.setEnabled(false);
+        //jButtonCombatir.setEnabled(false);
 
-		appName = "Deepspace 1.0";
+        appName = "Deepspace 1.0";
 		
         enemyView = new EnemyView();
         jpEnemy.add(enemyView);
 		
-		stationView = new SpaceStationView();
-		jpStation.add(stationView);
+        stationView = new SpaceStationView();
+        jpStation.add(stationView);
 		
         setTitle (appName);
-		this.setSize(1280, 760);
+	this.setSize(1280, 760);
         repaint();
         setLocationRelativeTo(null);
         
@@ -53,38 +61,41 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
             }
         });
     }
-    
-    ////////////////////////////////
-    private static MainWindow instance = null;
 
-    public static MainWindow getInstance () {   // copiado del ejemplo y textmainview
-        if (instance == null) {
-          instance = new MainWindow();
-        }
-        return instance;
-    }
-
-    private GameUniverseToUI gameUI;
-    private GameState state;
-  
     @Override
     public void updateView(){  
         enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
-		stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
-		
-		
+	stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());	
+        jpStation.add(stationView);
+        jpEnemy.add(enemyView);
+        
+        GameState gameState = Controller.getInstance().getState();
+        if(gameState == GameState.INIT){            
+            jButtonCombatir.setEnabled(true);
+            jButtonSigTurno.setEnabled(false);
+        }
+        if(gameState == GameState.BEFORECOMBAT){            
+            jButtonCombatir.setEnabled(true);
+            jButtonSigTurno.setEnabled(false);
+        }
+        if(gameState == GameState.AFTERCOMBAT){            
+            jButtonCombatir.setEnabled(false);
+            jButtonSigTurno.setEnabled(true);
+        }
+        
+        repaint();
     }
      
     @Override
-    public void showView() {    // lo pone en el pdf
+    public void showView() {   
         this.setVisible(true);
     }
     
     // Inputs
     @Override
-    public ArrayList<String> readNamePlayers(){     //lo pone en el pdf
-        NamesCapture namesCapt = new NamesCapture(this);    // hay q terminar el constructor de NamesCapture
-        return namesCapt.getNames();    // añadir getNames a NamesCapture
+    public ArrayList<String> readNamePlayers(){    
+        NamesCapture namesCapt = new NamesCapture(this);    
+        return namesCapt.getNames();    
     }
     
     // Outputs
@@ -95,39 +106,43 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     
     @Override
     public void nextTurnNotAllowedMessage() {
-        
+        JOptionPane.showMessageDialog(this, "No puedes avanzar de turno, \nno has cumplido tu castigo.", getAppName(), JOptionPane.ERROR_MESSAGE);
     }
     
     @Override
     public void lostCombatMessage(){
-        
+        JOptionPane.showMessageDialog(this, "Has PERDIDO el combate. \nCumple tu castigo.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
     }
     
     @Override
     public void escapeMessage(){
-        
+        JOptionPane.showMessageDialog(this, "Has logrado ESCAPAR. \nEres un gallina espacial.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
     }
     
     @Override
     public void wonCombatMessage(){
-        
+        JOptionPane.showMessageDialog(this, "Has GANADO el combate. \nDisfruta de tu botín.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
     }
     
     @Override
     public void wonGameMessage(){
-        
+        JOptionPane.showMessageDialog(this, "ENHORABUENA!!. \nHas ganado el juego!!.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
     }
     
     @Override
     public void conversionMessage() {
-        
+        if(Controller.getInstance().getUIversion().getCurrentEnemy().getLoot().isGetEfficient()){
+            JOptionPane.showMessageDialog(this, "Has GANADO el combate. \nAdemás te has CONVERTIDO en una estación EFICIENTE. \nDisfruta de tu botín.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Has GANADO el combate. \nAdemás te has CONVERTIDO en una CIUDAD ESPACIAL. \nDisfruta de tu botín.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     
     @Override
     public void noCombatMessage() {
-        
+        JOptionPane.showMessageDialog(this, "No puedes combatir en este momento.", getAppName(), JOptionPane.ERROR_MESSAGE);
     }
-    /////////////////////////////////////
 	
     public String getAppName() {
         return appName;
@@ -147,9 +162,6 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         jButtonSigTurno = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jButtonCombatir = new javax.swing.JButton();
-        jBMount = new javax.swing.JButton();
-        jBDiscard = new javax.swing.JButton();
-        jBDiscardHangar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -173,6 +185,11 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         jpStation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButtonSigTurno.setText("Siguiente Turno");
+        jButtonSigTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSigTurnoActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -182,25 +199,9 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         });
 
         jButtonCombatir.setText("COMBATIR");
-
-        jBMount.setText("Equipar");
-        jBMount.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCombatir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBMountActionPerformed(evt);
-            }
-        });
-
-        jBDiscard.setText("Descartar");
-        jBDiscard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBDiscardActionPerformed(evt);
-            }
-        });
-
-        jBDiscardHangar.setText("Descartar hangar completo");
-        jBDiscardHangar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBDiscardHangarActionPerformed(evt);
+                jButtonCombatirActionPerformed(evt);
             }
         });
 
@@ -210,14 +211,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBMount, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBDiscardHangar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -243,11 +237,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
                         .addComponent(jButtonSigTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jpStation, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBMount)
-                    .addComponent(jBDiscard)
-                    .addComponent(jBDiscardHangar)
-                    .addComponent(jButtonSalir))
+                .addComponent(jButtonSalir)
                 .addGap(6, 6, 6))
         );
 
@@ -260,24 +250,20 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         Controller.getInstance().finish(0);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void jBMountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMountActionPerformed
-        Controller.getInstance().mount(stationView.getHangarSelectedWeapons(), stationView.getHangarSelectedShields());
-		updateView();
-    }//GEN-LAST:event_jBMountActionPerformed
+    private void jButtonCombatirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCombatirActionPerformed
+        Controller.getInstance().combat();
+        updateView();
+        revalidate();
+    }//GEN-LAST:event_jButtonCombatirActionPerformed
 
-    private void jBDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiscardActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBDiscardActionPerformed
-
-    private void jBDiscardHangarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiscardHangarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBDiscardHangarActionPerformed
+    private void jButtonSigTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSigTurnoActionPerformed
+        Controller.getInstance().nextTurn();
+        updateView();
+        revalidate();
+    }//GEN-LAST:event_jButtonSigTurnoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBDiscard;
-    private javax.swing.JButton jBDiscardHangar;
-    private javax.swing.JButton jBMount;
     private javax.swing.JButton jButtonCombatir;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonSigTurno;

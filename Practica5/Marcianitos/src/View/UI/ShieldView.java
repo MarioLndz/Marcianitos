@@ -17,17 +17,19 @@ public class ShieldView extends javax.swing.JPanel {
      */
     public ShieldView() {
         initComponents();
-		setOpaque(selected);
+	setOpaque(selected);
     }
     
     void setShield(ShieldToUI shield) {
         power.setText(String.valueOf(shield.getBoost()));
         uses.setText(String.valueOf(shield.getUses()));
+        revalidate();
+        repaint();
     }
 	
-	public boolean isSelected() {
-		return selected;
-	}
+    public boolean isSelected() {
+        return selected;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
