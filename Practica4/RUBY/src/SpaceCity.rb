@@ -49,4 +49,5 @@ module Deepspace
             SpaceCityToUI.new(self)
         end
     end
+
 end
