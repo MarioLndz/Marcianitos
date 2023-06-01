@@ -1,6 +1,7 @@
 #encoding:utf-8
 
 require_relative 'SpaceStation'
+require_relative 'PowerEfficientSpaceStationToUI'
 
 module Deepspace
   
@@ -42,18 +43,11 @@ class PowerEfficientSpaceStation < SpaceStation		#terminada
 		return out
 	end
 
+	#Override
+	def getUIversion
+		PowerEfficientSpaceStationToUI.new(self)
+	end
+
 end # class
-
-sp = SuppliesPackage.new(1,2,3)
-station = SpaceStation.new("PRUEBA", sp)
-station.receiveHangar(Hangar.new(5))
-station.receiveWeapon(Weapon.new("LASER", WeaponType::LASER, 3))
-
-puts station.getUIversion
-
-ef_station = PowerEfficientSpaceStation.new(station)
-
-puts ef_station.to_s
-
 end # module
 
