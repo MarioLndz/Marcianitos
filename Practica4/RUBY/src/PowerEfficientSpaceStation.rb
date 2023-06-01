@@ -26,8 +26,13 @@ class PowerEfficientSpaceStation < SpaceStation		#terminada
 	
 	#Override
 	def setLoot(loot)
-		super
-		return Transformation::NOTRANSFORM	#no se pueden transformar
+		transformacion = super(loot)
+
+		if (transformacion == Transformation::SPACECITY)
+			transformacion = Transformation::NOTRANSFORM
+		end
+
+		return (transformacion)	#no se pueden transformar
 	end	#devuelve elemento de tipo Transformation
   
 	#Override
