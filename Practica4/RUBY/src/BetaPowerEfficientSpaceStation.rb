@@ -8,19 +8,19 @@ class BetaPowerEfficientSpaceStation < PowerEfficientSpaceStation
 	@@EXTRAEFFICIENCY = 1.2
 
     def initialize (s)
-        super(s)
-        d = Dice.new()
+      super(s)
+      d = Dice.new()
     end
     
     #override
     def fire
 		
-		if(d.extraEfficiency)
-			retorno = super*@@EXTRAEFFICIENCY
-		else
-			retorno = super
-		end
-		return retorno
+      if(d.extraEfficiency)
+        retorno = super*@@EXTRAEFFICIENCY
+      else
+        retorno = super
+      end
+      return retorno
     end
     
     #Override

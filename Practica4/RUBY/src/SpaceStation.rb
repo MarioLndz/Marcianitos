@@ -40,13 +40,18 @@ module Deepspace
 		
 		#constructor de copia
 		def self.constructorCopia(station)	#station es una estación espacial
-			new(station.name, SuppliesPackage.new(station.ammoPower, station.shieldPower, station.fuelUnits))
+			copia = new(station.name, SuppliesPackage.new(station.ammoPower, station.shieldPower, station.fuelUnits))
+			copia.copy(station)
+			copia
+		end
+
+		def copy(station)
 			@nMedals=station.nMedals
 			@weapons=station.weapons.clone()
 			@shieldBoosters=station.shieldBoosters.clone()
 			
 			if (station.hangar != nil)
-				@hangar=station.hangar.newCopy(station.hangar)
+				@hangar = Hangar.newCopy(station.hangar)
 			else
 				@hangar=nil
 			end

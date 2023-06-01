@@ -9,7 +9,9 @@ class PowerEfficientSpaceStation < SpaceStation		#terminada
 	@@EFFIENCYFACTOR = 1.10
 	
 	def initialize (station) 
-		super(station)
+		super(station.name, SuppliesPackage.new(station.ammoPower, station.fuelUnits, station.shieldPower))
+		copy(station)
+
 	end
   
 	#override
@@ -36,6 +38,17 @@ class PowerEfficientSpaceStation < SpaceStation		#terminada
 	end
 
 end # class
+
+sp = SuppliesPackage.new(1,2,3)
+station = SpaceStation.new("PRUEBA", sp)
+station.receiveHangar(Hangar.new(5))
+station.receiveWeapon(Weapon.new("LASER", WeaponType::LASER, 3))
+
+puts station.getUIversion
+
+ef_station = PowerEfficientSpaceStation.new(station)
+
+puts ef_station.to_s
 
 end # module
 
