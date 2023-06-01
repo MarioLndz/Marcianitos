@@ -33,5 +33,11 @@ public class BetaPowerEfficientSpaceStation extends PowerEfficientSpaceStation{
         
         return retorno;
     }
+	
+	
+	@Override
+	public BetaPowerEfficientSpaceStationToUI getUIversion (){
+		return (new BetaPowerEfficientSpaceStationToUI(this));
+	}
     
 }

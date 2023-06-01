@@ -3,6 +3,8 @@
 require_relative 'SpaceStation'
 require_relative 'Transformation'
 
+require_relative 'SpaceCityToUI'
+
 module Deepspace
     class SpaceCity < SpaceStation
         #   la_base: SpaceStation
@@ -41,6 +43,10 @@ module Deepspace
             super(loot)
 
             return (Transformation::NOTRANSFORM)
+        end
+
+        def getUIversion 
+            SpaceCityToUI.new(self)
         end
     end
 end

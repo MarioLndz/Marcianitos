@@ -57,4 +57,8 @@ public class SpaceCity extends SpaceStation {
 		return (Transformation.NOTRANSFORM);
 	}
 	
+	@Override
+	public SpaceCityToUI getUIversion () {
+		return (new SpaceCityToUI(this));
+	}
 }

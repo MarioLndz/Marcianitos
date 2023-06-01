@@ -32,4 +32,9 @@ public class PowerEfficientSpaceStation extends SpaceStation{
         super.setLoot(loot);
         return (Transformation.NOTRANSFORM);
     }
+	
+	@Override
+	public PowerEfficientSpaceStationToUI getUIversion () {
+		return (new PowerEfficientSpaceStationToUI(this));
+	}
 }
