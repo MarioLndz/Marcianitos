@@ -8,7 +8,8 @@ module Deepspace
         #   la_base: SpaceStation
         #   los_collaborators: Arraylist<SpaceStation>
         def initialize (la_base, los_collaborators)
-            super(la_base)
+            super(la_base.name, SuppliesPackage.new(la_base.ammoPower, la_base.fuelUnits, la_base.shieldPower))
+            copy(la_base)
 
             @base = la_base
             @collaborators = los_collaborators
